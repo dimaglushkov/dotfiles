@@ -12,6 +12,7 @@
 set nocompatible              " be iMproved, required for Vundle
 filetype off                  " required for Vundle
 
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -21,31 +22,42 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ntk148v/vim-horizon'
 Plugin 'w0rp/ale'
-
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-syntastic/syntastic'
 
 call vundle#end()            " required for Vundle
 filetype plugin indent on    " required for Vundle
 " =============================
 
-
-
 " vim-airline and interface configuration
 " ============================
+let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline_skip_empty_sections = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='tenderplus'
+let g:airline_theme='molokai'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+
 color afterglow
 set laststatus=2
 set ttimeoutlen=50
 " ============================
 
+" syntastic configuration
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" ============================
 
 " Tagbar plugin
 "	nmap <F8> :TagbarToggle<CR>
@@ -64,7 +76,7 @@ set shortmess=F
 syntax enable
 
 " Auto deletes all trailing whitespaces on save
-    autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 
 " Set 'nocompatible' to ward off unexpected things
 set nocompatible
@@ -147,7 +159,7 @@ set splitright
 " Ctrl+C, Ctrl+v, Ctrl+x, Ctrl+a, Ctrl+z, Ctrl+d +  system-buffer
     vnoremap <C-c> "*y :let @+=@*<CR>
     vnoremap <C-x> "*x :let @+=@*<CR>
-    map <C-v> "+p
+	map <C-v> "+p
     nnoremap <C-A> ggVG
     map <C-z> u
     inoremap <C-z> <Esc>ui
@@ -158,7 +170,7 @@ set splitright
 "	nnoremap <M-BS> db
 
 " Ctrl + up or down move screen instead of cursor
-	inoremap <C-Up> <Esc><C-y>i
+	inoremap <C-Up> <Esc><C-y>il
 	nnoremap <C-Up> <C-y>
 
 	inoremap <C-Down> <Esc><C-e>i
