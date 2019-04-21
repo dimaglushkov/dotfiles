@@ -40,6 +40,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_theme='tenderplus'
 color afterglow
 set laststatus=2
 set ttimeoutlen=50
@@ -152,30 +153,35 @@ set splitright
     inoremap <C-z> <Esc>ui
     inoremap <C-d> <Esc>yypi
 
-" Ctrl + arrows in insert mode for navigations
-	nnoremap <C-Down> <C-End>
-	inoremap <C-Down> <C-End>
-	nnoremap <C-Up> <C-Home>
-	inoremap <C-Up> <C-Home>
+" Ctrl + backspace to delete all symbols till start of word
+"	inoremap <C-BS> <Esc>dbi
+"	nnoremap <M-BS> db
 
-" Shift + arrows in insert mode to select something
-	inoremap <S-Left> <Esc>v<Left>
-	vnoremap <S-Left> <C-Left>
+" Ctrl + up or down move screen instead of cursor
+	inoremap <C-Up> <Esc><C-y>i
+	nnoremap <C-Up> <C-y>
 
-	inoremap <S-Up> <Esc>v<Up>
-	vnoremap <S-Up> <Up>
+	inoremap <C-Down> <Esc><C-e>i
+	nnoremap <C-Down> <C-e>
 
-	inoremap <S-Down> <Esc>v<Down>
-	vnoremap <S-Down> <Down>
+" shift + arrows in insert mode to select something
+	inoremap <s-left> <esc>v<left>
+	vnoremap <s-left> <c-left>
 
-	inoremap <S-Right> <Esc>v<Right>
-	vnoremap <S-Right> <C-Right>
+	inoremap <s-up> <esc>v<up>
+	vnoremap <s-up> <up>
+
+	inoremap <s-down> <esc>v<down>
+	vnoremap <s-down> <down>
+
+	inoremap <s-right> <esc>v<right>
+	vnoremap <s-right> <c-right>
 
 " alt + arrow to navigate between splits
-    map <M-Left> <C-w><Left>
-    map <M-Up> <C-w><Up>
-    map <M-Down> <C-w><Down>
-    map <M-Right> <C-w><Right>
+    map <m-left> <c-w><left>
+    map <m-up> <c-w><up>
+    map <m-down> <c-w><down>
+    map <m-right> <c-w><right>
 
 " shift + arrows to resize splits
     nnoremap <S-Down> <C-w>+
@@ -203,6 +209,4 @@ autocmd vimenter * wincmd >
 autocmd vimenter * wincmd >
 autocmd vimenter * wincmd >
 autocmd vimenter * wincmd >
-
-" let NERDTreeMinimalUI = 1
 

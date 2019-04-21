@@ -10,7 +10,7 @@
 export EDITOR="vim"
 export VIMINIT='source $DOTFILES/vimrc'
 
-shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
+shopt -s  autocd #Allows you to cd into directory merely by typing the directory name.
 
 alias helios="echo 'Connecting as s269331...' && ssh s269331@helios.cs.ifmo.ru -p 2222"
 alias v="vim"
