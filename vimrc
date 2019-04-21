@@ -1,0 +1,208 @@
+
+" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║   ██║██║██╔████╔██║██████╔╝██║
+" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+
+
+" Using Vundle to manage plugins
+" =============================
+set nocompatible              " be iMproved, required for Vundle
+filetype off                  " required for Vundle
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'ntk148v/vim-horizon'
+Plugin 'w0rp/ale'
+
+
+call vundle#end()            " required for Vundle
+filetype plugin indent on    " required for Vundle
+" =============================
+
+
+
+" vim-airline and interface configuration
+" ============================
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+color afterglow
+set laststatus=2
+set ttimeoutlen=50
+" ============================
+
+
+" Tagbar plugin
+"	nmap <F8> :TagbarToggle<CR>
+"	set g:tagbar_ctags_bin
+
+
+" When opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the line you're currently on.
+set autoindent
+set encoding=UTF-8
+set tabstop=4
+set shiftwidth=4
+
+set shortmess=F
+" Enabling syntax highlighting
+syntax enable
+
+" Auto deletes all trailing whitespaces on save
+    autocmd BufWritePre * %s/\s\+$//e
+
+" Set 'nocompatible' to ward off unexpected things
+set nocompatible
+
+" Better command-line completion
+set wildmenu
+
+" Enable use of the mouse for all modes
+set mouse=a
+
+" Stop certain movements from always going to the first character of a line.
+set nostartofline
+
+" Show partial commands in the last line of the screen
+set showcmd
+
+" Instead of failing a command because of unsaved changes, instead raise a
+" dialogue asking if you wish to save changed files.
+set confirm
+
+" Allow backspacing over autoindent, line breaks and start of insert action
+set backspace=indent,eol,start
+
+" Lines numeration
+set nu
+
+" Allows to ctrl+ru_sym
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
+" case insensitive searching
+set ignorecase
+
+" case-sensitive if expresson contains a capital letter
+set smartcase
+set hlsearch
+
+" set incremental search, like modern browsers
+set incsearch
+
+" Show matching braces
+set showmatch
+
+" Display the cursor position on the last line of the screen or in the status line of a window
+set ruler
+
+" Use visual bell instead of beeping when doing something wrong
+" set visualbell
+
+" Split open at the bottom and right
+set splitright
+
+" Space to start insert mode
+:nnoremap <Space> i
+
+
+
+" ctrl+something but it's shift+
+    " Shift+f - search
+        map <S-F>  /
+
+    " Shift+q - quit
+        map <S-q> :q<CR><Esc>
+
+    " Shift+s - save
+        map <S-s> :w<CR><Esc>
+
+    " Shift+w - save&quit
+        map <S-w> :x<CR><Esc>
+
+" Ctrl+l to remove search hihglighting
+    nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
+" Shift+tab to move text to left
+    inoremap <S-Tab> <C-d>
+
+" Ctrl +e equals End, ctrl+w equals home in insert mode
+    inoremap <C-e> <End>
+	inoremap <C-w> <Home>
+
+" Ctrl+C, Ctrl+v, Ctrl+x, Ctrl+a, Ctrl+z, Ctrl+d +  system-buffer
+    vnoremap <C-c> "*y :let @+=@*<CR>
+    vnoremap <C-x> "*x :let @+=@*<CR>
+    map <C-v> "+p
+    nnoremap <C-A> ggVG
+    map <C-z> u
+    inoremap <C-z> <Esc>ui
+    inoremap <C-d> <Esc>yypi
+
+" Ctrl + arrows in insert mode for navigations
+	nnoremap <C-Down> <C-End>
+	inoremap <C-Down> <C-End>
+	nnoremap <C-Up> <C-Home>
+	inoremap <C-Up> <C-Home>
+
+" Shift + arrows in insert mode to select something
+	inoremap <S-Left> <Esc>v<Left>
+	vnoremap <S-Left> <C-Left>
+
+	inoremap <S-Up> <Esc>v<Up>
+	vnoremap <S-Up> <Up>
+
+	inoremap <S-Down> <Esc>v<Down>
+	vnoremap <S-Down> <Down>
+
+	inoremap <S-Right> <Esc>v<Right>
+	vnoremap <S-Right> <C-Right>
+
+" alt + arrow to navigate between splits
+    map <M-Left> <C-w><Left>
+    map <M-Up> <C-w><Up>
+    map <M-Down> <C-w><Down>
+    map <M-Right> <C-w><Right>
+
+" shift + arrows to resize splits
+    nnoremap <S-Down> <C-w>+
+    nnoremap <S-Up> <C-w>-
+    nnoremap <S-Left> <C-w><
+    nnoremap <S-Right> <C-w>>
+
+
+" NERDtree
+    map <C-n> :NERDTreeToggle<CR>
+"set timeout
+    set timeoutlen=1000
+"set ttimeout
+    set ttimeoutlen=50
+
+
+" NERD tree autoload and auto close if that's the only window opened
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+autocmd vimenter * wincmd >
+
+" let NERDTreeMinimalUI = 1
+
