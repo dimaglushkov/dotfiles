@@ -170,10 +170,10 @@ set splitright
 "	nnoremap <M-BS> db
 
 " Ctrl + up or down move screen instead of cursor
-	inoremap <C-Up> <Esc><C-y>il
+	inoremap <C-Up> <Esc><C-y>li
 	nnoremap <C-Up> <C-y>
 
-	inoremap <C-Down> <Esc><C-e>i
+	inoremap <C-Down> <Esc><C-e>li
 	nnoremap <C-Down> <C-e>
 
 " shift + arrows in insert mode to select something

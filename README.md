@@ -1,5 +1,11 @@
 # dotfiles
-This repo stores my dotfiles such as .vimrc .bashrc and more :)
+This repo was created to store and share my dotfiles setup.
+There is also some hints to make your terminal experience better.
+
+## Missing dots in the filenames
+I've set $DOTFILES variable in my .profile and now on vim/bash startup files automatically loaded from the directory from $DOTFILES (for me it's ~/dotfiles) so I removed dot to make them visible be default
+
+
 
 ### Thing to do in future:
   0. add description of setting everything up (like where to set $DOTFILES and things like this or what is vundle and how to set it up)

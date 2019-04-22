@@ -12,25 +12,28 @@ export VIMINIT='source $DOTFILES/vimrc'
 
 shopt -s  autocd #Allows you to cd into directory merely by typing the directory name.
 
-alias helios="echo 'Connecting as s269331...' && ssh s269331@helios.cs.ifmo.ru -p 2222"
 alias v="vim"
-alias hfs="mkdir ~/heliosfs && sshfs -p 2222 s269331@helios.cs.ifmo.ru:. ~/heliosfs && nautilus ~/heliosfs && echo 'Helios fs mounted succesfull into ~/heliosfs'"
-alias uhfs="sudo umount ~/heliosfs && rmdir ~/heliosfs  && echo 'Helios fs unmounted succesfully!'"
+
+alias helios="echo 'Connecting as s269331...' && ssh s269331@helios.cs.ifmo.ru -p 2222"
+alias hfs="mkdir ~/heliosfs && echo 'Mounting Helios FS:/home/s269331' && sshfs -p 2222 s269331@helios.cs.ifmo.ru:. ~/heliosfs && nautilus ~/heliosfs && echo 'Helios fs mounted succesfull into ~/heliosfs'"
+alias uhfs="sudo umount ~/heliosfs && rmdir ~/heliosfs  && echo 'Helios FS unmounted succesfully!'"
+
+# ranger is terminal based file manager
 alias fs="ranger"
 
 alias vbrc="vim $DOTFILES/bashrc"
 alias vvrc="vim $DOTFILES/vimrc"
 
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+export HISTIGNORE="cd*:ls*"
 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
