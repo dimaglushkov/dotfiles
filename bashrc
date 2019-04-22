@@ -6,27 +6,24 @@
 # ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
 # ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# $DOTEFILES/bash_aliases, instead of adding them here directly.
+if [ -f $DOTFILES/bash_aliases ]; then
+    . $DOTFILES/bash_aliases
+fi
 
 export EDITOR="vim"
 export VIMINIT='source $DOTFILES/vimrc'
 
-shopt -s  autocd #Allows you to cd into directory merely by typing the directory name.
-
-alias v="vim"
-
-alias helios="echo 'Connecting as s269331...' && ssh s269331@helios.cs.ifmo.ru -p 2222"
-alias hfs="mkdir ~/heliosfs && echo 'Mounting Helios FS:/home/s269331' && sshfs -p 2222 s269331@helios.cs.ifmo.ru:. ~/heliosfs && nautilus ~/heliosfs && echo 'Helios fs mounted succesfull into ~/heliosfs'"
-alias uhfs="sudo umount ~/heliosfs && rmdir ~/heliosfs  && echo 'Helios FS unmounted succesfully!'"
-
-# ranger is terminal based file manager
-alias fs="ranger"
-
-alias vbrc="vim $DOTFILES/bashrc"
-alias vvrc="vim $DOTFILES/vimrc"
+#Allows you to cd into directory merely by typing the directory name.
+shopt -s  autocd
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
+
+# Don't put any cd or ls to the history
 export HISTIGNORE="cd*:ls*"
 
 # If not running interactively, don't do anything
@@ -95,38 +92,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

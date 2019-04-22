@@ -138,7 +138,7 @@ set splitright
         map <S-F>  /
 
     " Shift+q - quit
-        map <S-q> :q<CR><Esc>
+        map <S-q> :q!<CR><Esc>
 
     " Shift+s - save
         map <S-s> :w<CR><Esc>
