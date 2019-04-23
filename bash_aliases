@@ -11,10 +11,14 @@ alias fs="ranger"
 
 alias vbrc="vim $DOTFILES/bashrc"
 alias vvrc="vim $DOTFILES/vimrc"
+alias vba="vim $DOTFILES/bash_aliases"
 
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# fast execution of './start' scripts for asm progs
+alias st='./start'
 
 # Add an "alert" alias for long running commands.  Use like so:
 # $ sleep 10; alert
@@ -35,7 +39,7 @@ alias helios="echo \"Connecting as $HELIOS_USER\" && ssh $HELIOS_USER@$HELIOS_HO
 alias hfs="mkdir $HELIOS_FS &&
 		   echo \"Mounting Helios FS into $HELIOS_FS\" &&
 		   sshfs -p $HELIOS_PORT $HELIOS_USER@$HELIOS_HOST:. $HELIOS_FS &&
-		   ranger $HELIOS_FS &&"
+		   ranger $HELIOS_FS"
 alias uhfs="sudo umount $HELIOS_FS &&
 		   rmdir $HELIOS_FS  &&
 		   echo 'Helios FS unmounted succesfully!'"

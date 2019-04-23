@@ -100,6 +100,18 @@ set confirm
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
+" Alt + number to navigation between buffers
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
 " Lines numeration
 set nu
 
@@ -138,7 +150,7 @@ set splitright
         map <S-F>  /
 
     " Shift+q - quit
-        map <S-q> :q!<CR><Esc>
+        map <S-q> :q<CR><Esc>
 
     " Shift+s - save
         map <S-s> :w<CR><Esc>
