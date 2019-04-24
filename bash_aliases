@@ -23,6 +23,15 @@ alias gca='git commit -am '
 alias gps='git push'
 alias gpl='git pull'
 
+
+# REQUIRES WINE
+# a shortcut to execute gpssworld student puck with wine
+alias gpss="wine '/home/allacee/.wine/drive_c/Program Files/GPSS/GPSSW.exe'"
+
+# REQUIRES mdv installed (pip install mdv)
+# opening todo.md with mdv
+# alias todo='mdv ~/todo.md'
+
 # fast execution of './start' scripts for asm progs
 alias st='./start'
 

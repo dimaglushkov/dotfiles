@@ -12,6 +12,7 @@
 set nocompatible              " be iMproved, required for Vundle
 filetype off                  " required for Vundle
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -25,9 +26,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ntk148v/vim-horizon'
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-syntastic/syntastic'
+
 
 call vundle#end()            " required for Vundle
 filetype plugin indent on    " required for Vundle
@@ -150,7 +152,7 @@ set splitright
         map <S-F>  /
 
     " Shift+q - quit
-        map <S-q> :q<CR><Esc>
+        map <S-q> :q
 
     " Shift+s - save
         map <S-s> :w<CR><Esc>
