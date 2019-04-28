@@ -26,10 +26,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ntk148v/vim-horizon'
-" Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'vim-syntastic/syntastic'
 
+" Removed plugins
+" Plugin 'vim-syntastic/syntastic'
+" Plugin 'w0rp/ale'
 
 call vundle#end()            " required for Vundle
 filetype plugin indent on    " required for Vundle
