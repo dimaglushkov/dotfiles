@@ -1,0 +1,50 @@
+open_with nad2bin
+open_with nautilus
+cp .vimrc 
+mkdir helios
+rename dotfiles
+shell 
+delete helios/
+find sn
+find М
+find SP
+open_with hj
+toggl
+shell d
+rename 
+search 
+find 
+search itmo
+find te
+touch test
+deleted
+rename forthIM
+rename forthrIM
+make clear
+!make clear
+shell make clear
+shell make clean
+shell make 
+
+shell rmdir heliosfs
+rename .rtlwifi_new
+shell cd .config
+mkdir temp
+mkdir test
+open_with m
+rename rc.conf
+mkdir name
+touch name
+cd 
+open_with 
+open_with wine
+find .wine
+shell i
+find .w
+find .co
+search git
+search .git
+search gitcong
+search .gitc
+delete
+search .conf
