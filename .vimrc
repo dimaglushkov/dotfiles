@@ -28,7 +28,7 @@ Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ntk148v/vim-horizon'
 " Plugin 'w0rp/ale'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 
 
 call vundle#end()            " required for Vundle

@@ -9,12 +9,12 @@
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # $DOTEFILES/bash_aliases, instead of adding them here directly.
-if [ -f $DOTFILES/bash_aliases ]; then
-    . $DOTFILES/bash_aliases
+if [ -f $DOTFILES/.bash_aliases ]; then
+    . $DOTFILES/.bash_aliases
 fi
 
 export EDITOR="vim"
-export VIMINIT='source $DOTFILES/vimrc'
+export VIMINIT='source $DOTFILES/.vimrc'
 
 #Allows you to cd into directory merely by typing the directory name.
 shopt -s  autocd
