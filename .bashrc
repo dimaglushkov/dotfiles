@@ -76,6 +76,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
+# Adding current git status to command line
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -87,7 +89,6 @@ function parse_git_branch() {
 		echo ""
 	fi
 }
-
 # get current status of git repo
 function parse_git_dirty {
 	status=`git status 2>&1 | tee`
@@ -122,14 +123,14 @@ function parse_git_dirty {
 		echo ""
 	fi
 }
-
-
 if [ "$color_prompt" = yes ]; then
     PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;32m\]\[\e[33m\]\`parse_git_branch\`\[\e[m\]\\$ "
 else
     PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w\[\e[33m\]\`parse_git_branch\`\[\e[m\]\\$  "
 fi
 unset color_prompt force_color_prompt
+
+
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
