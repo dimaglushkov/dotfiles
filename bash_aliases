@@ -17,12 +17,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias ga='git add'
-alias gc='git commit -m '
-alias gca='git commit -am '
-alias gps='git push'
-alias gpl='git pull'
-
+alias rms='trash-put'
 
 # REQUIRES WINE
 # a shortcut to execute gpssworld student puck with wine
