@@ -1,4 +1,4 @@
 #!/bin/bash
 # Shows top 5 cpu usage processes
 # idea by Luke Smith, https://lukesmith.xyz
-ps axch -o cmd:20,%cpu --sort=-%cpu | head -5
+ps axch -o pid,cmd:20,%cpu --sort=-%cpu | head -5
