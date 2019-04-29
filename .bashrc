@@ -13,6 +13,11 @@ if [ -f $DOTFILES/.bash_aliases ]; then
     . $DOTFILES/.bash_aliases
 fi
 
+# set PATH so it includes user's private scripts if it exists
+if [ -d "$DOTFILES/scripts" ] ; then
+    PATH="$DOTFILES/scripts:$PATH"
+fi
+
 export EDITOR="vim"
 export VIMINIT='source $DOTFILES/.vimrc'
 
