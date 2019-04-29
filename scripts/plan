@@ -2,14 +2,16 @@
 # This script output colorized content of ~/myplan, which was planned to contain your events list
 # Every raw from myplan file begins with time in format HH:MM
 # red - current event
+# pink - next
 # green - event is finished
 # white - not yet started
 current_time=$(date '+%H:%M')
 red=`tput setaf 1`
 green=`tput setaf 2`
+pink=`tput setaf 5`
 reset=`tput sgr0`
 function subst()
 {
 	eval echo -E "$2";
 }
-awk -v start_time="7:29" -v cur_time="$current_time" 'BEGIN{FS=":"; $0=start_time; startts=$1*3600+$2*60; $0=cur_time; curts=$1*3600+$2*60; FS=" ";}; {line=$0; FS=":"; $0=$1; ts=$1*3600+$2*60; if (ts<curts) print ("${green}"line"${reset}"); else print line; FS=" ";}' ~/myplan | tac | sed '0,/${green}/{ s/${green}/${red}/; }'| tac | mapfile -c 1 -C subst
+awk -v start_time="7:29" -v cur_time="$current_time" 'BEGIN{FS=":"; $0=start_time; startts=$1*3600+$2*60; $0=cur_time; curts=$1*3600+$2*60; FS=" ";}; {line=$0; FS=":"; $0=$1; ts=$1*3600+$2*60; if (ts<curts) print ("${green}"line"${reset}"); else if (ts>starts){ print ("${pink}"line"${reset}"); starts=24*3600+61*60;} else print line; FS=" ";}' ~/myplan | tac | sed '0,/${green}/{ s/${green}/${red}/; }'| tac | mapfile -c 1 -C subst
