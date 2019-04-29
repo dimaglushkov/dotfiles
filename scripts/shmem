@@ -1,0 +1,4 @@
+#!/bin/bash
+# Shows top 5 memory usage processes
+ps axch -o cmd:20,%mem --sort=-%mem | head -5
+
