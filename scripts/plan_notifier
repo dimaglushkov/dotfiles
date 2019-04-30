@@ -1,0 +1,4 @@
+#!/bin/bash
+#sends visual and sound notifications on every event from plan file
+for i in `atq | awk '{print $1}'`;do atrm $i;done
+awk '{print "echo \"notify-send \\\""$0"\\\"\ && spd-say \\\"Plan notification received\\\" | at "$1}' ~/myplan | bash
