@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /etc/group | awk -F : '$3 ~ /^[2-9]/{print $1}'
