@@ -172,8 +172,8 @@ set splitright
 	inoremap <C-w> <Home>
 
 " Ctrl+C, Ctrl+v, Ctrl+x, Ctrl+a, Ctrl+z, Ctrl+d +  system-buffer
-    vnoremap <C-c> "*y :let @+=@*<CR>
-    vnoremap <C-x> "*x :let @+=@*<CR>
+    vnoremap <C-c> "*y :let @+=@*<CR>:echo "Copied!"<CR>
+    vnoremap <C-x> "*x :let @+=@*<CR>:echo "Cutted!"<CR>
 	map <C-v> "+p
     nnoremap <C-A> ggVG
     map <C-z> u
