@@ -19,6 +19,8 @@ alias l='ls -CF'
 
 alias rms='trash-put'
 
+alias q='echo "cur lvl = $SHLVL"; exit'
+
 # REQUIRES WINE
 # a shortcut to execute gpssworld student puck with wine
 alias gpss="wine '/home/allacee/.wine/drive_c/Program Files/GPSS/GPSSW.exe'"
