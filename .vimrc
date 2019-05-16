@@ -27,6 +27,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'ntk148v/vim-horizon'
 Plugin 'tpope/vim-fugitive'
+Plugin 'maralla/completor.vim'
 
 " Removed plugins
 " Plugin 'vim-syntastic/syntastic'
