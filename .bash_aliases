@@ -22,7 +22,7 @@ alias rms='trash-put'
 alias q='echo "cur lvl = $SHLVL"; exit'
 
 # REQUIRES WINE
-# a shortcut to execute gpssworld student puck with wine
+# a shortcut to execute gpssworld student pack with wine
 alias gpss="wine '/home/allacee/.wine/drive_c/Program Files/GPSS/GPSSW.exe'"
 
 # REQUIRES mdv installed (pip install mdv)
@@ -45,7 +45,7 @@ alias helios="echo \"Connecting as $HELIOS_USER\" && ssh $HELIOS_USER@$HELIOS_HO
 # REQURIES sshfs installed (sudo apt-get install sshfs)
 # Easy way to work with remote pc's filesystem
 # this one automatically creates directory in $HOME and after mounting
-# remote fs opens it with nautilus.
+# remote fs opens it with ranger.
 # if you rather use nautilus (default or other file manager)
 # instead of ranger replace 'ranger' 4 lines below to whatever you want
 alias hfs="mkdir $HELIOS_FS &&
