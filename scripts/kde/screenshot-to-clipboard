@@ -1,0 +1,3 @@
+#!/bin/sh
+#requires xclip
+temp=$(ls -1trR /home/allacee/Изображения/Screenshots/*/*.png | tail -n 1) && /usr/bin/xclip -selection clipboard -target image/png -i $temp ; kdialog --title "Screenshot saved" --passivepopup "File saved to:\n $temp"
