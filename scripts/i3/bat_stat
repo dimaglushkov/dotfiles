@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(acpi -a | awk '{if($3 ~ "on") {print "🔌"} else {print "🔋"}}') $( acpi | awk '{if($4 ~ ","){print substr($4, 1, length($4)-1)} else {print $4}}')
