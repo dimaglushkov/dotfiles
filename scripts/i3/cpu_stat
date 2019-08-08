@@ -1,0 +1,2 @@
+#!/bin/sh
+top -bn1 | grep "%Cpu" | awk '{ print int($3) "%" }' | tr "\n" " "
