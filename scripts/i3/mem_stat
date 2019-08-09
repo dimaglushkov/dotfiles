@@ -1,2 +1,2 @@
 #!/bin/sh
-free -m | tr "\n" " " | awk '{ print int($9/100)/10 "/" int($8/100)/10}'
+free -m | tr "\n" " " | awk '{ print ""int($9/$8*100) "%",  int($9/100)/10 "GB/" int($8/100)/10 "GB"}'

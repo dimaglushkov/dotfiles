@@ -1,8 +1,8 @@
 #!/bin/sh
 while true
 do
-	temp=$(free -m | tr "\n" " " | awk '{print $9, $8}' | graph_stat)
+ 	temp=$(free -m | tr "\n" " " | awk '{print $9, $8}' | graph_stat)
 	I3BLOCKS_MEM="$(env_cutter $I3BLOCKS_MEM)$temp"
 	echo $I3BLOCKS_MEM
-	sleep 3
+	sleep 2
 done
