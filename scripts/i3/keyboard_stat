@@ -1,2 +1,2 @@
 #!/bin/sh
-xset -q | tr '\n' ' ' | awk '{switch ($12){case "00000001": print "🅰️"; break; case "00000002": print "🔢"; break; case "00000003": print "🅰️🔢"; break; case "00001001": print "🅰️"; break; case "00001002": print "🔢"; break; case "00001003": print "🅰️🔢"; break;  default: break;}}'
+xset -q | tr '\n' ' ' | awk '{switch ($12){case "00000001": print "&#xf034;"; break; case "00000002": print "&#xf163;"; break; case "00000003": print "&#xf034; &#xf163;"; break; case "00001001": print "&#xf034;"; break; case "00001002": print "&#xf163;"; break; case "00001003": print "&#xf034; &#xf163;"; break;  default: break;}}'
