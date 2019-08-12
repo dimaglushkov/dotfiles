@@ -1,3 +1,0 @@
-#!/bin/sh
-#requires xclip
-temp=$(ls -1trR /home/allacee/Images/Screenshots/*/*.png | tail -n 1) && /usr/bin/xclip -selection clipboard -target image/png -i $temp ;
