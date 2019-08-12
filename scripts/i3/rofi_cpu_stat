@@ -1,0 +1,19 @@
+#!/bin/sh
+temp=$(/usr/lib/i3blocks/cpu_usage)
+echo "&#xf1ec; $temp"
+case "$BLOCK_BUTTON" in 1|2|3)
+	echo -e "CPU usage: $temp \n$(top -bn1 | grep "%Cpu")\n-----------------\nTop cpu proccesses:\n$(shmem)"  \
+	| rofi \
+		-dmenu \
+		-markup-rows \
+		-no-fullscreen \
+		-hide-scrollbar \
+		-bw 1 \
+		-eh 1 \
+		-m -3 \
+		-no-custom \
+		-width 50 \
+		-theme-str "#window {anchor: northeast;}" \
+		-p "System info" > /dev/null
+
+esac
