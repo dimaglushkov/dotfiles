@@ -1,8 +1,9 @@
 #!/bin/sh
-temp=$(/usr/lib/i3blocks/cpu_usage)
-echo "&#xf1ec; $temp"
+USAGE=$(i3b-mem)
+percentage=$(echo $USAGE | awk '{print $1}')
+echo "&#xf2db;" "$percentage"
 case "$BLOCK_BUTTON" in 1|2|3)
-	echo -e "CPU usage: $temp \n$(top -bn1 | grep "%Cpu")\n-----------------\nTop cpu proccesses:\n$(shmem)"  \
+	echo -e "Memory usage: $USAGE\n" "$(free -h)" "\n--------------------------------\nTop memory usage proccesses:"  "\n$(shmem)" \
 	| rofi \
 		-dmenu \
 		-markup-rows \
@@ -12,8 +13,7 @@ case "$BLOCK_BUTTON" in 1|2|3)
 		-eh 1 \
 		-m -3 \
 		-no-custom \
-		-width 50 \
+		-width -80 \
 		-theme-str "#window {anchor: northeast;}" \
 		-p "System info" > /dev/null
-
 esac

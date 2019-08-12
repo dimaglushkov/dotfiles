@@ -1,0 +1,5 @@
+#!/bin/bash
+i3status -c $DOTFILES/configs/i3/i3status-conn.conf
+
+#case "$BLOCK_BUTTON" in 1|2|3)
+#	$TERMINAL -e 'nmtui'

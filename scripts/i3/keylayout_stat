@@ -1,2 +1,0 @@
-#!/bin/sh
-xkb-switch -W | awk '{switch($1){case "ru": print "🇷🇺"; break; case "us": print "🇺🇸"; break; default: print "UKWN LNG"; break;}}'
