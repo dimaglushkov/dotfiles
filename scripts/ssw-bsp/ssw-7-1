@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ls -l | awk '$1 ~ /^l.*/{print $9}'
