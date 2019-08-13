@@ -1,7 +1,7 @@
 #!/bin/sh
 #set your own png here
 I3LOCK_BG=~/Images/wp/manjaro-7.png
-CHOSEN=$(rofi_menu -t " &#xf137; Logout\n &#xf011; Poweroff\n &#xf0e2; Reboot\n &#xf023; Lock\n &#xf017; Suspend" -f 14 -w 22 -l 5 -h "Exit menu")
+CHOSEN=$(rofi-menu -t " &#xf137; Logout\n &#xf011; Poweroff\n &#xf0e2; Reboot\n &#xf023; Lock\n &#xf017; Suspend" -f 14 -w 22 -l 5 -h "Exit menu")
 case "$CHOSEN" in
 	" &#xf137; Logout" )
 		i3-msg exit
