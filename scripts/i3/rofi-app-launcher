@@ -1,0 +1,4 @@
+#!/bin/sh
+# takes programms from $DOTFILES/apps in format '%NAME %SCRIPT-TO-LAUNCH' and adds them to the launch menu
+CHOSEN=$(cat $DOTFILES/apps | awk '{print $1}' | rofi-menu -h "Launch an app" -f 15 -w 40)
+eval "$(cat $DOTFILES/apps | awk -v app=$CHOSEN '$1==app{print $2, "&"}')"
