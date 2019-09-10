@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ $(expr length $1) -gt 5 ]
-then
-	echo $1 | awk '{print substr($0, 2, 5)}'
-else
-	echo $1
-fi

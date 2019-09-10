@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 I3B_GRAPH_MEM="_____"
 while true
 do
- 	temp=$(free -m | tr "\n" " " | awk '{print $9, $8}' | i3b-graph-builder)
-	I3B_GRAPH_MEM="$(i3b-graph-env-cutter $I3B_GRAPH_MEM)$temp"
+ 	USAGE=$(free -m | tr "\n" " " | awk '{print $9, $8}' | i3b-graph-builder)
+	I3B_GRAPH_MEM="$(echo ${I3B_GRAPH_MEM:1:5})$USAGE"
 	echo $I3B_GRAPH_MEM
 	sleep 2
 done
