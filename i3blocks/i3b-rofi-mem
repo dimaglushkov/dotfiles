@@ -1,0 +1,19 @@
+#!/bin/sh
+USAGE=$(free -m | tr "\n" " " | awk '{ print ""int($9/$8*100) "%",  int($9/100)/10 "GB/" int($8/100)/10 "GB"}')
+percentage=$(echo $USAGE | awk '{print $1}')
+echo "&#xf2db;" "$percentage"
+case "$BLOCK_BUTTON" in 1|2|3)
+	echo -e "Memory usage: $USAGE\n" "$(free -h)" "\n--------------------------------\nTop memory usage proccesses:"  "\n$(shmem)" \
+	| rofi \
+		-dmenu \
+		-markup-rows \
+		-no-fullscreen \
+		-hide-scrollbar \
+		-bw 1 \
+		-eh 1 \
+		-m -3 \
+		-no-custom \
+		-width -80 \
+		-theme-str "#window {anchor: northeast;}" \
+		-p "System info" > /dev/null
+esac

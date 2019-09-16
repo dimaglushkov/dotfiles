@@ -1,0 +1,9 @@
+#!/bin/bash
+I3B_GRAPH_CPU="_____"
+while true
+do
+	USAGE=$(echo $(/usr/lib/i3blocks/cpu_usage) "100" | tr -d % | $CONFIGS/i3blocks/i3b-graph-builder)
+	I3B_GRAPH_CPU="$(echo ${I3B_GRAPH_CPU:1:5})$USAGE"
+	echo $I3B_GRAPH_CPU
+	sleep 1
+done
