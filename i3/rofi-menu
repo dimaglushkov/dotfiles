@@ -1,0 +1,56 @@
+#!/bin/bash
+TEXT="blank"
+FONTSIZE=14
+WIDTH=22
+LINES=8
+HEADER="Choose an option"
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -t )
+			shift
+		    TEXT=$1
+			;;
+
+        -f )
+			shift
+			FONTSIZE=$1
+    		;;
+
+		-w )
+			shift
+			WIDTH=$1
+			;;
+
+		-l )
+			shift
+			LINES=$1
+			;;
+
+		-h )
+			shift
+			HEADER=$1
+			;;
+
+	esac
+    shift
+done
+
+if [ $TEXT == "blank" ]; then
+	read -d '' TEXT
+fi
+
+echo -e "$TEXT" | rofi \
+	-dmenu \
+	-font "Noto Mono $FONTSIZE" \
+	-width -$WIDTH \
+	-lines $LINES \
+	-p "$HEADER" \
+	-no-fullscreen \
+	-m -1 \
+	-no-custom \
+	-hide-scrollbar \
+	-markup-rows \
+	-separator-style solid \
+	-color-window "#222222, #222222, #b1b4b3" \
+	-color-normal "#222222, #CCCCCC, #222222, #005577, #FFFFFF"
