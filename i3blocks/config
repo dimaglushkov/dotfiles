@@ -1,8 +1,9 @@
-command=$DOTFILES/scripts/i3/$BLOCK_NAME
+command=$HOME/.config/i3blocks/$BLOCK_NAME
 separator=false
 separator_block_width=1
 
 [i3b-connection]
+command=i3status
 markup=pango
 interval=persist
 

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd $DOTFILES
+
 CONFIGS=$(ls -d */ | tr -d /)
 DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
 INSTALL=""
@@ -118,3 +120,4 @@ fi
 moving
 echo "[INFO] Updating finished SUCCESSFULLY"
 
+cd -

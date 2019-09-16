@@ -7,29 +7,21 @@
 # ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# $DOTEFILES/bash_aliases, instead of adding them here directly.
 if [ -f $DOTFILES/.bash_aliases ]; then
     . $DOTFILES/.bash_aliases
 fi
 
-# set PATH so it includes user's private scripts if it exists
-if [ -d "$DOTFILES/scripts" ] ; then
-    PATH="$DOTFILES/scripts:$PATH"
-fi
-
-export EDITOR="vim"
 export VIMINIT='source $DOTFILES/.vimrc'
 
-#Allows you to cd into directory merely by typing the directory name.
-shopt -s  autocd
+# Allows you to cd into directory merely by typing the directory name.
+# shopt -s  autocd
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # Don't put any cd or ls to the history
-export HISTIGNORE="cd*:ls*"
+# export HISTIGNORE=""
 
 # If not running interactively, don't do anything
 case $- in

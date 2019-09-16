@@ -1,9 +1,0 @@
-#!/bin/bash
-I3B_GRAPH_CPU="_____"
-while true
-do
-	USAGE=$(top -bn1 | grep "%Cpu" | awk '{print $3}' | tr "\n" " " | awk '{print ($1 + $2 + $3 + $4), "400"}' | i3b-graph-builder)
-	I3B_GRAPH_CPU="$(echo ${I3B_GRAPH_CPU:1:5})"$USAGE
-	echo $I3B_GRAPH_CPU
-	sleep 2
-done
