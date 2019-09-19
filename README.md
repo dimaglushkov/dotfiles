@@ -11,3 +11,8 @@ WARNING: there is still a lot of work to be done. Do NOT launch this script unle
 * `-s PATH`		  - saving exsisting version of configs in PATH.
 * `-sd` 		    - saving into `$HOME/.config.old/ver.%DATE-%TIME`
 * `ARGS`		    - names of configs you want to install. If none specified then installing everything.
+### TODO:
+0. make `install` script save old configs by default
+1. install -> update & create installation script that will generate .profile
+2. add list of all utilities/tools I am using or maybe even create a script to download all of them
+
