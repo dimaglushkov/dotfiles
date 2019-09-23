@@ -55,8 +55,8 @@ bindsym --release Num_Lock 		exec pkill -RTMIN+13 i3blocks
 
 # screenshots
 # todo: send-notifications
-bindsym Print 					exec $CONFIGS/i3/screenshot-make && $CONFIGS/i3/screenshot-to-clipboard && mplayer ~/Music/Notifications/light.mp3
-bindsym Control+Print --release	exec $CONFIGS/i3/screenshot-make -s && $CONFIGS/i3/screenshot-to-clipboard && mplayer ~/Music/Notifications/light.mp3
+bindsym Print 					exec $CONFIGS/i3/screenshot-make && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/Notifications/light.mp3
+bindsym Control+Print --release	exec $CONFIGS/i3/screenshot-make -s && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/Notifications/light.mp3
 
 # =========================================================
 
@@ -159,7 +159,7 @@ for_window [title="Firefox"] 	move container to workspace $ws1
 # ===========================================================
 
 # lock the screen
-bindsym $mod+l 					exec "i3lock -fei ~/Images/wp/manjaro-8.png"
+bindsym $mod+l 					exec $CONFIGS/i3/lock /home/allacee/Images/lock.png
 
 # reload the configuration file
 bindsym $mod+Shift+c 			reload
@@ -206,8 +206,9 @@ bindsym $mod+shift+p 			mode "resize"
 # autolaunch applications and startup scripts
 exec "xcompmgr -c"
 exec "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
-exec "feh --no-startup-id --bg-scale ~/Images/wp/manjaro-1.jpg"
+exec "feh --no-startup-id --bg-scale $BACKGROUND"
 exec "nm-applet &"
+exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
 exec --no-startup-id numlockx on
 
 # ================================================
