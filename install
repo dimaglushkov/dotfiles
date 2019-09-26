@@ -2,6 +2,11 @@
 
 cd $DOTFILES
 
+if [[ $DOTFILES == '' ]]; then
+	echo '[ERROR] Set $DOTFILES to downloaded/cloned config directory path'
+	exit 1
+fi
+
 CONFIGS=$(ls -d */ | tr -d /)
 DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
 INSTALL=""
