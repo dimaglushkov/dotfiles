@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "$(expr substr $(light -G) 1 2)""%"
+echo  " $(expr substr $(light -G) 1 2)""%"
