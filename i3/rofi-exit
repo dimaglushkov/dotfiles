@@ -16,7 +16,7 @@ case "$CHOSEN" in
 	;;
 
 	" &#xf023; Lock" )
-		i3lock -fei $I3LOCK_BG
+		$CONFIGS/i3/lock
 	;;
 
 	" &#xf017; Suspend" )
