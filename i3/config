@@ -110,6 +110,10 @@ bindsym $mod+space 				focus mode_toggle
 # focus the parent container
 bindsym $mod+shift+a 			focus parent
 
+#update background pic according to .profile
+bindsym $mod+Shift+B exec source ~/.profile && notify-send "New background: $BACKGROUND" && feh --bg-scale $BACKGROUND
+
+
 # ===========================================================
 
 # workspaces
@@ -124,8 +128,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10: &#xf2c6;"
 
-# background pics alias
-set $feh 						exec --no-startup-id feh --bg-scale
 
 # switch backgrounds with workspaces
 bindsym $mod+1 					workspace $ws1
