@@ -1,6 +1,8 @@
 # dotfiles
 Dotfiles and configuration
 ## Installation script
+**WARNING! There is still a lot of work to be done. Do NOT launch this script unless you've set $DOTFILES to the location of this directory**
+
 You can simply install configs from this repo by running `install` script. It's simply going to replace existing dotfiles & configs with ones from this repo.
 ### Usage
 WARNING: there is still a lot of work to be done. Do NOT launch this script unless you've set $DOTFILES to location of this directory.
