@@ -36,7 +36,8 @@ while [ "$1" != "" ]; do
     shift
 done
 
-if [ $TEXT == "blank" ]; then
+if [[ $TEXT == "blank" ]]
+then
 	read -d '' TEXT
 fi
 
