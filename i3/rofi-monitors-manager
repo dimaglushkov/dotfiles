@@ -1,0 +1,34 @@
+#!/bin/bash
+
+OPT=("   &#xf26c;\tHDMI" "   &#xf109;\tLAPTOP" "  &#xf26c;&#xf109;\tHDMI-LAPTOP" "  &#xf109;&#xf26c;\tLAPTOP-HDMI" " &#xf26c;←&#xf109;\tDUPLICATE LAPTOP" " &#xf26c;→&#xf109;\tDUPLICATE HDMI\n" )
+CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 30 -l 6 -h "Choose a layout" -t "${OPT[1]}\n${OPT[0]}\n${OPT[2]}\n${OPT[3]}\n${OPT[4]}\n${OPT[5]}")
+
+# For an unknown reason bash stores '\t' in array as two separate symbols. you can check it with 'printf %s "${OPT[0]}" | od -vtc -to1'
+CHOSEN=${CHOSEN//	/$'\\t'}
+
+case "$CHOSEN" in
+    "${OPT[0]}" )
+        $SCREEN_LAYOUTS/hdmi.sh
+    ;;
+
+    "${OPT[1]}" )
+        $SCREEN_LAYOUTS/laptop.sh
+    ;;
+
+    "${OPT[2]}" )
+        $SCREEN_LAYOUTS/hdmi-laptop.sh
+    ;;
+
+    "${OPT[3]}" )
+        $SCREEN_LAYOUTS/laptop-hdmi.sh
+    ;;
+
+    "${OPT[4]}" )
+        $SCREEN_LAYOUTS/duplicate-laptop.sh
+    ;;
+
+    "${OPT[5]}" )
+        $SCREEN_LAYOUTS/duplicate-hdmi.sh
+    ;;
+
+esac
