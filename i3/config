@@ -10,6 +10,16 @@ floating_modifier 				$mod
 
 # =========================================================
 
+# autolaunch applications and startup scripts
+exec "xcompmgr -c"
+exec "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'"
+exec "feh --no-startup-id --bg-scale $BACKGROUND"
+exec "nm-applet &"
+exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
+exec --no-startup-id numlockx on
+
+# =========================================================
+
 # basic window setup
 new_window 						1pixel
 default_border 					pixel 3
@@ -111,7 +121,7 @@ bindsym $mod+space 				focus mode_toggle
 bindsym $mod+shift+a 			focus parent
 
 #update background pic according to .profile
-bindsym $mod+Shift+B exec source ~/.profile && notify-send "New background: $BACKGROUND" && feh --bg-scale $BACKGROUND
+bindsym $mod+Shift+B exec source ~/.profile && notify-send "Current background: $BACKGROUND" && feh --bg-scale $BACKGROUND
 
 
 # ===========================================================
@@ -169,11 +179,10 @@ bindsym $mod+Shift+c 			reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r 			restart
 
-# launch exit menu
 bindsym $mod+Escape 			exec --no-startup-id $CONFIGS/i3/rofi-exit
 bindsym $mod+F1					exec --no-startup-id $CONFIGS/i3/rofi-app-launcher
 bindsym $mod+F2 				exec --no-startup-id $CONFIGS/i3/rofi-disks
-bindsym $mod+F3					exec --no-startup-id $TERMINAL -e nmtui
+bindsym $mod+F3					exec --no-startup-id $CONFIGS/i3/rofi-monitors-manager
 
 
 # resize window (you can also use the mouse for that)
@@ -203,17 +212,7 @@ mode "resize" {
 
 bindsym $mod+shift+p 			mode "resize"
 
-# ================================================
 
-# autolaunch applications and startup scripts
-exec "xcompmgr -c"
-exec "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
-exec "feh --no-startup-id --bg-scale $BACKGROUND"
-exec "nm-applet &"
-exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
-exec --no-startup-id numlockx on
-
-# ================================================
 
 bar {
 	font pango: Noto Mono, Awesome 12
