@@ -48,6 +48,7 @@ echo -e "$TEXT" | rofi \
 	-p "$HEADER" \
 	-no-fullscreen \
 	-m -1 \
+	-i \
 	-no-custom \
 	-hide-scrollbar \
 	-markup-rows \
