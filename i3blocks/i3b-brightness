@@ -1,2 +1,12 @@
 #!/bin/sh
-echo  " $(expr substr $(light -G) 1 2)""%"
+
+case "$BLOCK_BUTTON" in
+    4)
+ 		light -A 5 && pkill -RTMIN+11 i3blocks
+		;;
+	5)
+		light -U 5 && pkill -RTMIN+11 i3blocks
+		;;
+esac
+
+echo  " "$(light -G | cut -f1 -d".")"%"
