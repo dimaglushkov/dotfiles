@@ -20,6 +20,12 @@ exec --no-startup-id numlockx on
 
 # =========================================================
 
+# Rules for windows
+for_window [title="win0"] floating enable
+
+
+# =========================================================
+
 # basic window setup
 new_window 						1pixel
 default_border 					pixel 3
