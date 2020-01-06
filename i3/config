@@ -71,8 +71,8 @@ bindsym --release Num_Lock 		exec pkill -RTMIN+13 i3blocks
 
 # screenshots
 # todo: send-notifications
-bindsym Print 					exec $CONFIGS/i3/screenshot-make && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/Notifications/light.mp3
-bindsym Control+Print --release	exec $CONFIGS/i3/screenshot-make -s && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/Notifications/light.mp3
+bindsym Print 					exec $CONFIGS/i3/screenshot-make && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/.Notifications/light.mp3
+bindsym Control+Print --release	exec $CONFIGS/i3/screenshot-make -s && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/.Notifications/light.mp3
 
 # =========================================================
 
@@ -191,7 +191,7 @@ bindsym $mod+Escape 			exec --no-startup-id $CONFIGS/i3/rofi-exit
 bindsym $mod+F1					exec --no-startup-id $CONFIGS/i3/rofi-app-launcher
 bindsym $mod+F2 				exec --no-startup-id $CONFIGS/i3/rofi-disks
 bindsym $mod+F3					exec --no-startup-id $CONFIGS/i3/rofi-monitors-manager
-
+bindsym $mod+F4					exec --no-startup-id $CONFIGS/i3/rofi-music-launcher
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

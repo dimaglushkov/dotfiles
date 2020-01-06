@@ -1,0 +1,13 @@
+#!/bin/bash
+
+MP_INPUT=/tmp/mplayer-input
+
+if [ -p "$MP_INPUT" ]
+then
+	echo "&#xf04c; "
+	case "$BLOCK_BUTTON" in
+    1|2|3)
+		echo "pause" > $MP_INPUT
+	esac
+fi
+

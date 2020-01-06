@@ -2,6 +2,32 @@ command=$HOME/.config/i3blocks/$BLOCK_NAME
 separator=false
 separator_block_width=1
 
+[i3b-music-current]
+interval=persist
+
+
+[i3b-music-prev]
+markup=pango
+interval=once
+signal=15
+
+[i3b-music-pause]
+markup=pango
+interval=once
+signal=15
+
+[i3b-music-next]
+markup=pango
+interval=once
+signal=15
+
+[i3b-music-stop]
+markup=pango
+interval=once
+signal=15
+
+
+
 [i3b-connection]
 command=i3status
 markup=pango
@@ -14,14 +40,14 @@ color=#888888
 
 
 
-[i3b-rofi-weather]
-command=curl wttr.in/?format=1
-interval=3600
+#[i3b-rofi-weather]
+#command=curl wttr.in/?format=1
+#interval=3600
 
-[sep]
-command=echo "|"
-interval=once
-color=#888888
+#[sep]
+#command=echo "|"
+#interval=once
+#color=#888888
 
 
 

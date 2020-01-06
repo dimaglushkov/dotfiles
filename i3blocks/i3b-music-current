@@ -1,0 +1,24 @@
+#!/bin/bash
+
+MP_OUTPUT=/tmp/mplayer-output
+MP_CURRENT=/tmp/mplayer-current
+
+while true
+do
+	if [ -p "$MP_OUTPUT" ]
+	then
+		pkill -RTMIN+15 i3blocks
+		stdbuf -o0 awk -F "/" '/Playing/{print $6}' < $MP_OUTPUT  >> $MP_CURRENT &
+		tail -n 1 $MP_CURRENT
+#		cat $MP_OUTPUT | grep 'Playing'
+#		grep 'Playing' < $MP_OUTPUT
+#		cat $MP_OUTPUT | awk -F "/" '/Playing/{print $6}'
+		pkill -RTMIN+15 i3blocks
+	else
+		echo ""
+	fi
+	sleep 1
+done
+
+# pausing_keep_force pt_step 1
+# pausing_keep_force pt_step -1
