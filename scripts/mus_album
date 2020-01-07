@@ -13,7 +13,16 @@ def main():
         description='Create an album with metadata from given songs.')
     parser.add_argument('--artist', '-a', required=True, type=str)
     parser.add_argument('--name', '-n', required=True, type=str)
-    args, songs = parser.parse_known_args()
+    args = parser.parse_args()
+
+    search_dir = os.curdir
+    os.chdir(search_dir)
+    files = filter(os.path.isfile, os.listdir(search_dir))
+    files = [os.path.join(search_dir, f)
+             for f in files]  # add path to each file
+    files.sort(key=lambda x: os.path.getmtime(x))
+
+    songs = [song for song in files if args.artist in song]
 
     albumdir = f'{os.environ["HOME"]}/Music/{args.artist} - {args.name}/'
     if not os.path.exists(albumdir):
@@ -21,9 +30,10 @@ def main():
 
     for num, oldfile in enumerate(songs, start=1):
         filename = oldfile.split("/")[-1]
-        artist, title_ext = filename.split(" - ")
+        artist = filename.split(" - ")[0]
+        title_ext = " - ".join(filename.split(" - ")[1:])
         title = os.path.splitext(title_ext)[0]
-        newfile = albumdir + filename
+        newfile = f'{albumdir}{num}. {filename}'
 
         # moving files to a new directory
         os.rename(oldfile, newfile)
