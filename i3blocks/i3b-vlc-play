@@ -4,16 +4,6 @@ VLC_PID_FILE=/tmp/music-player-pid
 
 if [ -f "$VLC_PID_FILE" ]
 then
-	STATUS=$(playerctl --player=vlc status)
-
-	if [ $STATUS == "Paused" ]
-	then
-		# echo " &#xf28b; "
-		echo " &#xf04c; "
-	else
-		echo " &#xf04b; "
-	fi
-
 
 	case "$BLOCK_BUTTON" in
     1|3)
@@ -28,4 +18,18 @@ then
 		echo " "
 		;;
 	esac
+
+	STATUS=$(playerctl --player=vlc status)
+
+	if [ $STATUS == "Paused" ]
+	then
+		echo " &#xf04b; "
+	else
+		# echo " &#xf28b; "
+		echo " &#xf04c; "
+
+	fi
+
+
+
 fi

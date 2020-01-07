@@ -60,8 +60,9 @@ bindsym XF86MonBrightnessUp 	exec --no-startup-id light -A 5 && pkill -RTMIN+11 
 bindsym XF86MonBrightnessDown 	exec --no-startup-id light -U 5 && pkill -RTMIN+11 i3blocks
 
 # media controls
-bindsym XF86AudioPlay 			exec playerctl play
-bindsym XF86AudioPause 			exec playerctl pause
+bindsym XF86AudioPlay 			exec playerctl play-pause && pkill -RTMIN+15 i3blocks
+
+bindsym XF86AudioStop 			exec playerctl stop
 bindsym XF86AudioNext 			exec playerctl next
 bindsym XF86AudioPrev 			exec playerctl previous
 # switching language signals i3blocks
