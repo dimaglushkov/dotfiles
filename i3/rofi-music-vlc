@@ -14,7 +14,8 @@ fi
 
 if [ -z "$CHOSEN" ]
 then
-	notify-send "Playlist not specified"
+	#notify-send "Playlist not specified"
+	:
 else
 	PLAYLIST="$HOME/Music/$CHOSEN"
 	notify-send "Playing now: $CHOSEN"
