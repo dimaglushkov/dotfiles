@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPT=$(ls -1 /home/allacee/Music)
+OPT=$(ls -1 $HOME/Music)
 CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 45 -l 20 -h "Choose an album" -t "$OPT")
 
 if [ -z "$CHOSEN" ]

@@ -191,7 +191,7 @@ bindsym $mod+Escape 			exec --no-startup-id $CONFIGS/i3/rofi-exit
 bindsym $mod+F1					exec --no-startup-id $CONFIGS/i3/rofi-app-launcher
 bindsym $mod+F2 				exec --no-startup-id $CONFIGS/i3/rofi-disks
 bindsym $mod+F3					exec --no-startup-id $CONFIGS/i3/rofi-monitors-manager
-bindsym $mod+F4					exec --no-startup-id $CONFIGS/i3/rofi-music-launcher
+bindsym $mod+F4					exec --no-startup-id $CONFIGS/i3/rofi-music-vlc
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

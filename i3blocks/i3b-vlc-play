@@ -1,0 +1,31 @@
+#!/bin/bash
+VLC_PID_FILE=/tmp/music-player-pid
+
+
+if [ -f "$VLC_PID_FILE" ]
+then
+	STATUS=$(playerctl --player=vlc status)
+
+	if [ $STATUS == "Paused" ]
+	then
+		# echo " &#xf28b; "
+		echo " &#xf04c; "
+	else
+		echo " &#xf04b; "
+	fi
+
+
+	case "$BLOCK_BUTTON" in
+    1|3)
+		playerctl --player=vlc play-pause
+		;;
+	2)
+		echo " "
+		VLC_PID=$(cat "$VLC_PID_FILE")
+		rm "$VLC_PID_FILE"
+		kill -9 "$VLC_PID"
+		pkill -RTMIN+15 i3blocks &
+		echo " "
+		;;
+	esac
+fi

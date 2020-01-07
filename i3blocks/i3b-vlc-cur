@@ -1,0 +1,2 @@
+#!/bin/bash
+playerctl --player=vlc metadata --format='{{ artist }} - {{ title }} [{{ duration(position) }}/{{ duration(mpris:length) }}]' --follow

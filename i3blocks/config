@@ -2,27 +2,23 @@ command=$HOME/.config/i3blocks/$BLOCK_NAME
 separator=false
 separator_block_width=1
 
-[i3b-music-current]
+[i3b-vlc-cur]
 interval=persist
 
 
-[i3b-music-prev]
+[i3b-vlc-prev]
 markup=pango
 interval=once
 signal=15
 
-[i3b-music-pause]
+[i3b-vlc-play]
 markup=pango
 interval=once
 signal=15
 
-[i3b-music-next]
+[i3b-vlc-next]
 markup=pango
-interval=once
-signal=15
-
-[i3b-music-stop]
-markup=pango
+size=15
 interval=once
 signal=15
 
