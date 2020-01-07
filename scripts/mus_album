@@ -1,0 +1,43 @@
+#!/bin/python
+
+import argparse
+import sys
+import os
+import re
+import taglib
+
+
+def main():
+
+    parser = argparse.ArgumentParser(
+        description='Create an album with metadata from given songs.')
+    parser.add_argument('--artist', '-a', required=True, type=str)
+    parser.add_argument('--name', '-n', required=True, type=str)
+    args, songs = parser.parse_known_args()
+
+    albumdir = f'{os.environ["HOME"]}/Music/{args.artist} - {args.name}/'
+    if not os.path.exists(albumdir):
+        os.mkdir(albumdir)
+
+    for num, oldfile in enumerate(songs, start=1):
+        filename = oldfile.split("/")[-1]
+        artist, title_ext = filename.split(" - ")
+        title = os.path.splitext(title_ext)[0]
+        newfile = albumdir + filename
+
+        # moving files to a new directory
+        os.rename(oldfile, newfile)
+
+        # changing metadata
+        song = taglib.File(newfile)
+        if "TITLE" not in song.tags:
+            song.tags["TITLE"] = title
+        if "ARTIST" not in song.tags:
+            song.tags["ARTIST"] = artist
+        if "TRACKNUMBER" not in song.tags:
+            song.tags["TRACKNUMBER"] = f'{num}/{len(sys.argv)-1}'
+        song.save()
+
+
+if __name__ == '__main__':
+    main()
