@@ -1,2 +1,4 @@
 #!/bin/sh
-top -bn1 | grep "%Cpu" | awk '{ print $3 }' | tr -d "\n" | awk '{ print $1 + $2 + $3 + $4 }'
+#top -bn1 | grep "%Cpu" | awk '{ print $3 }' | tr -d "\n" | awk '{ print $1 + $2 + $3 + $4 }'
+
+mpstat 1 1 | tail -n 1 | awk '{print 100 - $12 ""}'
