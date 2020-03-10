@@ -1,5 +1,5 @@
 #!/bin/bash
-VLC_PID=/tmp/music-player-pid
+VLC_PID=/tmp/vlc-i3-player/music-player-pid
 
 if [ -f "$VLC_PID" ]
 then

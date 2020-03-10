@@ -1,0 +1,76 @@
+#!/bin/bash
+playerctl --player=vlc metadata --format='{{ artist }}:;: - {{ title }}:;:[{{ duration(position) }}/{{ duration(mpris:length) }}]' |  awk -v lim=21 -F ":;:" '{ for(i = 1; i <= NF-1; i++) { if (length($i) > lim) { printf "%s", substr($i, 0, lim - 3) "..";} else {printf "%s", $i;} }print " "$3; fflush()}'
+
+
+PLAYLIST_FILE="$(cat /tmp/vlc-i3-player/playlist)"
+PLAYLIST=$(ls "$PLAYLIST_FILE" | sort -n | sed -r 's/&/&amp;/g')
+NUM_OF_TRACKS=$(ls "$PLAYLIST_FILE" | wc -l)
+
+IFS='/'
+read -ra ALBUM_PATH <<< "$PLAYLIST_FILE"
+ALBUM=${ALBUM_PATH[-1]}
+
+case "$BLOCK_BUTTON" in 1|2|3)
+	NEXT="$(echo -e "$PLAYLIST" | rofi \
+		-dmenu \
+		-markup-rows \
+		-no-fullscreen \
+		-hide-scrollbar \
+		-font "Noto Mono 15" \
+		-bw 3 \
+		-eh 1 \
+		-m -3 \
+		-xoffset 555 \
+		-i \
+		-lines $NUM_OF_TRACKS \
+		-no-custom \
+		-width -45 \
+		-theme-str "#window {anchor: northeast;}" \
+		-separator-style solid \
+		-color-window "#222222, #222222, #b1b4b3" \
+		-color-normal "#333333, #CCCCCC, #333333, #005577, #FFFFFF"\
+		-p "$ALBUM") | sed -r 's/&amp;/\&/g'"
+
+	if [ -z $NEXT ]
+	then
+		:
+	else
+		CUR_NUM=$(playerctl metadata xesam:tracknumber)
+
+		if [ ${NEXT:0:1} == '0'  ]
+		then
+			NEXT_NUM=${NEXT:1:1}
+		elif [ ${NEXT:1:1} ]
+		then
+			NEXT_NUM=${NEXT:0:1}
+		else
+			NEXT_NUM="${NEXT:0:2}"
+		fi
+
+		#NEXT_NUM="$(($NEXT_NUM))"
+
+		if [ $NEXT_NUM == $CUR_NUM  ]
+		then
+			:
+		fi
+
+		if [ $NEXT_NUM > $CUR_NUM ]
+		then
+			DIFF="$(($NEXT_NUM - $CUR_NUM))"
+			for (( c=1; c<=$DIFF; c++ ))
+			do
+				playerctl next
+			done
+		fi
+
+		if [ $NEXT_NUM < $CUR_NUM ]
+		then
+			DIFF="$(($CUR_NUM - $NEXT_NUM))"
+			for (( c=1; c<=$DIFF; c++ ))
+			do
+				playerctl previous
+			done
+		fi
+
+	fi
+esac

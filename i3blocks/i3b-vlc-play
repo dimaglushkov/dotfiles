@@ -1,5 +1,6 @@
 #!/bin/bash
-VLC_PID_FILE=/tmp/music-player-pid
+VLC_PID_DIR=/tmp/vlc-i3-player
+VLC_PID_FILE=$VLC_PID_DIR/music-player-pid
 
 
 if [ -f "$VLC_PID_FILE" ]
@@ -12,7 +13,7 @@ then
 	2)
 		echo " "
 		VLC_PID=$(cat "$VLC_PID_FILE")
-		rm "$VLC_PID_FILE"
+		rm -r "$VLC_PID_DIR"
 		kill -9 "$VLC_PID"
 		pkill -RTMIN+15 i3blocks &
 		echo " "

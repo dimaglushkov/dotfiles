@@ -2,3 +2,5 @@
 #playerctl --player=vlc metadata --format='{{ artist }} - {{ title }} [{{ duration(position) }}/{{ duration(mpris:length) }}]' --follow
 playerctl --player=vlc metadata --format='{{ artist }}:;: - {{ title }}:;:[{{ duration(position) }}/{{ duration(mpris:length) }}]' --follow |  awk -v lim=21 -F ":;:" '{ for(i = 1; i <= NF-1; i++) { if (length($i) > lim) { printf "%s", substr($i, 0, lim - 3) "..";} else {printf "%s", $i;} }print " "$3; fflush()}'
 
+
+PLAYLIST=$(ls "$(cat /tmp/vlc-i3-player/playlist)")

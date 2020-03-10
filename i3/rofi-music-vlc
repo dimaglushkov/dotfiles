@@ -1,7 +1,10 @@
 #!/bin/bash
-VLC_PID_FILE=/tmp/music-player-pid
+VLC_PID_DIR=/tmp/vlc-i3-player
+VLC_PID_FILE=$VLC_PID_DIR/music-player-pid
+
+
 OPT=$(ls -1 $HOME/Music)
-CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 45 -l 20 -h "Choose an album" -t "$OPT")
+CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 45 -l 23 -h "Choose an album" -t "$OPT")
 
 
 
@@ -10,6 +13,7 @@ then
 	#notify-send "Playlist not specified"
 	:
 else
+	mkdir -p $VLC_PID_DIR
 	if [ -f "$VLC_PID_FILE"  ]
 	then
 		VLC_PID=$(cat $VLC_PID_FILE)
@@ -17,8 +21,9 @@ else
 		rm $VLC_PID_FILE
 	fi
 	PLAYLIST="$HOME/Music/$CHOSEN"
+	echo $PLAYLIST > $VLC_PID_DIR/playlist
 	notify-send "Playing now: $CHOSEN"
-	cvlc  "$PLAYLIST" &
+	cvlc -L "$PLAYLIST" &
 	echo "$!" > $VLC_PID_FILE
 	pkill -RTMIN+15 i3blocks
 fi

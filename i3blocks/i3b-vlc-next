@@ -1,11 +1,11 @@
 #!/bin/bash
-VLC_PID=/tmp/music-player-pid
+VLC_PID=/tmp/vlc-i3-player/music-player-pid
 
 if [ -f "$VLC_PID" ]
 then
 	#echo "&#xf0a9; "
 	#echo "&#xf050; "
-	echo "&#xf04e; "
+	echo "&#xf04e; |"
 	case "$BLOCK_BUTTON" in
     1|2|3)
 		playerctl --player=vlc next
