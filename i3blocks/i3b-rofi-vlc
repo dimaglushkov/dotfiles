@@ -29,7 +29,7 @@ case "$BLOCK_BUTTON" in 1|2|3)
 		-separator-style solid \
 		-color-window "#222222, #222222, #b1b4b3" \
 		-color-normal "#333333, #CCCCCC, #333333, #005577, #FFFFFF"\
-		-p "$ALBUM") | sed -r 's/&amp;/\&/g'"
+		-p "$ALBUM" | sed -r 's/&amp;/\&/g')"
 
 	if [ -z $NEXT ]
 	then
@@ -40,13 +40,12 @@ case "$BLOCK_BUTTON" in 1|2|3)
 		if [ ${NEXT:0:1} == '0'  ]
 		then
 			NEXT_NUM=${NEXT:1:1}
-		elif [ ${NEXT:1:1} ]
+		elif [ ${NEXT:1:1} == '.' ]
 		then
 			NEXT_NUM=${NEXT:0:1}
 		else
 			NEXT_NUM="${NEXT:0:2}"
 		fi
-
 		#NEXT_NUM="$(($NEXT_NUM))"
 
 		if [ $NEXT_NUM == $CUR_NUM  ]
