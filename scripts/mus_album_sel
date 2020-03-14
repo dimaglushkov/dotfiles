@@ -11,20 +11,16 @@ def main():
 
     parser = argparse.ArgumentParser(
         description='Create an album with metadata from given songs.')
-    parser.add_argument('--artist', '-a', required=True, type=str)
-    parser.add_argument('--name', '-n', required=True, type=str)
+    parser.add_argument('files', type=argparse.FileType('r'), nargs='+')
     args = parser.parse_args()
 
-    search_dir = os.curdir
-    os.chdir(search_dir)
-    files = filter(os.path.isfile, os.listdir(search_dir))
-    files = [os.path.join(search_dir, f)
-             for f in files]  # add path to each file
-    files.sort(key=lambda x: os.path.getmtime(x))
+    album_artist = input('Artist: ')
+    album_name = input('Album name: ')
 
-    songs = [song for song in files if args.artist in song]
+    songs = [file.name for file in args.files]
+    songs.sort(key=lambda x: os.path.getmtime(x))
 
-    albumdir = f'{os.environ["HOME"]}/Music/{args.artist} - {args.name}/'
+    albumdir = f'{os.environ["HOME"]}/Music/{album_artist} - {album_name}/'
     if not os.path.exists(albumdir):
         os.mkdir(albumdir)
 
