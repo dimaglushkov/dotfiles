@@ -49,7 +49,7 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    idle_threshold = 120
+    idle_threshold = 240
 
     ### Text ###
 
@@ -231,7 +231,7 @@
 [urgency_normal]
     background = "#285577"
     foreground = "#ffffff"
-    timeout = 10
+    timeout = 15
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
