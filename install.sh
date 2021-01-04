@@ -11,7 +11,7 @@ function confirmation {
 }
 
 function generate_profile {
-	echo "> Genereting .profile file"
+	echo "> Generating .profile file"
 	dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 	cur_dir_name=${dotfiles##*/}
 	if [[ $cur_dir_name != "dotfiles"  ]]; then
@@ -20,7 +20,7 @@ function generate_profile {
 	fi
 
 	configs=$HOME/.config
-	background=$HOME/Images/background
+	background=$HOME/Pictures/background
 	repositories=$HOME/Repos
 	browser=firefox
 	editor=vim
@@ -40,7 +40,7 @@ function generate_profile {
 
 	echo "> Creating .profile"
 	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
-	echo "> .profile successfully created at $dotfiles/.profile"
+	echo "> Successfully created $dotfiles/.profile"
 }
 
 function install_dependencies {
@@ -60,5 +60,7 @@ function install_dependencies {
 }
 
 generate_profile
-
-
+install_dependencies
+source $dotfiles/.profile
+$dotfiles/update -sd
+i3-msg restart
