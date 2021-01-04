@@ -60,11 +60,11 @@ function install_dependencies {
 	fi
 	
 	echo "> Installing packages listed at dependencies.txt using"
-	yay -S --needed $(awk -v FS="#" '{print $1}' $DOTFILES/depenedencies.txt)
+	yay -S --needed $(awk -v FS="#" '{print $1}' $DOTFILES/$dependencies)
 }
 
 generate_profile
 source $dotfiles/.profile
 install_dependencies
 confirm
-$dotfiles/update -sd
+$dotfiles/update.sh -sd
