@@ -1,8 +1,8 @@
 #!/bin/sh
-DIR="~/Images/Screenshots"
+DIR="$HOME/Pictures/Screenshots"
 name="$(echo 'screen-')$(date +%H:%M:%S)$(echo '.png')"
 if [ "$1" == "-s" ]; then
-	scrot $name -s -q 100 -e "mkdir $DIR/%d-%m-%Y ; mv \$f $DIR/%d-%m-%Y/"
+	scrot $name -s -q 100 -e "mkdir $DIR/%Y-%m-%d ; mv \$f $DIR/%Y-%m-%d/"
 else
-	scrot $name -q 100 -e "mkdir $DIR/%d-%m-%Y ; mv \$f $DIR/%d-%m-%Y/"
+	scrot $name -q 100 -e "mkdir $DIR/%Y-%m-%d ; mv \$f $DIR/%Y-%m-%d/"
 fi

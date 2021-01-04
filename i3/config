@@ -1,19 +1,19 @@
 #i3 configuration
 
-set 							$mod Mod4
+set 					$mod Mod4
 
 # Font for window titles.
-font pango: 					Noto Mono 12
+font pango: 				Noto Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier 				$mod
+floating_modifier 			$mod
 
 # =========================================================
 
 # autolaunch applications and startup scripts
-exec "xcompmgr -c"
+exec "picom -b"
 exec "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'"
-exec "feh --no-startup-id --bg-scale $BACKGROUND"
+exec "feh --bg-scale $BACKGROUND"
 exec "nm-applet &"
 exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
 exec --no-startup-id numlockx on
@@ -21,43 +21,43 @@ exec --no-startup-id numlockx on
 # =========================================================
 
 # Rules for windows
-for_window [title="win0"] floating enable
-
+for_window [title="win0"] 		floating enable
+for_window [title="ark"]		floating enable
 
 # =========================================================
 
 # basic window setup
-new_window 						1pixel
-default_border 					pixel 3
-gaps 							inner 5
-gaps 							outer 5
-smart_borders 					on
+new_window 				1pixel
+default_border 				pixel 2
+gaps 					inner 5
+gaps 					outer 5
+smart_borders 				on
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #CCFF00
 
 # =========================================================
 
 # shortcuts
 # launch a terminal
-	bindsym $mod+t 				exec $TERMINAL
+	bindsym $mod+t 			exec $TERMINAL
 # launch a browser
-	bindsym $mod+f 				exec $BROWSER ; workspace $ws1
+	bindsym $mod+f 			exec $BROWSER ; workspace $ws1
 # launch ranger in terminal
-	bindsym $mod+r 				exec $TERMINAL -e ranger
+	bindsym $mod+r 			exec $TERMINAL -e ranger
 # launch telegram
-	bindsym $mod+i 				exec $HOME/Applications/Telegram/Telegram ; workspace $ws10
+	bindsym $mod+i 			exec $HOME/Applications/Telegram/Telegram ; workspace $ws10
 
 # =========================================================
 
 # multimedia buttons
 
 # sounds controls
-bindsym XF86AudioRaiseVolume 	exec --no-startup-id pactl set-sink-volume 0 +5% && pactl set-sink-mute 0 0 && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume 	exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume 		exec --no-startup-id pactl set-sink-volume 0 +5% && pactl set-sink-mute 0 0 && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume 		exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute 			exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks
 
 # screen brightness controls
-bindsym XF86MonBrightnessUp 	exec --no-startup-id light -A 5 && pkill -RTMIN+11 i3blocks
-bindsym XF86MonBrightnessDown 	exec --no-startup-id light -U 5 && pkill -RTMIN+11 i3blocks
+bindsym XF86MonBrightnessUp 		exec --no-startup-id light -A 5 && pkill -RTMIN+11 i3blocks
+bindsym XF86MonBrightnessDown 		exec --no-startup-id light -U 5 && pkill -RTMIN+11 i3blocks
 
 # media controls
 bindsym XF86AudioPlay 			exec playerctl play-pause && pkill -RTMIN+15 i3blocks
@@ -71,31 +71,30 @@ bindsym XF86AudioPrev 			exec playerctl previous
 bindsym --release Num_Lock 		exec pkill -RTMIN+13 i3blocks
 
 # screenshots
-# todo: send-notifications
-bindsym Print 					exec $CONFIGS/i3/screenshot-make && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/.Notifications/light.mp3
-bindsym Control+Print --release	exec $CONFIGS/i3/screenshot-make -s && $CONFIGS/i3/screenshot-to-clipboard && notify-send "Screenshot saved" && mplayer ~/Music/.Notifications/light.mp3
+bindsym Print 				exec screenshot-make.sh && screenshot-to-clipboard.sh && notify-send "Screenshot saved"
+bindsym Control+Print --release		exec screenshot-make.sh -s && screenshot-to-clipboard && notify-send "Screenshot saved"
 
 # =========================================================
 
 # default windows managment keybindings
 # kill focused window
 bindsym $mod+Shift+q 			kill
-bindsym Mod1+F4 				kill
+bindsym Mod1+F4 			kill
 
 # start rofi program launcher (a program launcher)
-bindsym $mod+d 					exec rofi -show run
+bindsym $mod+d 				exec rofi -show run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+Left 				focus left
-bindsym $mod+Down 				focus down
-bindsym $mod+Up 				focus up
-bindsym $mod+Right 				focus right
+bindsym $mod+Left 			focus left
+bindsym $mod+Down 			focus down
+bindsym $mod+Up 			focus up
+bindsym $mod+Right 			focus right
 
-bindsym Mod1+Tab 				focus right
+bindsym Mod1+Tab 			focus right
 
 # move focused window
 bindsym $mod+Shift+Left 		move left
@@ -104,10 +103,10 @@ bindsym $mod+Shift+Up 			move up
 bindsym $mod+Shift+Right 		move right
 
 # split in horizontal orientation
-bindsym $mod+h 					split h
+bindsym $mod+h 				split h
 
 # split in vertical orientation
-bindsym $mod+v 					split v
+bindsym $mod+v 				split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+f 			fullscreen toggle
@@ -121,13 +120,13 @@ bindsym $mod+Shift+e 			layout toggle split
 bindsym $mod+Shift+space 		floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space 				focus mode_toggle
+bindsym $mod+space 			focus mode_toggle
 
 # focus the parent container
 bindsym $mod+shift+a 			focus parent
 
 #update background pic according to .profile
-bindsym $mod+Shift+B exec source ~/.profile && notify-send "Current background: $BACKGROUND" && feh --bg-scale $BACKGROUND
+bindsym $mod+Shift+B 			exec source ~/.profile && notify-send "Current background: $BACKGROUND" && feh --bg-scale $BACKGROUND
 
 
 # ===========================================================
@@ -175,12 +174,13 @@ bindsym $mod+Shift+0 			move container to workspace $ws10
 # =========================================================
 
 # move fullscreen apps to their workspaces
-for_window [class="Telegram"] 	move container to workspace $ws10
-for_window [title="Firefox"] 	move container to workspace $ws1
+for_window [class="Telegram"] 		move container to workspace $ws10
+for_window [title="Firefox"] 		move container to workspace $ws1
+for_window [title="Spotify"]		move container to workspace $ws9
 # ===========================================================
 
 # lock the screen
-bindsym $mod+l 					exec $CONFIGS/i3/lock /home/allacee/Images/lock.png
+bindsym $mod+l 				exec $CONFIGS/i3/lock 
 
 # reload the configuration file
 bindsym $mod+Shift+c 			reload
@@ -189,12 +189,12 @@ bindsym $mod+Shift+c 			reload
 bindsym $mod+Shift+r 			restart
 
 bindsym $mod+Escape 			exec --no-startup-id $CONFIGS/i3/rofi-exit
-bindsym $mod+F1					exec --no-startup-id $CONFIGS/i3/rofi-app-launcher
-bindsym $mod+F2 				exec --no-startup-id $CONFIGS/i3/rofi-disks
-bindsym $mod+F3					exec --no-startup-id $CONFIGS/i3/rofi-monitors-manager
-bindsym $mod+F4					exec --no-startup-id $CONFIGS/i3/rofi-music-vlc
+bindsym $mod+F1				exec --no-startup-id $CONFIGS/i3/rofi-app-launcher
+bindsym $mod+F2 			exec --no-startup-id $CONFIGS/i3/rofi-disks
+bindsym $mod+F3				exec --no-startup-id $CONFIGS/i3/rofi-monitors-manager
+bindsym $mod+F4				exec --no-startup-id $CONFIGS/i3/rofi-music-vlc
 
-# resize window (you can also use the mouse for that)
+# resize window
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -202,26 +202,24 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j 				resize shrink width 10 px or 10 ppt
-        bindsym k 				resize grow height 10 px or 10 ppt
-        bindsym l 				resize shrink height 10 px or 10 ppt
+        bindsym j 			resize shrink width 10 px or 10 ppt
+        bindsym k 			resize grow height 10 px or 10 ppt
+        bindsym l 			resize shrink height 10 px or 10 ppt
         bindsym semicolon 		resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left 			resize shrink width 10 px or 10 ppt
         bindsym Down 			resize grow height 10 px or 10 ppt
-        bindsym Up 				resize shrink height 10 px or 10 ppt
+        bindsym Up 			resize shrink height 10 px or 10 ppt
         bindsym Right 			resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return 			mode "default"
         bindsym Escape 			mode "default"
-        bindsym $mod+shift+p 	mode "default"
+        bindsym $mod+shift+p 		mode "default"
 }
 
 bindsym $mod+shift+p 			mode "resize"
-
-
 
 bar {
 	font pango: Noto Mono, Awesome 12

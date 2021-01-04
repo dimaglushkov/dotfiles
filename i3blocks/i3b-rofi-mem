@@ -3,7 +3,7 @@ USAGE=$(free -m | tr "\n" " " | awk '{ print ""int($9/$8*100) "%",  int($9/100)/
 percentage=$(echo $USAGE | awk '{print $1}')
 echo "&#xf2db;" "$percentage"
 case "$BLOCK_BUTTON" in 1|2|3)
-	echo -e "Memory usage: $USAGE\n" "$(free -h)" "\n--------------------------------\nTop memory usage proccesses:"  "\n$(shmem)" \
+	echo -e "Memory usage: $USAGE\n" "$(free -h)" "\n--------------------------------\nTop memory usage proccesses:"  "\n$(shmem.sh)" \
 	| rofi \
 		-dmenu \
 		-markup-rows \
