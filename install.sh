@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dependencies="dependencies.txt"
+
 function confirmation {
 	read -p "> Are you sure? [y/n]: " -n 1 -r
 	echo ""
@@ -19,21 +21,22 @@ function generate_profile {
 		exit 1
 	fi
 
+	echo "$dotfiles/$dependencies"
 	configs=$HOME/.config
 	background=$HOME/Pictures/background
 	repositories=$HOME/Repos
-	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1})'
-	editor=$(awk -v FS='#' '$2 ~ /--editor/ {print $1})'
-	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1})'
+	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1}' $dotfiles/$dependencies)
+	editor=$(awk -v FS='#' '$2 ~ /--editor/ {print $1} ' $dotfiles/$dependencies)
+	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1}' $dotfiles/$dependencies)
 
 
 	echo "> Setting next values at .profile:"
 	echo ">> Important variables:"
-	echo ">>> \$DOTFILES=$dotfiles - path to this repository (used for updates)"
-	echo ">>> \$CONFIGS=$configs - directory with application configurations"
+	echo ">>> \$DOTFILES=$dotfiles"
+	echo ">>> \$CONFIGS=$configs"
 	echo ">> Optional variables (you can safely change this values):"
-	echo ">>> \$BACKGROUND=$background - directory with actual background image"
-	echo ">>> \$REPOSITORIES=$repositories - direcroty with repositories"
+	echo ">>> \$BACKGROUND=$background"
+	echo ">>> \$REPOSITORIES=$repositories"
 	echo ">>> \$BROWSER=$browser"
 	echo ">>> \$EDITOR=$editor"
 	echo ">>> \$TERMINAL=$terminal"
@@ -63,4 +66,5 @@ function install_dependencies {
 generate_profile
 source $dotfiles/.profile
 install_dependencies
+confirm
 $dotfiles/update -sd
