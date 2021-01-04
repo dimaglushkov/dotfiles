@@ -33,7 +33,7 @@ save_before_update()
 				echo "[WARNING] $CONFIGS_PATH/$i does not exist"
 				((WARNINGS++))
 			fi
-		elif [[ $EXISTING_DOTFILES == *i* ]]; then
+		elif [[ $EXISTING_DOTFILES == *$i* ]]; then
 			if [[ -f $DOTFILES_PATH/$i ]]; then
 				cp $DOTFILES_PATH/$i $SAVE_PATH/$i
 			else
@@ -116,6 +116,7 @@ if [[ $SAVE_PATH != "" ]]; then
 	save_before_update
 fi
 
+mkdir -p $SCRIPTS_PATH
 replace
 echo "[INFO] Updating finished SUCCESSFULLY"
 
