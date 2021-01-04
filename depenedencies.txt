@@ -1,3 +1,4 @@
+i3			# i3 window-manager
 dunst 			# lightweight notification daemon
 rofi			# run-dialog and dmenu replacement
 xorg-setxkbmap		# keyboard layout toggler
