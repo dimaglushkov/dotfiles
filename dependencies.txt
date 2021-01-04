@@ -21,3 +21,7 @@ lightdm-webkit2-greeter	# greeter for choosen display manager
 firefox			# --browser 
 konsole			# --terminal
 vim			# --editor
+ark			# archive manager
+telegram		
+discord
+zoom
