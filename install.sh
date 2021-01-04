@@ -22,9 +22,10 @@ function generate_profile {
 	configs=$HOME/.config
 	background=$HOME/Pictures/background
 	repositories=$HOME/Repos
-	browser=firefox
-	editor=vim
-	terminal=konsole
+	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1})'
+	editor=$(awk -v FS='#' '$2 ~ /--editor/ {print $1})'
+	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1})'
+
 
 	echo "> Setting next values at .profile:"
 	echo ">> Important variables:"
@@ -46,8 +47,8 @@ function generate_profile {
 function install_dependencies {
 	echo "> Insatlling all needed dependencies..."
 	echo ">> Looking for yay...."
-	yay_installed=$(pacman -Q yay)
-	if [[ $yay_location =~ "not found" ]]; then
+	yay_installed=$(pacman -Qq yay)
+	if [[ $yay_installed != "yay" ]]; then
 		echo ">> Can't find yay installation"
 		echo ">> Installing yay using pacman"
 		sudo pacman -S yay
@@ -63,4 +64,3 @@ generate_profile
 source $dotfiles/.profile
 install_dependencies
 $dotfiles/update -sd
-i3-msg restart

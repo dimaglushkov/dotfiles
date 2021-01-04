@@ -8,12 +8,16 @@ numlockx		# tool to manage numlock status
 pulseaudio		# pulseaudio server c
 playerctl		# media player controller
 light			# screen brightness controller
-picom 			# composer
+picom 			# composer 
 xclip			# tool to work with clipboard
 ttf-font-awesome	# pretty icons
-vim			# just in case vim is missing
 scrot			# screenshot unility
 udisks2 		# udisks daemon and ctl which in my case are used to manage storage devices
 sysstat			# system stats utility
 lightdm			# display manager
 lightdm-webkit2-greeter	# greeter for choosen display manager
+
+# next are just my preferences - feel free to change. Listed packages will be automatically installed (but don't remove comments)
+firefox			# --browser 
+konsole			# --terminal
+vim			# --editor
