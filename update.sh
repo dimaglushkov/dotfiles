@@ -6,38 +6,48 @@ if [[ $DOTFILES == '' ]]; then
 fi
 
 cd $DOTFILES
-CONFIGS=$(ls -d */ | tr -d /)
-DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
-INSTALL=""
+EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts')
+EXISTING_DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
+EXISTING_SCRIPTS=$(ls scripts | grep '.py\|.sh')
+
+TO_UPDATE=""
 SAVE_PATH=""
-CONF_DIR="$HOME/.config"
-DOTF_DIR=$HOME
+DOTFILES_PATH=$HOME
+CONFIGS_PATH=$CONFIGS
+SCRIPTS_PATH=$HOME/.local/bin
 
-
-save_existing()
+save_before_update()
 {
-	echo -e "[INFO] Saving existing:\n$INSTALL \nto $SAVE_PATH"
+	echo -e "[INFO] Saving existing:\n$TO_UPDATE \nto $SAVE_PATH"
 
 	WARNINGS=0
 	COPIES=0
 	mkdir -p $SAVE_PATH
-	for i in ${INSTALL}; do
+	for i in ${TO_UPDATE}; do
 		echo "[INFO] Saving $i"
 
-		if [[ $CONFIGS == *$i*  ]]; then
-			if [[ -d $CONF_DIR/$i ]]; then
-				 cp -r $CONF_DIR/$i $SAVE_PATH/$i
+		if [[ $EXISTING_CONFIGS == *$i*  ]]; then
+			if [[ -d $CONFIGS_PATH/$i ]]; then
+				 cp -r $CONFIGS_PATH/$i $SAVE_PATH/$i
 			else
-				echo "[WARNING] $CONF_DIR/$i does not exist"
+				echo "[WARNING] $CONFIGS_PATH/$i does not exist"
 				((WARNINGS++))
 			fi
-	 	else
-			if [[ -f $DOTF_DIR/$i ]]; then
-				cp $DOTF_DIR/$i $SAVE_PATH/$i
+		elif [[ $EXISTING_DOTFILES == *i* ]]; then
+			if [[ -f $DOTFILES_PATH/$i ]]; then
+				cp $DOTFILES_PATH/$i $SAVE_PATH/$i
 			else
-				echo "[WARNING] $DOTF_DIR/$i does not exist"
+				echo "[WARNING] $DOTFILES_PATH/$i does not exist"
 				((WARNINGS++))
 			fi
+		else
+			if [[ -f $SCRIPTS_PATH/$i ]]; then
+				cp $SCRIPTS_PATH/$i $SAVE_PATH/$i
+			else
+				echo "[WARNING] $SCRIPTS_PATH/$i does not exist"
+				((WARNINGS++))
+			fi
+		
 		fi
 		((COPIES++))
 	done
@@ -45,18 +55,21 @@ save_existing()
 	echo -e "[INFO] Saving finished with $WARNINGS/$COPIES warnings"
 }
 
-moving()
+replace()
 {
-	echo "[INFO] Updating existing files"
+	echo "[INFO] Replacing existing files"
 
 	COPIES=0
-	for i in ${INSTALL}; do
-		if [[ $CONFIGS == *$i*  ]]; then
-			rm -rf $CONF_DIR/$i
-			cp -r ./$i $CONF_DIR/$i
-		else
-			rm -f $DOTF_DIR/$i
-			cp ./$i $DOTF_DIR/$i
+	for i in ${TO_UPDATE}; do
+		if [[ $EXISTING_CONFIGS == *$i*  ]]; then
+			rm -rf $CONFIGS_PATH/$i
+			cp -r ./$i $CONFIGS_PATH/$i
+		elif [[ $EXISTING_DOTFILES == *$i* ]]; then
+			rm -f $DOTFILES_PATH/$i
+			cp ./$i $DOTFILES_PATH/$i
+		else 
+			rm -f $SCRIPTS_PATH/$i
+			cp scripts/$i $SCRIPTS_PATH/$i
 		fi
 		((COPIES++))
 	done
@@ -77,35 +90,15 @@ while [[ $1 != "" ]]; do
 		;;
 
 		-sd )
-			mkdir -p $HOME/.config.old/
-			SAVE_PATH=$HOME/.config.old/$(date +ver.%d.%m.%y-%T)
+			SAVE_PATH=$CONFIGS.old/$(date +%y.%m.%d_%T)
 		;;
 
-		-cfd )
-			shift
-			if [[ -d $1  &&  $1!='' ]]; then
-				CONF_DIR=$1
-			else
-				>&2 echo "[ERROR] Wrong config directory"
-				exit 1
-			fi
-		;;
-
-		-dfd )
-			shift
-			if [[ -d $1 && $1!='' ]]; then
-				DOTF_DIR=$1
-			else
-				>&2 echo "[ERROR] Wrong dotfile directory"
-				exit 1
-			fi
-		;;
 
 		* )
-			if [[ $CONFIGS == *$1* || $DOTFILES == *$1* ]]; then
-				INSTALL="$INSTALL $1"
+			if [[ $EXISTING_CONFIGS == *$1* || $EXISTING_DOTFILES == *$1* || $EXISTING_SCRIPTS == *$1* ]]; then
+				TO_UPDATE="$TO_UPDATE $1"
 			else
-				>&2 echo "[ERROR] Wrong config or dotfile name"
+				>&2 echo "[ERROR] Wrong config or dotfile name: $1"
 				exit 1
 			fi
 		;;
@@ -114,15 +107,16 @@ while [[ $1 != "" ]]; do
 	shift
 done
 
-if [[ $INSTALL == "" ]]; then
-	INSTALL="$CONFIGS $DOTFILES"
+if [[ $TO_UPDATE == "" ]]; then
+	echo "[INFO] Nothing was specified. Updating everything"
+	TO_UPDATE="$EXISTING_CONFIGS $EXISTING_DOTFILES $EXISTING_SCRIPTS"
 fi
 
 if [[ $SAVE_PATH != "" ]]; then
-	save_existing
+	save_before_update
 fi
 
-moving
+replace
 echo "[INFO] Updating finished SUCCESSFULLY"
 
 cd -
