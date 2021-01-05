@@ -127,8 +127,7 @@ color=#888888
 
 #############################
 # Keyboard status
-[i3b-kblang]
-command=xkb-switch && xkb-switch -W
+[i3b-kblayout]
 interval=persist
 
 [i3b-kbstat]

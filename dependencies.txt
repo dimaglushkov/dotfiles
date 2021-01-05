@@ -11,12 +11,15 @@ light			        # screen brightness controller
 picom 			        # composer 
 xclip			        # tool to work with clipboard
 ttf-font-awesome	    # pretty icons
+noto-fonts              # fonts developed by google
 scrot			        # screenshot unility
 udisks2 		        # udisks daemon and ctl which in my case are used to manage storage devices
 sysstat			        # system stats utility
 lightdm			        # display manager
 lightdm-webkit2-greeter	# greeter for choosen display manager
 ranger			        # terminal-based file manager
+pango                   # text renderer fot i3 bar customization 
+xkb-switch              # keyboard layout switching listiner
 
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
 firefox			        # --browser 

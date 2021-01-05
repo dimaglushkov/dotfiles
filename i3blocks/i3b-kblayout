@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function print_active_layout {
+active_layout=$(xkb-switch)
+    case $active_layout in
+        "us" )
+            echo "🇺🇸"
+        ;;
+
+        "ru" )
+            echo "🇷🇺"
+        ;;
+    esac
+}
+
+print_active_layout
+while xkb-switch -w
+do
+    print_active_layout
+done

@@ -1,2 +1,2 @@
 #!/bin/sh
-free -m | grep Mem | awk '{print int($3/100)/10 "GB/" int($2/100)/10 "GB"}'
+free -m | grep Mem | awk '{print " "int($3/100)/10 "GB/" int($2/100)/10 "GB"}'
