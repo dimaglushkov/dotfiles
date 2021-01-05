@@ -119,5 +119,6 @@ fi
 mkdir -p $SCRIPTS_PATH
 replace
 echo "[INFO] Updating finished SUCCESSFULLY"
+i3-msg restart
 
 cd -

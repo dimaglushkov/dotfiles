@@ -53,7 +53,7 @@ color=#888888
 
 
 #############################
-# system usage information
+# System usage information
 [i3b-cpu]
 label=&#xf2db;
 interval=2

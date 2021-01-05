@@ -24,11 +24,11 @@ function generate_profile {
 	echo "$dotfiles/$dependencies"
 	configs=$HOME/.config
 	background=$HOME/Pictures/background
+	screenshots=$HOME/Pictures/screenshots
 	repositories=$HOME/Repos
 	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1}' $dotfiles/$dependencies)
 	editor=$(awk -v FS='#' '$2 ~ /--editor/ {print $1} ' $dotfiles/$dependencies)
 	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1}' $dotfiles/$dependencies)
-
 
 	echo "> Setting next values at .profile:"
 	echo ">> Important variables:"
@@ -36,6 +36,7 @@ function generate_profile {
 	echo ">>> \$CONFIGS=$configs"
 	echo ">> Optional variables (you can safely change this values):"
 	echo ">>> \$BACKGROUND=$background"
+	echo ">>> \$SCREENSHOTS=$screenshots"
 	echo ">>> \$REPOSITORIES=$repositories"
 	echo ">>> \$BROWSER=$browser"
 	echo ">>> \$EDITOR=$editor"
@@ -45,6 +46,14 @@ function generate_profile {
 	echo "> Creating .profile"
 	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
 	echo "> Successfully created $dotfiles/.profile"
+}
+
+function generate_aliases {
+	echo "> Generating .aliases file"
+	aliases_content='alias fs="ranger"\nalias q="exit"\nalias dcu="update_dotfiles.sh -sd"\nalias dcr="update_dotfiles.sh"'
+	echo -e ">> Creating .aliases file with listed content:\n$aliases_content"
+	echo -e "$aliases_content" > $DOTFILES/.aliases
+
 }
 
 function install_dependencies {
@@ -63,8 +72,9 @@ function install_dependencies {
 	yay -S --needed $(awk -v FS="#" '{print $1}' $DOTFILES/$dependencies)
 }
 
+
 generate_profile
 source $dotfiles/.profile
 install_dependencies
 confirm
-$dotfiles/update.sh -sd
+$dotfiles/scripts/update_dotfiles.sh -sd

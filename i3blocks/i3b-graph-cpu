@@ -6,5 +6,5 @@ do
 	USAGE_GRAPH=$(echo $USAGE "100" | $CONFIGS/i3blocks/i3b-graph-builder)
 	I3B_GRAPH_CPU="$(echo ${I3B_GRAPH_CPU:1:5})$USAGE_GRAPH"
 	echo $I3B_GRAPH_CPU
-	#sleep 1
+	sleep 1
 done

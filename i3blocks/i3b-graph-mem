@@ -3,7 +3,7 @@ I3B_GRAPH_MEM="_____"
 while true
 do
 	USAGE=$(free -m | grep Mem | awk '{print $3, $2}')
-	USAGE_GRAPH=$(echo $USAGE | $CONFIGS/i3b-graph-builder)
+	USAGE_GRAPH=$(echo $USAGE | $CONFIGS/i3blocks/i3b-graph-builder)
 	I3B_GRAPH_MEM="$(echo ${I3B_GRAPH_MEM:1:5})$USAGE_GRAPH"
 	echo $I3B_GRAPH_MEM
 	sleep 2
