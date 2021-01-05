@@ -222,7 +222,7 @@ mode "resize" {
 bindsym $mod+shift+p 			mode "resize"
 
 bar {
-	font pango: Noto Mono, Awesome 12
+	font pango: Noto Mono, Font Awesome 12
 	i3bar_command i3bar --transparency
 	position top
 	colors {
