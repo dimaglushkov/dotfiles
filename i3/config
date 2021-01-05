@@ -71,8 +71,8 @@ bindsym XF86AudioPrev 			exec playerctl previous
 bindsym --release Num_Lock 		exec pkill -RTMIN+13 i3blocks
 
 # screenshots
-bindsym Print 				exec screenshot-make.sh && screenshot-to-clipboard.sh && notify-send "Screenshot saved"
-bindsym Control+Print --release		exec screenshot-make.sh -s && screenshot-to-clipboard && notify-send "Screenshot saved"
+bindsym Print 				exec screenshot-make && screenshot-to-clipboard && notify-send "Screenshot saved"
+bindsym Control+Print --release		exec screenshot-make -s && screenshot-to-clipboard && notify-send "Screenshot saved"
 
 # =========================================================
 

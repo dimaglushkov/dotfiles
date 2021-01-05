@@ -54,7 +54,7 @@ function install_dependencies {
 	if [[ $yay_installed != "yay" ]]; then
 		echo ">> Can't find yay installation"
 		echo ">> Installing yay using pacman"
-		sudo pacman -S yay
+		sudo pacman -S base-devel yay
 	else
 		echo ">> Successfully found yay"
 	fi
