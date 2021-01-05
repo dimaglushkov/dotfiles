@@ -3,7 +3,7 @@
 set 					$mod Mod4
 
 # Font for window titles.
-font pango: 				Noto Mono 12
+font pango: 				Noto Sans Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier 			$mod
@@ -44,7 +44,7 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #CCFF00
 # launch ranger in terminal
 	bindsym $mod+r 			exec $TERMINAL -e ranger
 # launch telegram
-	bindsym $mod+i 			exec $HOME/Applications/Telegram/Telegram ; workspace $ws10
+	bindsym $mod+i 			exec telegram-desktop; workspace $ws10
 
 # =========================================================
 

@@ -6,7 +6,7 @@ if [[ $DOTFILES == '' ]]; then
 fi
 
 cd $DOTFILES
-EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts|assets')
+EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts\|assets')
 EXISTING_DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
 EXISTING_SCRIPTS=$(ls scripts | grep '.py\|.sh')
 

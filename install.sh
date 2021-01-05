@@ -71,3 +71,4 @@ generate_profile
 source $dotfiles/.profile
 install_dependencies
 $dotfiles/scripts/update_dotfiles.sh -sd
+set_background.sh $DOTFILES/assets/manjaro-1.jpg
