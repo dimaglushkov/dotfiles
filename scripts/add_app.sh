@@ -26,8 +26,8 @@ if [ -x "$app_full_path" ] ; then
     echo -e "$app_name\t$app_full_path" >> $apps_file
     echo "Successfully added $app_name"
 else
-echo "Can't find $app_path. Maybe it's not in \$PATH or just doesn't exist"
+echo "Error: Can't find $app_path. Maybe it's not in \$PATH or just doesn't exist"
     exit 1
 fi
 
-
+update_dotfiles.sh -sd .apps

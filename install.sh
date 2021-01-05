@@ -21,7 +21,6 @@ function generate_profile {
 		exit 1
 	fi
 
-	echo "$dotfiles/$dependencies"
 	configs=$HOME/.config
 	background=$HOME/Pictures/background
 	screenshots=$HOME/Pictures/screenshots
@@ -46,23 +45,19 @@ function generate_profile {
 	echo "> Creating .profile"
 	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
 	echo "> Successfully created $dotfiles/.profile"
-}
 
-function generate_aliases {
-	echo "> Generating .aliases file"
-	aliases_content='alias fs="ranger"\nalias q="exit"\nalias dcu="update_dotfiles.sh -sd"\nalias dcr="update_dotfiles.sh"'
-	echo -e ">> Creating .aliases file with listed content:\n$aliases_content"
-	echo -e "$aliases_content" > $DOTFILES/.aliases
-
+	mkdir -p $background
+	mkdir -p $screenshots
 }
 
 function install_dependencies {
-	echo "> Insatlling all needed dependencies..."
-	echo ">> Looking for yay...."
+	echo "> Insatlling all needed dependencies"
+	echo ">> Looking for yay"
 	yay_installed=$(pacman -Qq yay)
 	if [[ $yay_installed != "yay" ]]; then
 		echo ">> Can't find yay installation"
 		echo ">> Installing yay using pacman"
+		sudo pacman -Sy
 		sudo pacman -S base-devel yay
 	else
 		echo ">> Successfully found yay"
@@ -72,9 +67,7 @@ function install_dependencies {
 	yay -S --needed $(awk -v FS="#" '{print $1}' $DOTFILES/$dependencies)
 }
 
-
 generate_profile
 source $dotfiles/.profile
 install_dependencies
-confirm
 $dotfiles/scripts/update_dotfiles.sh -sd
