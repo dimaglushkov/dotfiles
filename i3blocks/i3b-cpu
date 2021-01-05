@@ -1,3 +1,2 @@
 #!/bin/sh
-USAGE=$(mpstat --dec=0 1 1 | awk 'END{print 100-$12}')
-echo "&#xf1ec; $USAGE%"
+echo "$(mpstat --dec=0 1 1 | awk 'END{print 100-$12}')%"

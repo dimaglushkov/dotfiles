@@ -1,10 +1,12 @@
-command=$HOME/.config/i3blocks/$BLOCK_NAME
+command=$CONFIGS/i3blocks/$BLOCK_NAME
 separator=false
 separator_block_width=1
 
+
+#############################
+# VLC player controller
 [i3b-vlc-cur]
 interval=persist
-
 
 [i3b-vlc-prev]
 markup=pango
@@ -21,33 +23,39 @@ markup=pango
 size=15
 interval=once
 signal=15
+#############################
 
 
-
+#############################
+# Network status 
 [i3b-connection]
-command=i3status
 markup=pango
-interval=persist
+interval=60
 
 [sep]
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
+#############################
+# weater information
+[i3b-weather]
+command=curl wttr.in/?format=1
+interval=3600
 
-#[i3b-rofi-weather]
-#command=curl wttr.in/?format=1
-#interval=3600
-
-#[sep]
-#command=echo "|"
-#interval=once
-#color=#888888
+[sep]
+command=echo "|"
+interval=once
+color=#888888
+#############################
 
 
-
-[i3b-rofi-cpu]
+#############################
+# system usage information
+[i3b-cpu]
+label=&#xf2db;
 interval=2
 markup=pango
 
@@ -59,9 +67,8 @@ command=echo "|"
 interval=once
 color=#888888
 
-
-
-[i3b-rofi-mem]
+[i3b-mem]
+label=&#xf538;
 interval=2
 markup=pango
 
@@ -72,9 +79,11 @@ interval=persist
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
-
+#############################
+# Brightness controller
 [i3b-brightness]
 interval=once
 label=&#xf185;
@@ -85,9 +94,11 @@ markup=pango
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
-
+#############################
+# Volume controller
 [i3b-volume]
 markup=pango
 interval=3
@@ -97,9 +108,11 @@ signal=10
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
-
+#############################
+# Battery status  
 [i3b-battery]
 interval=2
 signal=12
@@ -109,8 +122,11 @@ markup=pango
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
+#############################
+# Keyboard status
 [i3b-kblang]
 command=xkb-switch && xkb-switch -W
 interval=persist
@@ -124,8 +140,11 @@ markup=pango
 command=echo "|"
 interval=once
 color=#888888
+#############################
 
 
+#############################
+# Date and time information
 [i3b-rofi-calendar]
 label=&#xf073;
 interval=3600
@@ -138,5 +157,6 @@ color=#888888
 
 
 [time]
-command=date '+%H:%M:%S %p'
+command=date '+%H:%M:%S'
 interval=1
+#############################

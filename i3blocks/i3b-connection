@@ -1,0 +1,13 @@
+#!/bin/bash
+
+active_connections=$( nmcli device status |  awk '{if($3 == "connected"){print $2" "$4}}')
+
+if [[ $active_connections =~ "wifi" ]]; then
+    wifi_connection=$(nmcli device wifi | awk '{if($1=="*"){print $3" "$9}}')
+    wifi_name=$(echo $wifi_connection | cut -f1 -d " ")
+    active_connections="${active_connections//$wifi_name/$wifi_connection}"
+fi
+
+active_connections="${active_connections//ethernet/&#xf796; }"
+active_connections="${active_connections//wifi/&#xf1eb; }"
+echo $active_connections

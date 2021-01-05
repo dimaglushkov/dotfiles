@@ -2,8 +2,9 @@
 I3B_GRAPH_CPU="_____"
 while true
 do
-	USAGE=$(echo $($CONFIGS/i3blocks/i3b-cpu) "100" | tr -d % | $CONFIGS/i3blocks/i3b-graph-builder)
-	I3B_GRAPH_CPU="$(echo ${I3B_GRAPH_CPU:1:5})$USAGE"
+	USAGE=$($CONFIGS/i3blocks/i3b-cpu | tr -d %)
+	USAGE_GRAPH=$(echo $USAGE "100" | $CONFIGS/i3blocks/i3b-graph-builder)
+	I3B_GRAPH_CPU="$(echo ${I3B_GRAPH_CPU:1:5})$USAGE_GRAPH"
 	echo $I3B_GRAPH_CPU
 	#sleep 1
 done
