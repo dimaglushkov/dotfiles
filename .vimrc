@@ -7,43 +7,8 @@
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 
 
-" Using Vundle to manage plugins
-" =============================
-set 		nocompatible         " be iMproved, required for Vundle
-filetype 	off                  " required for Vundle
-set 		rtp+=~/.vim/bundle/Vundle.vim
-call 		vundle#begin()
-Plugin 		'VundleVim/Vundle.vim'
-Plugin 		'vim-airline/vim-airline'
-Plugin 		'vim-airline/vim-airline-themes'
-Plugin 		'airblade/vim-gitgutter'
-Plugin 		'rafi/awesome-vim-colorschemes'
-Plugin 		'ntk148v/vim-horizon'
-Plugin 		'tpope/vim-fugitive'
-Plugin 		'maralla/completor.vim'
-Plugin 		'alvan/vim-closetag'
-call 		vundle#end()        " required for Vundle
-filetype 	plugin indent on    " required for Vundle
-" =============================
-
-" vim-airline and interface configuration
 " ============================
-let 		g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-let 		g:airline_skip_empty_sections = 1
-let			g:airline#extensions#tabline#enabled = 1
-let 		g:airline#extensions#tabline#left_sep = ' '
-let	 		g:airline#extensions#tabline#left_alt_sep = '|'
-let 		g:airline#extensions#tabline#formatter = 'default'
-let 		g:airline_theme='molokai'
-let 		g:airline#extensions#tabline#buffer_nr_show = 1
-
-"color solarized8_high
-color 		afterglow
-set		 	laststatus=2
-set 		ttimeoutlen=50
-
-" ============================
-
+set         laststatus=2
 set 		autoindent
 set			encoding=UTF-8
 set 		tabstop=4
@@ -66,7 +31,7 @@ set 		nostartofline
 " Show partial commands in the last line of the screen
 set 		showcmd
 
-" Instead of failing a command because of unsaved changes, instead raise a
+" Instead of failing a command because of unsaved changes raise a
 " dialogue asking if you wish to save changed files.
 set 		confirm
 
@@ -91,7 +56,7 @@ set 		number relativenumber
 " Allows to ctrl+ru_sym
 set 		langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
-" case insensitive searching
+" case-insensitive searching
 set 		ignorecase
 
 " case-sensitive if expresson contains a capital letter
@@ -184,14 +149,10 @@ nnoremap 	<S-Left> <C-w><
 nnoremap 	<S-Right> <C-w>>
 
 
-" NERDtree
-"map <C-n> 	:NERDTreeToggle<CR>
-"set timeout
+" set timeout
 set 		timeoutlen=1000
-"set ttimeout
+" set ttimeout
 set 		ttimeoutlen=50
 
-
-" NERD tree autoload and auto close if that's the only window opened
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
+" alacritty compabillity
+ttymouse=sgr
