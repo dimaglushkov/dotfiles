@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "&#xf0eb; "
+case "$BLOCK_BUTTON" in
+	1)
+		redshift -x
+		redshift -O 3500K
+	;;
+	3)
+		redshift -x
+	;;
+esac

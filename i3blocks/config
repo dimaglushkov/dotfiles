@@ -83,7 +83,11 @@ color=#888888
 
 
 #############################
-# Brightness controller
+# Redshift and brightness controllers
+[i3b-redshift]
+interval=once
+markup=pango
+
 [i3b-brightness]
 interval=once
 label=&#xf185;
