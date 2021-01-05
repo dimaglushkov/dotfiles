@@ -43,7 +43,7 @@ fi
 
 echo -e "$TEXT" | rofi \
 	-dmenu \
-	-font "Noto Sans Mono $FONTSIZE" \
+	-font "Noto Mono $FONTSIZE" \
 	-width -$WIDTH \
 	-lines $LINES \
 	-p "$HEADER" \

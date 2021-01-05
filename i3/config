@@ -3,7 +3,7 @@
 set 					$mod Mod4
 
 # Font for window titles.
-font pango: 				Noto Sans Mono 12
+font pango: 				Noto Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier 			$mod
@@ -222,7 +222,7 @@ mode "resize" {
 bindsym $mod+shift+p 			mode "resize"
 
 bar {
-	font pango: Noto Sans Mono, Font Awesome 5 Free Regular 12
+	font pango: Noto Mono, Font Awesome 5 Free Regular 12
 	i3bar_command i3bar --transparency
 	position top
 	colors {
