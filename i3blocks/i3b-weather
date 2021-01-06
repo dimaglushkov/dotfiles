@@ -1,0 +1,8 @@
+#!/bin/bash
+
+weather=$(curl "wttr.in/?format=1")
+if [[ $weather == *Unknown* ]]; then
+    echo "#&xf740; down"
+else 
+    echo $weather
+fi

@@ -79,10 +79,10 @@ replace()
 set_rcconf_values()
 {
 	echo "[INFO] Replacing $'s with actual values in rc.conf"
-	sed -ie "s/\$DOTFILES/$DOTFILES/g" $CONFIGS/ranger/rc.conf
-	sed -ie "s/\$REPOSITORIES/$REPOSITORIES/g" $CONFIGS/ranger/rc.conf
-	sed -ie "s/\$HOME/$HOME/g" $CONFIGS/ranger/rc.conf
-	sed -ie "s/\$CONFIGS/$CONFIGS/g" $CONFIGS/ranger/rc.conf
+	sed -ie "s+\$DOTFILES+$DOTFILES+g" $CONFIGS/ranger/rc.conf
+	sed -ie "s+\$REPOSITORIES+$REPOSITORIES+g" $CONFIGS/ranger/rc.conf
+	sed -ie "s+\$HOME+$HOME+g" $CONFIGS/ranger/rc.conf
+	sed -ie "s+\$CONFIGS+$CONFIGS+g" $CONFIGS/ranger/rc.conf
 	echo "[INFO] Successfully replaced"
 }
 

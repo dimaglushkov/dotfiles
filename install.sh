@@ -37,7 +37,7 @@ function generate_profile {
 	configs=$HOME/.config
 	background=$HOME/Pictures/background
 	screenshots=$HOME/Pictures/screenshots
-	repositories=$HOME/Repos
+	repositories=$(cd $dotfiles/.. ; pwd)
 	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1}' $dotfiles/$dependencies)
 	editor=vim
 	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1}' $dotfiles/$dependencies)

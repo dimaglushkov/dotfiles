@@ -42,7 +42,6 @@ color=#888888
 #############################
 # weater information
 [i3b-weather]
-command=curl wttr.in/?format=1
 interval=3600
 
 [sep]
