@@ -1,3 +1,4 @@
+alias cp="cp -i"
 alias fs="ranger"
 alias q="exit"
 alias dcu="update_dotfiles.sh -sd"
