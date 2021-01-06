@@ -39,7 +39,7 @@ function generate_profile {
 	screenshots=$HOME/Pictures/screenshots
 	repositories=$HOME/Repos
 	browser=$(awk -v FS='#' '$2 ~ /--browser/ {print $1}' $dotfiles/$dependencies)
-	editor=$(awk -v FS='#' '$2 ~ /--editor/ {print $1} ' $dotfiles/$dependencies)
+	editor=vim
 	terminal=$(awk -v FS='#' '$2 ~ /--terminal/ {print $1}' $dotfiles/$dependencies)
 
 	echo "> Setting next values at .profile:"

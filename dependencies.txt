@@ -12,8 +12,6 @@ picom 			        # composer
 xclip			        # tool to work with clipboard
 ttf-font-awesome	    # pretty icons used for i3blocks
 noto-fonts-emoji        # same as above but emojies 
-nerd-fonts-complete     # huge repository with every font needed
-devicons                # pretty icons used in ranger
 makefontpkg             # is used to build font package
 scrot			        # screenshot unility
 udisks2 		        # udisks daemon and ctl which in my case are used to manage storage devices
@@ -27,12 +25,12 @@ python-six              # this lib is required by ueberzug
 pango                   # text renderer fot i3 bar customization 
 xkb-switch              # keyboard layout switching listener
 redshift                # simple redshift cli
+gvim                    # vim extension to be able to copy and paste to/from vim 
 
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
 firefox			        # --browser 
 alacritty		        # --terminal
 vim			            # --editor
-gvim                    # to be able to copy and paste to/from vim 
 ark			            
 telegram-desktop		
 discord
