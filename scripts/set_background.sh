@@ -14,7 +14,7 @@ case $# in
 esac
 
 if [[ ! -f "$img_path" ]]; then
-    echo "Error: file doesn't exist"
+    echo "Error: file $img_path doesn't exist"
     exit 1
 fi
 

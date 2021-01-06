@@ -155,4 +155,4 @@ set 		timeoutlen=1000
 set 		ttimeoutlen=50
 
 " alacritty compabillity
-ttymouse=sgr
+set ttymouse=sgr
