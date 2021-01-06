@@ -30,7 +30,6 @@ gvim                    # vim extension to be able to copy and paste to/from vim
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
 firefox			        # --browser 
 alacritty		        # --terminal
-vim			            # --editor
 ark			            
 telegram-desktop		
 discord
