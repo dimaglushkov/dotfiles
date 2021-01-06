@@ -138,7 +138,7 @@ git_prompt_string() {
 }
 
 
-PROMPT='%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%m%{$reset_color%} %~$ '
+PROMPT='%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%m%{$reset_color%}%~$ '
 RPROMPT='$(git_prompt_string)'
 
 if [[ $(basename "$(cat "/proc/$PPID/comm")") == "login" ]]; then

@@ -76,6 +76,16 @@ replace()
 	echo "[INFO] $COPIES dotfiles/configs moved"
 }
 
+set_rcconf_values()
+{
+	echo "[INFO] Replacing $'s with actual values in rc.conf"
+	sed -ie "s/\$DOTFILES/$DOTFILES/g" $CONFIGS/ranger/rc.conf
+	sed -ie "s/\$REPOSITORIES/$REPOSITORIES/g" $CONFIGS/ranger/rc.conf
+	sed -ie "s/\$HOME/$HOME/g" $CONFIGS/ranger/rc.conf
+	sed -ie "s/\$CONFIGS/$CONFIGS/g" $CONFIGS/ranger/rc.conf
+	echo "[INFO] Successfully replaced"
+}
+
 
 while [[ $1 != "" ]]; do
 	case $1 in
@@ -118,6 +128,9 @@ fi
 
 mkdir -p $SCRIPTS_PATH
 replace
+if [[ $TO_UPDATE == "*ranger*" ]]; then
+	set_rcconf_values
+fi
 echo "[INFO] Updating finished SUCCESSFULLY"
 i3-msg restart
 
