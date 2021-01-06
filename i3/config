@@ -3,7 +3,7 @@
 set 					$mod Mod4
 
 # Font for window titles.
-font pango: 				Noto Mono 12
+font pango: 				NotoMono Nerd Font 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier 			$mod

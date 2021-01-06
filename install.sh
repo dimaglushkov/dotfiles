@@ -16,9 +16,13 @@ function install_fonts {
 	echo "> Installing fonts"
 	cur_dir=$(pwd)
 	cd $dotfiles/assets/fonts
-	makefontpkg --install *.ttf
+	fonts=($(ls *.ttf))
+	for font in $fonts
+	do
+		makefontpkg --install $font
+	done
 	cd $cur_dir
-	echo "> Successfully installed fonts"
+	echo "> Successfully installed fonts: $fonts"
 }
 
 function generate_profile {
@@ -73,7 +77,7 @@ function install_dependencies {
 	fi
 	
 	echo "> Installing packages listed at dependencies.txt using"
-	yay -S --needed $(awk -v FS="#" '{print $1}' $DOTFILES/$dependencies)
+	yay -S --needed $(awk -v FS="#" '{print $1}' $dotfiles/$dependencies)
 }
 
 generate_profile
@@ -81,4 +85,4 @@ source $dotfiles/.profile
 install_dependencies
 install_fonts
 $dotfiles/scripts/update_dotfiles.sh -sd
-set_background.sh $DOTFILES/assets/manjaro-1.jpg
+set_background.sh $dotfiles/assets/manjaro-2.jpg
