@@ -1,21 +1,19 @@
 # dotfiles
-Dotfiles and configuration
-## Installation script
-**WARNING! There is still a lot of work to be done. Do NOT launch this script unless you've set $DOTFILES to the location of this directory**
+My dotfiles, configs, and scripts
+![Screen sample](https://github.com/allacee/dotfiles/blob/main/assets/screenshots/screen-sample-1.png)
 
-You can simply install configs from this repo by running `install` script. It's simply going to replace existing dotfiles & configs with ones from this repo.
+## Installation 
+You can automatically install this configuration on _probably_ any Arch-based system. I've only tested it on ``manjaro-gnome-20.2-minimal`` and ``manjaro-i3-20.2-minimal`` builds and everything was fine.   
+To install this configuration, just launch ```install.sh``` installation script. It will automatically download _probably_ all necessary tools and programs and move their condfigs to the right directories. After that, it will ask you to restart your session for changes to have an effect
 
-Usage:
-`./install [-s PATH | -sd] [-cfd PATH] [-dfd PATH] ARGS`
-### Description
-* `-cfd PATH` 	- system config directory. By default it's `$HOME/.config`
-* `-dfd PATH` 	- system dotfiles directory. By default it's `$HOME`
-* `-s PATH`		  - saving exsisting version of configs in PATH.
-* `-sd` 		    - saving into `$HOME/.config.old/ver.%DATE-%TIME`
-* `ARGS`		    - names of configs you want to install. If none specified then installing everything.
-### TODO:
-* implement network i3block to get rid of i3status
-* collect list of all utilities/tools into requirements file to be able to download all of them on a new pc
-* update dotfiles structure and update install according to new structural conventions
-* add some images of how system looks with this configs
-* improve readme :)
+__Warning:__ It's not well tested, so I don't recommend you to launch this script unless you know what's going on. You are doing it at your own risk
+
+## Updating your configs
+If you want to apply any changes on this configs, you can simply apply changes on the files in this repo and run ```update_dotfiles.sh``` (or ```dcr``` if using this configuration as it is or added .aliases to your shells .rc file)
+
+It also requires `$DOTFILES` and `$CONFIGS` env variables to be set.
+### Update script usage
+`update_dotfiles.sh [-s PATH | -sd] ARGS`
+* `-s PATH`		  - saving exsisting version of given ARGS into PATH.
+* `-sd` 		    - saving exsisting version of given ARGS into `$HOME/.config.old/%DATE-%TIME`.
+* `ARGS`		    - list of configs/dotfiles/scripts you want to install. If not specified then installing everything at $DOTFILES.
