@@ -1,6 +1,6 @@
 #!/bin/bash
 
-active_connections=$( nmcli device status |  awk '{if($3 == "connected"){print $2":"; $1=$2=$3=""; print $0}}')
+active_connections=$( nmcli device status |  awk '{if($3 == "connected"){type=$2;$1=$2=$3=""; print type":"$0}}')
 
 if [[ $active_connections =~ "wifi" ]]; then
     wifi_connection=$(nmcli device wifi | awk '{if($1=="*"){print $3" "$9}}')

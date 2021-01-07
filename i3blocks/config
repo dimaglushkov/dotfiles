@@ -30,7 +30,7 @@ signal=15
 # Network status 
 [i3b-connection]
 markup=pango
-interval=60
+interval=10
 
 [sep]
 command=echo "|"
