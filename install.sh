@@ -12,19 +12,6 @@ function confirmation {
 	fi
 }
 
-function install_fonts {
-	echo "> Installing fonts"
-	cur_dir=$(pwd)
-	cd $dotfiles/assets/fonts
-	fonts=($(ls *.ttf))
-	for font in $fonts
-	do
-		makefontpkg --install $font
-	done
-	cd $cur_dir
-	echo "> Successfully installed fonts: $fonts"
-}
-
 function generate_profile {
 	echo "> Generating .profile file"
 	dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -56,11 +43,22 @@ function generate_profile {
 	confirmation
 
 	echo "> Creating .profile"
-	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
+	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport $SCREENSHOTS=$screenshots\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
 	echo "> Successfully created $dotfiles/.profile"
 
 	mkdir -p $background
 	mkdir -p $screenshots
+}
+
+function install_fonts {
+	echo "> Installing fonts"
+	fonts=($(ls $dotfiles/assets/fonts/*.ttf))
+	for font in $fonts
+	do
+		makefontpkg --install $font
+	done
+	cd $cur_dir
+	echo "> Successfully installed fonts: $fonts"
 }
 
 function install_dependencies {
@@ -84,6 +82,11 @@ generate_profile
 source $dotfiles/.profile
 install_dependencies
 install_fonts
+
+echo "> Replacing existing configs..."
+confirmation
 $dotfiles/scripts/update_dotfiles.sh -sd
-set_background.sh $dotfiles/assets/backgrounds/manjaro-3.jpg
+set_background.sh $dotfiles/assets/backgrounds/manjaro-2.jpg
+echo "> For changes to have effect you need to restart your session"
+confirmation
 i3-msg exit

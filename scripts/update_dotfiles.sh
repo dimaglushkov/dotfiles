@@ -128,9 +128,21 @@ fi
 
 mkdir -p $SCRIPTS_PATH
 replace
+
 if [[ $TO_UPDATE == *ranger* ]]; then
 	set_rcconf_values
 fi
+
+if [[ $TO_UPDATE == *.profile* ]]; then
+	echo -e "[WARN] You are going to update .profile\n\tTo make this changes have effect you need to restart your session"
+	read -p "Restart right now? [y/n]: " -n 1 -r
+	echo ""
+	if [[ $REPLY != "y" && $REPLY != "Y" ]]
+	then
+		i3-msg exit
+	fi
+fi
+
 echo "[INFO] Updating finished SUCCESSFULLY"
 i3-msg restart
 

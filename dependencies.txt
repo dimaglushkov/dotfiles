@@ -13,6 +13,7 @@ light                        # screen brightness controller
 picom                        # composer 
 xclip                        # tool to work with clipboard
 ttf-font-awesome             # pretty icons used for i3blocks
+ttf-ubuntu-font-family       # fonts for telegram 
 noto-fonts-emoji             # same as above but emojies 
 makefontpkg                  # is used to build font package
 scrot                        # screenshot unility
