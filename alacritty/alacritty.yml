@@ -114,7 +114,7 @@ mouse_bindings:
 key_bindings:
   - { key: Paste,                               action: Paste          }
   - { key: Copy,                                action: Copy           }
-  - { key: C,          mods: Control,           action: Copy           }
-  - { key: V,          mods: Control,           action: Paste          }
+  # - { key: C,          mods: Control,           action: Copy           }
+  # - { key: V,          mods: Control,           action: Paste          }
   - { key: L,          mods: Control,           action: ClearLogNotice }
-  - { key: C,          mods: Control|Shift,     chars: "\x03"          }
+  # - { key: C,          mods: Control|Shift,     chars: "\x03"          }
