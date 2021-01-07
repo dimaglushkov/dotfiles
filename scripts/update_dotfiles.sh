@@ -128,7 +128,7 @@ fi
 
 mkdir -p $SCRIPTS_PATH
 replace
-if [[ $TO_UPDATE == "*ranger*" ]]; then
+if [[ $TO_UPDATE == *ranger* ]]; then
 	set_rcconf_values
 fi
 echo "[INFO] Updating finished SUCCESSFULLY"

@@ -85,4 +85,5 @@ source $dotfiles/.profile
 install_dependencies
 install_fonts
 $dotfiles/scripts/update_dotfiles.sh -sd
-set_background.sh $dotfiles/assets/manjaro-2.jpg
+set_background.sh $dotfiles/assets/backgrounds/manjaro-3.jpg
+i3-msg exit

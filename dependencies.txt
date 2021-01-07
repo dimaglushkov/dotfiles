@@ -1,42 +1,42 @@
-i3			            # i3 window-manager
-dunst 			        # lightweight notification daemon
-rofi			        # run-dialog and dmenu replacement
-xorg-setxkbmap		    # keyboard layout toggler
-feh			            # tool to manage backgrounds
-network-manager-applet	# network manager applet
-numlockx		        # tool to manage numlock status
-pulseaudio		        # pulseaudio server c
-playerctl		        # media player controller
-light			        # screen brightness controller
-picom 			        # composer 
-xclip			        # tool to work with clipboard
-ttf-font-awesome	    # pretty icons used for i3blocks
-noto-fonts-emoji        # same as above but emojies 
-makefontpkg             # is used to build font package
-scrot			        # screenshot unility
-udisks2 		        # udisks daemon and ctl which in my case are used to manage storage devices
-sysstat			        # system stats utility
-lightdm			        # display manager
-lightdm-webkit2-greeter	# greeter for choosen display manager
-python3                 # python interpretator
-ranger			        # terminal-based file manager
-ueberzug                # tool to display images preview in ranger
-python-six              # this lib is required by ueberzug
-pango                   # text renderer fot i3 bar customization 
-xkb-switch              # keyboard layout switching listener
-redshift                # simple redshift cli
-gvim                    # vim extension to be able to copy and paste to/from vim
-zsh
-zsh-completions
-zsh-history-substring-search 
-zsh-syntax-highlighting
-zsh-autosuggestions
-
+i3-gaps                      # i3 window-manager
+i3blocks                     # replacement for i3bar
+i3lock                       # i3 screensaver
+dunst                        # lightweight notification daemon
+rofi                         # run-dialog and dmenu replacement
+xorg-setxkbmap               # keyboard layout toggler
+feh                          # tool to manage backgrounds
+network-manager-applet       # network manager applet
+numlockx                     # tool to manage numlock status
+pulseaudio                   # pulseaudio server c
+playerctl                    # media player controller
+light                        # screen brightness controller
+picom                        # composer 
+xclip                        # tool to work with clipboard
+ttf-font-awesome             # pretty icons used for i3blocks
+noto-fonts-emoji             # same as above but emojies 
+makefontpkg                  # is used to build font package
+scrot                        # screenshot unility
+udisks2                      # udisks daemon and ctl which in my case are used to manage storage devices
+sysstat                      # system stats utility
+lightdm                      # display manager
+lightdm-webkit2-greeter      # greeter for choosen display manager
+python3                      # python interpretator
+ranger                       # terminal-based file manager
+ueberzug                     # tool to display images preview in ranger
+python-six                   # this lib is required by ueberzug
+pango                        # text renderer fot i3 bar customization 
+xkb-switch                   # keyboard layout switching listener
+redshift                     # simple redshift cli
+gvim                         # vim extension to be able to copy and paste to/from vim
+zsh                          # shell interpretator
+zsh-completions              # zsh extension
+zsh-history-substring-search # zsh extension
+zsh-syntax-highlighting      # zsh extension
+zsh-autosuggestions          # zsh extension
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
-firefox			        # --browser 
-alacritty		        # --terminal
-#vim                    # --editor - skipping this one because gvim is already installed 
-ark			            
-telegram-desktop		
+firefox			             # --browser 
+alacritty		             # --terminal
+#vim                         # --editor - skipping this one because gvim is already installed 
+ark
+telegram-desktop
 discord
-zoom
