@@ -43,22 +43,11 @@ function generate_profile {
 	confirmation
 
 	echo "> Creating .profile"
-	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport $SCREENSHOTS=$screenshots\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
+	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport SCREENSHOTS=$screenshots\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
 	echo "> Successfully created $dotfiles/.profile"
 
 	mkdir -p $background
 	mkdir -p $screenshots
-}
-
-function install_fonts {
-	echo "> Installing fonts"
-	fonts=($(ls $dotfiles/assets/fonts/*.ttf))
-	for font in $fonts
-	do
-		makefontpkg --install $font
-	done
-	cd $cur_dir
-	echo "> Successfully installed fonts: $fonts"
 }
 
 function install_dependencies {
@@ -78,15 +67,31 @@ function install_dependencies {
 	yay -S --needed $(awk -v FS="#" '{print $1}' $dotfiles/$dependencies)
 }
 
+function install_fonts {
+	echo "> Installing fonts"
+	fonts=($(ls $dotfiles/assets/fonts/*.ttf))
+	for font in $fonts
+	do
+		makefontpkg --install $font
+	done
+	cd $cur_dir
+	echo "> Successfully installed fonts: $fonts"
+}
+
+function install_sounds {
+	echo "> Installing sounds"
+	mkdir -p $HOME/Music/Notifications
+	cp $dotfiles/assets/sounds/screenshot-notification/screenshot-notification.mp3 $HOME/Music/Notifications
+	echo "> Successfully installed screenshot-notification sound"
+}
+
 generate_profile
 source $dotfiles/.profile
 install_dependencies
 install_fonts
+install_sounds
 
 echo "> Replacing existing configs..."
 confirmation
+$dotfiles/scripts/set_background.sh $dotfiles/assets/backgrounds/manjaro-2.jpg
 $dotfiles/scripts/update_dotfiles.sh -sd
-set_background.sh $dotfiles/assets/backgrounds/manjaro-2.jpg
-echo "> For changes to have effect you need to restart your session"
-confirmation
-i3-msg exit

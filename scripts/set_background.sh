@@ -23,6 +23,7 @@ if [[ "$img_path" != *.jpg && "$img_path" != *.png ]]; then
     exit 1
 fi
 
-rm $BACKGROUND/*
+mkdir -p $HOME/.cache/backgrounds
+mv $BACKGROUND/* $HOME/.cache/backgrounds
 cp $img_path $BACKGROUND
 feh --bg-scale $BACKGROUND

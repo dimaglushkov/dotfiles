@@ -17,6 +17,7 @@ ttf-ubuntu-font-family       # fonts for telegram
 noto-fonts-emoji             # same as above but emojies 
 makefontpkg                  # is used to build font package
 scrot                        # screenshot unility
+mplayer                      # simple audio player used to play audio notifications
 udisks2                      # udisks daemon and ctl which in my case are used to manage storage devices
 sysstat                      # system stats utility
 lightdm                      # display manager
@@ -39,5 +40,5 @@ firefox			             # --browser
 alacritty		             # --terminal
 #vim                         # --editor - skipping this one because gvim is already installed 
 ark
-telegram-desktop
+telegram-desktop-bin
 discord

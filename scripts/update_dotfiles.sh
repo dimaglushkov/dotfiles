@@ -134,10 +134,10 @@ if [[ $TO_UPDATE == *ranger* ]]; then
 fi
 
 if [[ $TO_UPDATE == *.profile* ]]; then
-	echo -e "[WARN] You are going to update .profile\n\tTo make this changes have effect you need to restart your session"
+	echo -e "[WARN] You are going to update .profile\n\tFor changes to have effect you need to restart your session"
 	read -p "Restart right now? [y/n]: " -n 1 -r
 	echo ""
-	if [[ $REPLY != "y" && $REPLY != "Y" ]]
+	if [[ $REPLY == "y" || $REPLY == "Y" ]]
 	then
 		i3-msg exit
 	fi
