@@ -29,7 +29,7 @@ font:
   normal:
     family: NotoMono Nerd Font
     style: Regular
-  size: 8.5
+  size: 12
   offset:
     x: 0
     y: 0
@@ -116,5 +116,5 @@ key_bindings:
   - { key: Copy,                                action: Copy           }
   # - { key: C,          mods: Control,           action: Copy           }
   # - { key: V,          mods: Control,           action: Paste          }
-  - { key: L,          mods: Control,           action: ClearLogNotice }
+  # - { key: L,          mods: Control,           action: ClearLogNotice }
   # - { key: C,          mods: Control|Shift,     chars: "\x03"          }
