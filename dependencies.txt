@@ -10,23 +10,24 @@ numlockx                     # tool to manage numlock status
 pulseaudio                   # pulseaudio server c
 playerctl                    # media player controller
 light                        # screen brightness controller
-picom                        # composer 
+picom                        # composer
 xclip                        # tool to work with clipboard
 ttf-font-awesome             # pretty icons used for i3blocks
-ttf-ubuntu-font-family       # fonts for telegram 
-noto-fonts-emoji             # same as above but emojies 
+ttf-ubuntu-font-family       # fonts for telegram
+noto-fonts-emoji             # same as above but emojies
 makefontpkg                  # is used to build font package
 scrot                        # screenshot unility
 mplayer                      # simple audio player used to play audio notifications
 udisks2                      # udisks daemon and ctl which in my case are used to manage storage devices
 sysstat                      # system stats utility
 lightdm                      # display manager
-lightdm-webkit2-greeter      # greeter for choosen display manager
+lightdm-webkit2-greeter      # greeter for lighdtm
+ly							 # alternative console display manager
 python3                      # python interpretator
 ranger                       # terminal-based file manager
 ueberzug                     # tool to display images preview in ranger
 python-six                   # this lib is required by ueberzug
-pango                        # text renderer fot i3 bar customization 
+pango                        # text renderer fot i3 bar customization
 xkb-switch                   # keyboard layout switching listener
 redshift                     # simple redshift cli
 gvim                         # vim extension to be able to copy and paste to/from vim
@@ -36,9 +37,9 @@ zsh-history-substring-search # zsh extension
 zsh-syntax-highlighting      # zsh extension
 zsh-autosuggestions          # zsh extension
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
-firefox			             # --browser 
+firefox			             # --browser
 alacritty		             # --terminal
-#vim                         # --editor - skipping this one because gvim is already installed 
+#vim                         # --editor - skipping this one because gvim is already installed
 ark
 telegram-desktop-bin
 discord
