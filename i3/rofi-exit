@@ -20,7 +20,7 @@ case "$CHOSEN" in
 	;;
 
 	" &#xf017; Suspend" )
-		$CONFIGS/i3/lock && /usr/bin/systemctl suspend
+		/usr/bin/systemctl suspend
 	;;
 
 esac
