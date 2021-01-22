@@ -22,7 +22,6 @@ udisks2                      # udisks daemon and ctl which in my case are used t
 sysstat                      # system stats utility
 lightdm                      # display manager
 lightdm-webkit2-greeter      # greeter for lighdtm
-ly							 # alternative console display manager
 python3                      # python interpretator
 ranger                       # terminal-based file manager
 ueberzug                     # tool to display images preview in ranger
