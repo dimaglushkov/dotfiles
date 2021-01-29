@@ -35,6 +35,7 @@ zsh-completions              # zsh extension
 zsh-history-substring-search # zsh extension
 zsh-syntax-highlighting      # zsh extension
 zsh-autosuggestions          # zsh extension
+blueman                      # bluetooth manager
 # next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
 firefox			             # --browser
 alacritty		             # --terminal
