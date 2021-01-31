@@ -3,7 +3,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # zsh-autosuggestions.zsh added in the end of the file
 
-## Alias section 
+## Alias section
 source $HOME/.aliases
 
 ## Options section
@@ -19,7 +19,7 @@ setopt histignorealldups                                        # If a new comma
 setopt autocd                                                   # if only directory path is entered, cd there.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.cache/zsh
@@ -59,11 +59,11 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
+bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 
-# Theming section  
+# Theming section
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -89,20 +89,20 @@ fi
 
 #############################################
 ## Prompt section
-setopt prompt_subst                         
+setopt prompt_subst
 GIT_PROMPT_PREFIX="%{$fg[yellow]%}[%{$reset_color%}"
 GIT_PROMPT_SUFFIX="%{$fg[yellow]%}]%{$reset_color%}"
-GIT_PROMPT_AHEAD="%{$fg[blue]%}ANUM%{$reset_color%}"            
-GIT_PROMPT_BEHIND="%{$fg[red]%}BNUM%{$reset_color%}"         
-GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}⚡︎%{$reset_color%}"     
-GIT_PROMPT_UNTRACKED="%{$fg[red]%}±%{$reset_color%}"       
-GIT_PROMPT_MODIFIED="%{$fg[green]%}±%{$reset_color%}"     
-GIT_PROMPT_STAGED="%{$fg_bold[green]%}!%{$reset_color%}"        
- 
+GIT_PROMPT_AHEAD="%{$fg[blue]%}ANUM%{$reset_color%}"
+GIT_PROMPT_BEHIND="%{$fg[red]%}BNUM%{$reset_color%}"
+GIT_PROMPT_MERGING="%{$fg_bold[magenta]%}⚡︎%{$reset_color%}"
+GIT_PROMPT_UNTRACKED="%{$fg[red]%}±%{$reset_color%}"
+GIT_PROMPT_MODIFIED="%{$fg[green]%}±%{$reset_color%}"
+GIT_PROMPT_STAGED="%{$fg_bold[green]%}!%{$reset_color%}"
+
 parse_git_branch() {
   ( git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD ) 2> /dev/null
 }
- 
+
 parse_git_state() {
   local GIT_STATE=""
   local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
@@ -130,7 +130,7 @@ parse_git_state() {
     echo "$GIT_STATE "
   fi
 }
- 
+
 git_prompt_string() {
   local git_where="$(parse_git_branch)"
   [ -n "$git_where" ] && echo "$GIT_PROMPT_PREFIX$(parse_git_state)%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
@@ -138,7 +138,7 @@ git_prompt_string() {
 }
 
 
-PROMPT='%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%m%{$reset_color%}%~$ '
+PROMPT='%{$fg[magenta]%}%n%{$reset_color%}%{$fg[cyan]%}@%m%{$reset_color%}%{$fg[blue]%}%~%{$reset_color%}$ '
 RPROMPT='$(git_prompt_string)'
 
 if [[ $(basename "$(cat "/proc/$PPID/comm")") == "login" ]]; then
