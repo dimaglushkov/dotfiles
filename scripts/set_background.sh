@@ -26,4 +26,4 @@ fi
 mkdir -p $HOME/.cache/backgrounds
 mv $BACKGROUND/* $HOME/.cache/backgrounds
 cp $img_path $BACKGROUND
-feh --bg-scale $BACKGROUND
+feh --bg-fill $BACKGROUND

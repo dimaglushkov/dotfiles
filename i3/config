@@ -13,9 +13,12 @@ floating_modifier 			$mod
 # autolaunch applications and startup scripts
 exec "picom -b"
 exec "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'"
-exec "feh --bg-scale $BACKGROUND"
+exec "feh --bg-fill $BACKGROUND"
 exec "nm-applet &"
 exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
+exec "xset -dpms s off"
+exec "xinput --set-prop 17 'libinput Accel Speed' -0.4"
+exec "xinput --set-prop 15 325 1"
 exec --no-startup-id numlockx on
 
 # =========================================================
@@ -33,6 +36,9 @@ gaps 					inner 5
 gaps 					outer 5
 smart_borders 				on
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #CCFF00
+
+bindsym $mod+o          gaps inner current set 0; gaps outer current set 0; bar mode invisible
+bindsym $mod+p          gaps inner current set 5; gaps outer current set 5; bar mode dock
 
 # =========================================================
 
@@ -177,11 +183,11 @@ bindsym $mod+Shift+0 			move container to workspace $ws10
 for_window [class="Telegram"] 		move container to workspace $ws10
 for_window [title="Firefox"] 		move container to workspace $ws1
 for_window [title="Spotify"]		move container to workspace $ws9
-for_window [title="Discord"]            move container to workspace $ws8 
+for_window [title="Discord"]            move container to workspace $ws8
 # ===========================================================
 
 # lock the screen
-bindsym $mod+l 				exec $CONFIGS/i3/lock 
+bindsym $mod+l 				exec $CONFIGS/i3/lock
 
 # reload the configuration file
 bindsym $mod+Shift+c 			reload
@@ -223,7 +229,7 @@ mode "resize" {
 bindsym $mod+shift+p 			mode "resize"
 
 bar {
-	font pango: Noto Mono, Font Awesome 5 Free Regular 12
+	font pango: Noto Mono, Font Awesome 5 Free Regular 13
 	i3bar_command i3bar --transparency
 	position top
 	colors {
