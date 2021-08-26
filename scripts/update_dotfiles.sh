@@ -8,7 +8,7 @@ fi
 cd $DOTFILES
 EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts\|assets')
 EXISTING_DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
-EXISTING_SCRIPTS=$(ls scripts | grep '.py\|.sh')
+EXISTING_SCRIPTS=$(ls -p scripts | grep -v '/')
 
 TO_UPDATE=""
 SAVE_PATH=""
@@ -47,7 +47,7 @@ save_before_update()
 				echo "[WARNING] $SCRIPTS_PATH/$i does not exist"
 				((WARNINGS++))
 			fi
-		
+
 		fi
 		((COPIES++))
 	done
@@ -67,7 +67,7 @@ replace()
 		elif [[ $EXISTING_DOTFILES == *$i* ]]; then
 			rm -f $DOTFILES_PATH/$i
 			cp ./$i $DOTFILES_PATH/$i
-		else 
+		else
 			rm -f $SCRIPTS_PATH/$i
 			cp scripts/$i $SCRIPTS_PATH/$i
 		fi
@@ -100,7 +100,7 @@ while [[ $1 != "" ]]; do
 		;;
 
 		-sd )
-			SAVE_PATH=$CONFIGS.old/$(date +%y.%m.%d_%T)
+			SAVE_PATH=$CACHE/config.old/$(date +%y.%m.%d_%T)
 		;;
 
 

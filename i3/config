@@ -18,7 +18,6 @@ exec "nm-applet &"
 exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
 exec "xset -dpms s off"
 exec "xinput --set-prop 17 'libinput Accel Speed' -0.4"
-exec "xinput --set-prop 15 325 1"
 exec --no-startup-id numlockx on
 
 # =========================================================
@@ -46,7 +45,7 @@ bindsym $mod+p          gaps inner current set 5; gaps outer current set 5; bar 
 # launch a terminal
 	bindsym $mod+t 			exec $TERMINAL
 # launch a browser
-	bindsym $mod+f 			exec $BROWSER ; workspace $ws1
+	bindsym $mod+f 			exec $BROWSER; workspace $ws1
 # launch ranger in terminal
 	bindsym $mod+r 			exec $TERMINAL -e ranger
 # launch telegram

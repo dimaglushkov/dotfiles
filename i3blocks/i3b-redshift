@@ -2,10 +2,10 @@
 echo "&#xf0eb; "
 case "$BLOCK_BUTTON" in
 	1)
-		redshift -x
-		redshift -O 3500K
+		redshift -x > /dev/null
+		redshift -O 3500K > /dev/null
 	;;
 	3)
-		redshift -x
+		redshift -x > /dev/null
 	;;
 esac

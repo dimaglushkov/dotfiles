@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/tor-browser --dir="/home/allacee/.config/tor-browser/" &
