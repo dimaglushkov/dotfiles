@@ -23,7 +23,9 @@ if [[ "$img_path" != *.jpg && "$img_path" != *.png ]]; then
     exit 1
 fi
 
-mkdir -p $HOME/.cache/backgrounds
-mv $BACKGROUND/* $HOME/.cache/backgrounds
+mkdir -p $BACKGROUND
+
+prev_img=$BACKGROUND/$(ls $BACKGROUND)
+rm $prev_img
 cp $img_path $BACKGROUND
-feh --bg-fill $BACKGROUND
+feh --bg-fill --no-fehbg $BACKGROUND

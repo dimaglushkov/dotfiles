@@ -13,7 +13,7 @@ floating_modifier 			$mod
 # autolaunch applications and startup scripts
 exec "picom -b"
 exec "setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'"
-exec "feh --bg-fill $BACKGROUND"
+exec "feh --bg-fill --no-fehbg $BACKGROUND"
 exec "nm-applet &"
 exec "chmod 666 /sys/class/backlight/intel_backlight/brightness"
 exec "xset -dpms s off"
