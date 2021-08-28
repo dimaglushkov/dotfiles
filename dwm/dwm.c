@@ -2540,25 +2540,22 @@ shiftviewclients(const Arg *arg)
 	Arg shifted;
 	Client *c;
 	unsigned int tagmask = 0;
-	shifted.ui = selmon->tagset[selmon->seltags];
 
 	for (c = selmon->clients; c; c = c->next)
-		if (!(c->tags))
-			tagmask = tagmask | c->tags;
-
-
-	if (arg->i > 0)	/* left circular shift */
+		tagmask = tagmask | c->tags;
+	shifted.ui = selmon->tagset[selmon->seltags];
+	if (arg->i > 0) 
 		do {
-			shifted.ui = (shifted.ui << arg->i)
-			   | (shifted.ui >> (LENGTH(tags) - arg->i));
-		} while (tagmask && !(shifted.ui & tagmask));
-	else		/* right circular shift */
+			shifted.ui = (shifted.ui << arg->i);
+		} while (tagmask && !(shifted.ui & tagmask) && shifted.ui);
+	else
 		do {
-			shifted.ui = (shifted.ui >> (- arg->i)
-			   | shifted.ui << (LENGTH(tags) + arg->i));
-		} while (tagmask && !(shifted.ui & tagmask));
-	view(&shifted);
+			shifted.ui = (shifted.ui >> (- arg->i));
+		} while (tagmask && !(shifted.ui & tagmask) && shifted.ui);
+	if (shifted.ui)
+		view(&shifted);
 }
+
 
 Client *
 wintoclient(Window w)
