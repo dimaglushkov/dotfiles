@@ -2,3 +2,8 @@
 .apps
 .bashrc
 .bash_aliases
+dwm/*.orig
+dwm/*.rej
+dwm/*.o
+dwm/dwm
+
