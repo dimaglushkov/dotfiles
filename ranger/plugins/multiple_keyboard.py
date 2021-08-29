@@ -18,7 +18,7 @@ HOOK_READY_OLD = ranger.api.hook_init
 other_keys    = "фисвуапршолдьтщзйкыіегмцчнябюхъїжэєё'" + 'ФИСВУАПРШОЛДЬТЩЗЙКЫІЕГМЦЧНЯБЮХЪЇЖЭЄЁʼ' + '№'
 en_keys       = "abcdefghijklmnopqrsstuvwxyz,.[]];''``" + 'ABCDEFGHIJKLMNOPQRSSTUVWXYZ<>{}}:""~ʼ' + '#' \
                 '@$^?/?'
-other_keys_mm = '";:&.,'
+other_keys_mm = '"&.,'
 
 import os
 import sys
