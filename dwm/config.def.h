@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -26,6 +27,10 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"picom", "-b", NULL,
+	".fehbg", NULL,
+	"nm-applet", NULL,
+	"xset", "-dpms s off", NULL,
+	"numlockx", "on", NULL,
 	NULL /* terminate */
 };
 
@@ -48,12 +53,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      			instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     			NULL,       NULL,       0,            1,           -1 },
-	{ "firefox",  			NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "discord",			NULL, 		NULL, 		1 << 7,		  0,		   -1 },
-	{ "Spotify", 			NULL, 		NULL,		1 << 8, 	  0, 		   -1 },
-	{ "TelegramDesktop", 	NULL,		NULL,		1 << 9, 	  0, 		   -1 }
+	/* class      			instance    title       tags mask   isfloating  monitor */
+	{ "Gimp",     			NULL,       NULL,       0,          1,          -1 },
+	{ "firefox",  			NULL,       NULL,       1 << 0,     0,          -1 },
+	{ "discord",			NULL, 		NULL, 		1 << 7,		0,		  	-1 },
+	{ "Spotify",			NULL,		NULL,		1 << 8, 	0, 			-1 },
+	{ "TelegramDesktop", 	NULL,		NULL,		1 << 9, 	0, 			-1 },
+	{ NULL,					NULL,		"win0",		0,			1,			-1 }
 };
 
 /* layout(s) */
@@ -77,8 +83,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion 
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } } */
+/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -86,51 +92,67 @@ static const char terminal[] = "alacritty";
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { terminal, NULL };
 static const char scratchpadname[] = "scratchpad";
+
 static const char *scratchpadcmd[] = { terminal, "-t", scratchpadname, "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", NULL };
 static const char *rangercmd[] = { terminal, "-e", "ranger", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
-static const char *telegramcmd[] = {"telegram-desktop", NULL};
+static const char *telegramcmd[] = { "telegram-desktop", NULL} ;
+
   
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,			            XK_t, 	   spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,						XK_f, 	   spawn,		   {.v = firefoxcmd } },
-	{ MODKEY,                       XK_f,      view,           {.ui = 1 << 0 } },
-	{ MODKEY,						XK_i, 	   spawn,		   {.v = telegramcmd } },
-	TAGKEYS(                        XK_i,                      9)
-	{ MODKEY,						XK_r, 	   spawn,		   {.v = rangercmd } },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +5 } },
-	{ MODKEY|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = GAP_TOGGLE} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+	/* modifier                     key        				function       		argument */
+	{ MODKEY,                       XK_d,     				spawn,          	{.v = dmenucmd } },
+	{ MODKEY,			            XK_t, 	   				spawn,          	{.v = termcmd } },
+	{ MODKEY,                       XK_grave,  				togglescratch,  	{.v = scratchpadcmd } },
+	{ MODKEY,                       XK_b,      				togglebar,      	{0} },
+	{ MODKEY,						XK_f, 	   				spawn,		   		{.v = firefoxcmd } },
+	{ MODKEY,                       XK_f,      				view,           	{.ui = 1 << 0 } },
+	{ MODKEY,						XK_i, 	   				spawn,		   		{.v = telegramcmd } },
+	TAGKEYS(                        XK_i,                      					9)
+	{ MODKEY,						XK_r, 	   				spawn,		   		{.v = rangercmd } },
+	{ MODKEY|ShiftMask,             XK_q,      				killclient,     	{0} },
+	{ MODKEY,                       XK_minus,  				setgaps,        	{.i = -5 } },
+	{ MODKEY,                       XK_equal,  				setgaps,        	{.i = +5 } },
+	{ MODKEY|ShiftMask,             XK_minus,  				setgaps,        	{.i = GAP_RESET } },
+	{ MODKEY|ShiftMask,             XK_equal,  				setgaps,        	{.i = GAP_TOGGLE} },
+	{ MODKEY|ShiftMask,             XK_space,  				togglefloating, 	{0} },
+	{ MODKEY|ShiftMask,             XK_f,      				togglefullscr,  	{0} },
 
-	{ MODKEY,                       XK_Tab,    shiftviewclients,    { .i = +1 } },
-	{ MODKEY|ShiftMask,             XK_Tab,    shiftviewclients,    { .i = -1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	TAGKEYS(						XK_0,					   9)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
-	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_Left,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_Right,      incnmaster,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_Left,   setmfact,       {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_Right,  setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_Tab,    				shiftviewclients,   { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Tab,    				shiftviewclients,   { .i = -1 } },
+	TAGKEYS(                        XK_1,                      					0)
+	TAGKEYS(                        XK_2,                      					1)
+	TAGKEYS(                        XK_3,                      					2)
+	TAGKEYS(                        XK_4,                      					3)
+	TAGKEYS(                        XK_5,                      					4)
+	TAGKEYS(                        XK_6,                      					5)
+	TAGKEYS(                        XK_7,                      					6)
+	TAGKEYS(                        XK_8,                      					7)
+	TAGKEYS(                        XK_9,                     					8)
+	TAGKEYS(						XK_0,					   					9)
+	{ MODKEY|ShiftMask,             XK_e,      				quit,           	{0} },
+	{ MODKEY,                       XK_Down,   				focusstack,     	{.i = +1 } },
+	{ MODKEY,                       XK_Up,     				focusstack,     	{.i = -1 } },
+	{ MODKEY,                       XK_Left,      			incnmaster,     	{.i = +1 } },
+	{ MODKEY,                       XK_Right,      			incnmaster,     	{.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_Left,   				setmfact,       	{.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_Right,  				setmfact,       	{.f = +0.05} },
+	{ MODKEY,                       XK_Return, 				zoom,           	{0} },
+	{ 0, 							XF86XK_MonBrightnessUp,	spawn,				SHCMD("xbacklight -inc 5") },
+	{ 0, 							XF86XK_MonBrightnessDown,spawn,				SHCMD("xbacklight -dec 5") },
+	{ 0,							XK_Print,				spawn,				SHCMD("screenshot-make.sh && screenshot-to-clipboard.sh && notify-send \"Screenshot saved\" && mplayer $HOME/Music/Notifications/screenshot-notification.mp3")},
+	{ 0,							XK_Print,				spawn,				SHCMD("screenshot-make.sh && screenshot-to-clipboard.sh && notify-send \"Screenshot saved\" && mplayer $HOME/Music/Notifications/screenshot-notification.mp3")},
+	{ ControlMask,					XK_Print,				spawn,				SHCMD("screenshot-make.sh -s && screenshot-to-clipboard.sh && notify-send \"Screenshot saved\" && mplayer $HOME/Music/Notifications/screenshot-notification.mp3")},
+	{ MODKEY,						XK_Escape,				spawn,				SHCMD("rofi-exit.sh") },
+	{ MODKEY, 						XK_F1,					spawn,				SHCMD("rofi-app-launcher.sh")},
+	{ MODKEY, 						XK_F2,					spawn,				SHCMD("rofi-disks.sh")},
+	{ MODKEY, 						XK_F3,					spawn,				SHCMD("rofi-monitors-manager.sh")},
+
+
+	
+
+
 	// { MODKEY,                       XK_Tab,    view,           {0} },
 	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
@@ -160,5 +182,5 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            	{0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      	{0} },
 	{ ClkTagBar, 			0,				Button4, 		shiftviewclients,	{ .i = -1 } },
-	{ ClkTagBar, 			0,				Button5, 		shiftviewclients,    	{ .i = +1 } },
+	{ ClkTagBar, 			0,				Button5, 		shiftviewclients,   { .i = +1 } },
 };
