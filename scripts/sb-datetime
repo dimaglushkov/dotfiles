@@ -1,0 +1,27 @@
+#!/bin/sh
+date_block=$(date '+%d %b %Y, %a %H:%M:%S')
+
+case "$BLOCK_BUTTON" in
+    1|2|3)
+cal --color=always \
+    | sed 's/\x1b\[[7;]*m/\<b\>\<u\>/g' \
+    | sed 's/\x1b\[[27;]*m/\<\/u\>\<\/b\>/g' \
+    | tail -n +2 \
+    | rofi \
+        -dmenu \
+        -markup-rows \
+        -no-fullscreen \
+        -font "Monospace 11" \
+        -hide-scrollbar \
+        -bw 1 \
+        -m -3 \
+        -theme-str '#window {anchor:northeast; location: northwest;}' \
+        -eh 1 \
+        -width -22 \
+        -no-custom \
+		-lines 7 \
+        -color-window "#222222, #222222, #b1b4b3" \
+	    -color-normal "#222222, #CCCCCC, #222222, #005577, #FFFFFF" \
+        -p "$date_block" > /dev/null
+    esac
+echo "$date_block"
