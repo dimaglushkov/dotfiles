@@ -1,0 +1,2 @@
+#!/bin/sh
+awk 'BEGIN {s1="▁"; s2="▂"; s3="▃"; s4="▅"; s5="▆"; s6="▇";} {temp=$1/$2; if(temp>=0 && temp<0.16) print s1; else if(temp>=0.16 && temp<0.33) print s2; else if(temp>=0.33 && temp<0.50) print s3; else if (temp>=0.50 && temp<0.67) print s4; else if(temp>=0.67 && temp<0.83) print s5; else if(temp>=0.83 && temp<=1) print s6;}'

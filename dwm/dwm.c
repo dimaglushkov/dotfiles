@@ -217,7 +217,6 @@ static unsigned int getsystraywidth();
 static int gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, int focused);
 static void grabkeys(void);
-static void incnmaster(const Arg *arg);
 static void keypress(XEvent *e);
 static void killclient(const Arg *arg);
 static void manage(Window w, XWindowAttributes *wa);
@@ -1245,12 +1244,6 @@ grabkeys(void)
 	}
 }
 
-void
-incnmaster(const Arg *arg)
-{
-	selmon->nmaster = MAX(selmon->nmaster + arg->i, 0);
-	arrange(selmon);
-}
 
 #ifdef XINERAMA
 static int
@@ -2683,18 +2676,32 @@ shiftviewclients(const Arg *arg)
 	}
 	allowedtagmask = ((1 << LENGTH(tags)) - 1);
 
-	
 	shifted.ui = selmon->tagset[selmon->seltags] & allowedtagmask;
-	if (arg->i > 0) 
+	if (arg->i > 0)	/* left circular shift */
 		do {
-			shifted.ui = (shifted.ui << arg->i);
-		} while (tagmask && !(shifted.ui & tagmask) && (shifted.ui & allowedtagmask));
-	else
+			shifted.ui = (shifted.ui << arg->i)
+			   | (shifted.ui >> (LENGTH(tags) - arg->i));
+		} while (tagmask && !(shifted.ui & tagmask));
+	else		/* right circular shift */
 		do {
-			shifted.ui = (shifted.ui >> (- arg->i));
-		} while (tagmask && !(shifted.ui & tagmask) && shifted.ui);
+			shifted.ui = (shifted.ui >> (- arg->i)
+			   | shifted.ui << (LENGTH(tags) + arg->i));
+		} while (tagmask && !(shifted.ui & tagmask));
+
 	if (shifted.ui & tagmask & allowedtagmask)
 		view(&shifted);
+	
+	// shifted.ui = selmon->tagset[selmon->seltags] & allowedtagmask;
+	// if (arg->i > 0) 
+	// 	do {
+	// 		shifted.ui = (shifted.ui << arg->i);
+	// 	} while (tagmask && !(shifted.ui & tagmask) && (shifted.ui & allowedtagmask));
+	// else
+	// 	do {
+	// 		shifted.ui = (shifted.ui >> (- arg->i));
+	// 	} while (tagmask && !(shifted.ui & tagmask) && shifted.ui);
+	// if (shifted.ui & tagmask & allowedtagmask)
+	// 	view(&shifted);
 }
 
 

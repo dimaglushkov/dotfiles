@@ -144,6 +144,5 @@ if [[ $TO_UPDATE == *.profile* ]]; then
 fi
 
 echo "[INFO] Updating finished SUCCESSFULLY"
-i3-msg restart
 
 cd -

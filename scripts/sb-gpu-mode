@@ -1,0 +1,25 @@
+#!/bin/sh
+xorg_conf="/etc/X11/xorg.conf"
+xorg_conf_disabled="/etc/X11/xorg.conf.disabled"
+mode="None"
+
+if [ -f "$xorg_conf" ]; then
+    mode="&#xf108; dGPU";
+fi
+if [ -f "$xorg_conf_disabled" ]; then
+    mode="&#xf109; iGPU";
+fi
+
+case "$BLOCK_BUTTON" in
+    1)
+        if [[ $mode == "&#xf108; dGPU" ]]; then
+            mv $xorg_conf $xorg_conf_disabled && notify-send "Discrete GPU disabled" && mode="&#xf109; iGPU";
+        elif [[ $mode == "&#xf109; iGPU" ]]; then
+            mv $xorg_conf_disabled $xorg_conf && notify-send "Discrete GPU enabled" && mode="&#xf108; dGPU";
+        else
+            notify-send "Warning: Unkown GPU state"
+        fi
+    ;;
+esac
+
+echo $mode

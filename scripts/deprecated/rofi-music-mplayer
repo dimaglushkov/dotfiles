@@ -1,0 +1,29 @@
+#!/bin/bash
+
+OPT=$(ls -1 $HOME/Music)
+CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 45 -l 20 -h "Choose an album" -t "$OPT")
+
+if [ -z "$CHOSEN" ]
+then
+	notify-send "Playlist not specified"
+	exit 1
+else
+	notify-send "Playing now: $CHOSEN"
+fi
+
+killall mplayer
+
+PLAYLIST="$HOME/Music/$CHOSEN"
+MP_INPUT="/tmp/mplayer-input"
+MP_OUTPUT="/tmp/mplayer-output"
+MP_CURRENT="/tmp/mplayer-current"
+
+mkfifo "$MP_INPUT"
+mkfifo "$MP_OUTPUT"
+mplayer -quiet -novideo -slave -input file="$MP_INPUT" "$PLAYLIST"/*  > "$MP_OUTPUT"
+rm "$MP_INPUT"
+rm "$MP_OUTPUT"
+rm "$MP_CURRENT"
+pkill -RTMIN+15 i3blocks
+# echo $! > /tmp/current-mplayer-pid
+

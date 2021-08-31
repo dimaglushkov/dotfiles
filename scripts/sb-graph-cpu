@@ -1,0 +1,5 @@
+#!/bin/bash
+
+usage_val=$(mpstat --dec=0 1 1 | awk 'END{print 100-$12}')
+usage_graph=$(echo $usage_val "100" | sb-graph-builder)
+echo "&#xf2db; $usage_val% $(echo ${GRAPH:1:5})$usage_graph"

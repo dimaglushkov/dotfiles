@@ -1,5 +1,5 @@
 #!/bin/sh
-date_block=$(date '+%d %b %Y, %a %H:%M:%S')
+date_block=$(date '+%d %b %Y, %A %H:%M:%S')
 
 case "$BLOCK_BUTTON" in
     1|2|3)
@@ -24,4 +24,4 @@ cal --color=always \
 	    -color-normal "#222222, #CCCCCC, #222222, #005577, #FFFFFF" \
         -p "$date_block" > /dev/null
     esac
-echo "$date_block"
+echo "&#xf073; $date_block"

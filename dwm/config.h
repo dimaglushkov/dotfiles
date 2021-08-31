@@ -11,7 +11,7 @@ static const int systraypinningfailfirst 	= 1;	/* 1: if pinning fails, display s
 static const int showsystray        		= 1;	/* 0 means no systray */
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
-static const char font[]            		= "Noto Mono 13";
+static const char font[]            		= "Noto Mono, Font Awesome 5 Free,  13";
 static const char dmenufont[]       		= "monospace:size=10";
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
@@ -30,6 +30,9 @@ static const char *const autostart[] = {
 	"nm-applet", NULL,
 	"xset", "-dpms", "s", "off", NULL,
 	"numlockx", "on", NULL,
+	"gxkb", NULL,
+	"indicator-keylock", NULL,
+	"dwmblocks", NULL,
 	NULL 
 };
 
@@ -137,16 +140,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Up,     				focusstack,     	{.i = -1 } },
 	{ MODKEY, 						XK_Left,				focusmaster,		{0} },
 	{ MODKEY, 						XK_Right,				focusmaster,		{0} },
-	{ MODKEY|ShiftMask,             XK_Left,      			incnmaster,     	{.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_Right,      			incnmaster,     	{.i = -1 } },
-	{ MODKEY|ControlMask,           XK_Left,   				setmfact,       	{.f = -0.05} },
-	{ MODKEY|ControlMask,           XK_Right,  				setmfact,       	{.f = +0.05} },
+	{ MODKEY|ShiftMask,				XK_Left,   				setmfact,       	{.f = -0.05} },
+	{ MODKEY|ShiftMask,				XK_Right,  				setmfact,       	{.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, 				zoom,           	{0} },
-	{ 0, 							XF86XK_MonBrightnessUp,	spawn,				SHCMD("xbacklight -inc 5") },
-	{ 0, 							XF86XK_MonBrightnessDown,spawn,				SHCMD("xbacklight -dec 5") },
-	{ 0, 							XF86XK_AudioRaiseVolume,spawn,				SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+10 dwmblocks")},
-	{ 0, 							XF86XK_AudioLowerVolume,spawn,				SHCMD("pactl set-sink-volume 0 -5% && pkill -RTMIN+10 dwmblocks")},
-	{ 0, 							XF86XK_AudioMute,		spawn,				SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+10 dwmblocks")},
+	{ 0, 							XF86XK_MonBrightnessUp,	spawn,				SHCMD("xbacklight -inc 5 && pkill -RTMIN+13 dwmblocks") },
+	{ 0, 							XF86XK_MonBrightnessDown,spawn,				SHCMD("xbacklight -dec 5 && pkill -RTMIN+12 dwmblocks") },
+	{ 0, 							XF86XK_AudioRaiseVolume,spawn,				SHCMD("pactl set-sink-volume 0 +5% && pkill -RTMIN+12 dwmblocks")},
+	{ 0, 							XF86XK_AudioLowerVolume,spawn,				SHCMD("pactl set-sink-volume 0 -5% && pkill -RTMIN+12 dwmblocks")},
+	{ 0, 							XF86XK_AudioMute,		spawn,				SHCMD("pactl set-sink-mute 0 toggle && pkill -RTMIN+12 dwmblocks")},
 	{ 0, 							XF86XK_AudioPlay,		spawn,				SHCMD("playerctl play-pause")},
 	{ 0, 							XF86XK_AudioNext,		spawn,				SHCMD("playerctl next")},
 	{ 0, 							XF86XK_AudioPrev,		spawn,				SHCMD("playerctl previous")},
@@ -158,10 +159,6 @@ static Key keys[] = {
 	{ MODKEY, 						XK_F2,					spawn,				SHCMD("rofi-disks.sh")},
 	{ MODKEY, 						XK_F3,					spawn,				SHCMD("rofi-monitors-manager.sh")},
 	{ MODKEY,						XK_l,					spawn,				SHCMD("screen-saver.sh")},
-
-
-	
-
 
 	// { MODKEY,                       XK_Tab,    view,           {0} },
 	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },

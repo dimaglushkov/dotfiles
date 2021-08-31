@@ -28,4 +28,5 @@ mkdir -p $BACKGROUND
 prev_img=$BACKGROUND/$(ls $BACKGROUND)
 rm $prev_img
 cp $img_path $BACKGROUND
-feh --bg-fill --no-fehbg $BACKGROUND
+feh --bg-fill $BACKGROUND
+mv $HOME/.fehbg $HOME/.local/bin

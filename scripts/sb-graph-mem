@@ -1,0 +1,4 @@
+#!/bin/bash
+usage_val=$(free -m | grep Mem | awk '{print int($3/100)/10 "GB/" int($2/100)/10 "GB"}')
+usage_graph=$(free -m | grep Mem | awk '{print $3, $2}'| sb-graph-builder)
+echo "&#xf538; $usage_val $(echo ${GRAPH:1:5})$usage_graph"

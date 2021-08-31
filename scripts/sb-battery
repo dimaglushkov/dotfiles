@@ -1,2 +1,2 @@
 #!/bin/sh
-echo $(acpi -a | awk '{if($3 ~ "on") {print "&#xf1e6;"}}') $( acpi | tr -d "%," | awk '{if($4 > 0 && $4 < 25){print "&#xf243;", $4 "%"} else if($4 >= 25 && $4 < 50){print "&#xf242;", $4 "%"} else if($4 >= 50 && $4 < 85){print "&#xf241;", $4 "%"} else if($4 >= 85 && $4 < 100){print "&#xf240; ", $4 "%"} else {print "&#xf240; ",$4 "%"}}')
+echo $(acpi -a | awk '{if($3 ~ "on") {print "&#xf1e6;"}}') $( acpi | tr -d "%," | awk '{if($4 > 0 && $4 < 25){print "&#xf243; ", $4 "%"} else if($4 >= 25 && $4 < 50){print "&#xf242; ", $4 "%"} else if($4 >= 50 && $4 < 85){print "&#xf241; ", $4 "%"} else if($4 >= 85 && $4 < 100){print "&#xf240; ", $4 "%"} else {print "&#xf240; ",$4 "%"}}')

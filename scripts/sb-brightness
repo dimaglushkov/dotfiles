@@ -1,0 +1,19 @@
+#!/bin/sh
+
+case "$BLOCK_BUTTON" in
+	1)
+		redshift -x > /dev/null
+		redshift -O 3500K > /dev/null
+		;;
+	3)
+		redshift -x > /dev/null
+		;;
+    4)
+ 		xbacklight -inc 5
+		;;
+	5)
+		xbacklight -dec 5
+		;;
+esac
+
+echo  "&#xf0eb; &#xf185; "$(xbacklight | cut -f1 -d".")"%"

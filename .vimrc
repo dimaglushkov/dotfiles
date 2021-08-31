@@ -14,6 +14,9 @@ set			encoding=UTF-8
 set 		tabstop=4
 set 		shiftwidth=4
 set 		shortmess=F
+
+if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
+
 syntax 		enable
 
 " Auto deletes all trailing whitespaces on save
