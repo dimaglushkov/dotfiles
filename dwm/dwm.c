@@ -1750,8 +1750,9 @@ restack(Monitor *m)
 	}
 	XSync(dpy, False);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
-	if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2])
-		warp(m->sel);
+	// remove to get rid of warping on every new window
+	// if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2])
+		// warp(m->sel);
 }
 
 void

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OPT=("   &#xf26c;\tHDMI" "   &#xf109;\tLAPTOP" "  &#xf26c;&#xf109;\tHDMI-LAPTOP" "  &#xf109;&#xf26c;\tLAPTOP-HDMI" " &#xf26c;←&#xf109;\tDUPLICATE LAPTOP")
-CHOSEN=$($CONFIGS/i3/rofi-menu -f 15 -w 30 -l 5 -h "Choose a layout" -t "${OPT[1]}\n${OPT[0]}\n${OPT[2]}\n${OPT[3]}\n${OPT[4]}")
+CHOSEN=$(echo -e "${OPT[1]}\n${OPT[0]}\n${OPT[2]}\n${OPT[3]}\n${OPT[4]}" | rofi -dmenu -i -p "Choose layout: " -theme sidebar -font "Noto Mono 14" -markup-rows)
 
 
 CHOSEN=${CHOSEN//	/$'\\t'}

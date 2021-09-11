@@ -1,0 +1,45 @@
+/**
+ * ROFI Color theme
+ * Theme designed for my dwm build calendar block visualisation
+ * User: Dima Glushkov
+ * Copyright: Dima Glushkov
+ */
+
+* {
+    background-color:           #222222;
+    text-color:                 #CCCCCC;
+    selected-background-color:  #005577;
+    selected-text-color:        #FFFFFF;
+}
+ 
+window {
+    anchor:                     northeast; 
+    location:                   northwest;
+    border:                     0;
+    padding:                    3px;
+    width:                      660;
+}
+
+listview {
+    border:                     0px;
+    spacing:                    2px ;
+    scrollbar:                  false;
+    lines:                      8;
+    dynamic:                    1;
+}
+
+element {
+    border:  0;
+    padding: 1px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element.selected.normal {
+    background-color: @selected-background-color;
+    text-color:       @selected-text-color;
+}
+
