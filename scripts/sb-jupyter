@@ -1,0 +1,28 @@
+#!/bin/sh
+
+jupyter_pid=$(pgrep "jupyter-lab")
+jupyter_logo="&#xf3e2;"
+if [[ ! -z "$jupyter_pid" ]]; then
+	status=" &#xf205;"
+else
+	status=" &#xf204;"
+fi
+
+case "$BLOCK_BUTTON" in
+	1|2|3)
+		if [[ ! -z "$jupyter_pid"  ]]; then
+			firefox -new-tab "localhost:5685"
+		else
+			jupyter lab --ServerApp.port=5685 --port-retries=0 
+			status=" &#xf205;"
+		fi
+	;;
+	6)
+		notify-send "Stopping jupyter server"
+		jupyter lab stop 5685 > /dev/null
+		status=" &#xf204;"
+	;;
+
+esac
+
+echo $jupyter_logo$status
