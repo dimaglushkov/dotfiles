@@ -256,6 +256,7 @@ static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sigchld(int unused);
 static void sigstatusbar(const Arg *arg);
+static void sigstatusblocks(const Arg *arg);
 static void spawn(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
@@ -2104,6 +2105,15 @@ sigchld(int unused)
 
 void
 sigstatusbar(const Arg *arg)
+{
+	union sigval sv;
+	if ((statuspid = getstatusbarpid()) <= 0)
+		return;
+	sigqueue(statuspid, arg->i, sv);
+}
+
+void
+sigstatusblocks(const Arg *arg)
 {
 	union sigval sv;
 

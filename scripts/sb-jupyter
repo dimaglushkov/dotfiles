@@ -19,7 +19,7 @@ case "$BLOCK_BUTTON" in
 	;;
 	6)
 		notify-send "Stopping jupyter server"
-		jupyter lab stop 5685 > /dev/null
+		jupyter lab stop 5685 1> /dev/null 2> /dev/null
 		status=" &#xf204;"
 	;;
 
