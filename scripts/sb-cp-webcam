@@ -1,0 +1,9 @@
+#!/bin/sh
+
+webcam_logo="&#xf030;"
+status=$(v4l2-ctl --list-devices 2>/dev/null | grep -io "camera" | wc -l  )
+if [[ $status == "0"  ]]; then
+    echo $webcam_logo" &#xf204;"
+else
+    echo $webcam_logo" &#xf205;"
+fi
