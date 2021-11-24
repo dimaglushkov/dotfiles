@@ -9,10 +9,15 @@ CHOSEN=${CHOSEN//	/$'\\t'}
 case "$CHOSEN" in
     "${OPT[0]}" )
         $CONFIGS/screen-layouts/hdmi.sh
+        # Changing terminal font size due to dpi differences
+        $CONFIGS/alacritty/alacritty.yml
+        sed -i '/  size: 9/c\  size: 12' $CONFIGS/alacritty/alacritty.yml
     ;;
 
     "${OPT[1]}" )
         $CONFIGS/screen-layouts/laptop.sh
+        # Changing terminal font size due to dpi differences
+        sed -i '/  size: 12/c\  size: 9' $CONFIGS/alacritty/alacritty.yml
     ;;
 
     "${OPT[2]}" )
