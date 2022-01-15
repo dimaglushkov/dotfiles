@@ -27,6 +27,8 @@ static const char *colors[][3]      		= {
 static const char *const autostart[] = {
 	"picom", "-b", NULL,
 	".fehbg", NULL,
+	"set_mouse_sensetivity.sh", NULL,
+	"set_touchpad_natural_scroll.sh", NULL,
 	"nm-applet", NULL,
 	"xset", "-dpms", "s", "off", NULL,
 	"numlockx", "on", NULL,
@@ -163,6 +165,14 @@ static Key keys[] = {
 	{ MODKEY, 						XK_F2,					spawn,				SHCMD("rofi-disks.sh")},
 	{ MODKEY, 						XK_F3,					spawn,				SHCMD("rofi-monitors-manager.sh")},
 	{ MODKEY,						XK_l,					spawn,				SHCMD("screen-saver.sh")},
+	{ MODKEY|ShiftMask,				XK_v,					spawn,				SHCMD("toggle_vpn.sh wg0")},
+
+	{ MODKEY,                       XK_s,      				togglesticky,   	{0} },
+	{ MODKEY,                       XK_comma,  				focusmon,       	{.i = -1 } },
+	{ MODKEY,                       XK_period, 				focusmon,      		{.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,  				tagmon,         	{.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period, 				tagmon,         	{.i = +1 } },
+	{ MODKEY|ShiftMask,		        XK_l,      				layoutscroll,   	{.i = +1 } },
 
 	// { MODKEY,                       XK_Tab,    view,           {0} },
 	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -172,12 +182,6 @@ static Key keys[] = {
 	// 
 	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	// { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_s,      togglesticky,   {0} },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ShiftMask,		        XK_l,      layoutscroll,   {.i = +1 } },
 	// { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
 	// { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 };
