@@ -13,3 +13,5 @@ else
 	notify-send "VPN toggler" "Unknown vpn status - can't turn on/off connection"
 fi
 
+pkill -RTMIN+20 dwmblocks
+

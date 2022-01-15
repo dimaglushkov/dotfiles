@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ip_address=$(curl  --silent api.ipify.org)
+echo "&#xf124; $ip_address"
