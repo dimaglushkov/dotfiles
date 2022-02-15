@@ -22,6 +22,7 @@ function generate_profile {
 	fi
 
 	configs=$HOME/.config
+	cache=$HOME/.cache
 	background=$HOME/Pictures/background
 	screenshots=$HOME/Pictures/screenshots
 	repositories=$(cd $dotfiles/.. ; pwd)
@@ -43,7 +44,21 @@ function generate_profile {
 	confirmation
 
 	echo "> Creating .profile"
-	echo -e "export DOTFILES=$dotfiles\nexport CONFIGS=$configs\n\nexport BACKGROUND=$background\nexport SCREENSHOTS=$screenshots\nexport REPOSITORIES=$repositories\nexport BROWSER=$browser\nexport EDITOR=$editor\nexport TERMINAL=$terminal" > $dotfiles/.profile
+	echo -n "export DOTFILES=$dotfiles\n
+	export CONFIGS=$configs\n
+	export CACHE=$cache\n\n
+
+	export XDG_CONFIG_HOME=$configs\n
+	export XDG_CACHE_HOME=$cache\n
+	export XDG_DATA_HOME=$HOME/.local/share\n
+	export XDG_STATE_HOME=$HOME/.local/state\n\n
+
+	export BACKGROUND=$background\n
+	export SCREENSHOTS=$screenshots\n
+	export REPOSITORIES=$repositories\n
+	export BROWSER=$browser\n
+	export EDITOR=$editor\n
+	export TERMINAL=$terminal\n" > $dotfiles/.profile
 	echo "> Successfully created $dotfiles/.profile"
 
 	mkdir -p $background
@@ -64,19 +79,30 @@ function configure_display_manager {
 
 function install_dependencies {
 	echo "> Insatlling all needed dependencies"
+	echo ">> Syncing repositories"
+	sudo pacman -Sy
 	echo ">> Looking for yay"
 	yay_installed=$(pacman -Qq yay)
-	if [[ $yay_installed != "yay" ]]; then
+	if [[ $yay_installed = "" ]]; then
 		echo ">> Can't find yay installation"
-		echo ">> Installing yay using pacman"
-		sudo pacman -Sy
-		sudo pacman -S base-devel yay
+		echo ">> Installing yay"
+		sudo pacman -S base-devel git
+		sudo git clone https://aur.archlinux.org/yay-git.git
+		cd yay-git/
+		sudo chown -R $USER:$USER .
+		makepkg -si
 	else
 		echo ">> Successfully found yay"
 	fi
 
 	echo "> Installing packages listed at dependencies.txt using"
 	yay -S --needed $(awk -v FS="#" '{print $1}' $dotfiles/$dependencies)
+	if [ $? -eq 0 ]; then
+		echo "> Successfully installed depenedencies"
+	else
+		echo "> ERROR: Something went wrong while dependencies installation, exiting"
+		exit 1
+	fi
 }
 
 function install_fonts {
@@ -97,14 +123,35 @@ function install_sounds {
 	echo "> Successfully installed screenshot-notification sound"
 }
 
+function postprocess {
+	echo "> Postprocessing"
+
+	echo ">> Checking for existing picom conf"
+	if [[ -f "$configs/picom.conf" ]]; then
+		">> Moving existing picom.conf"
+		mkdir $configs/picom
+		mv $configs/picom.conf $configs/picom/picom.conf
+	fi
+	echo ">> Disabling keylock indicator notifications"
+	dconf write /apps/indicators/keylock/notifications false
+}
+
 generate_profile
 source $dotfiles/.profile
-install_dependencies
-install_fonts
-install_sounds
+read -p "> Install dependencies (skip if dependencies are already installed)? [y/n]: " -n 1 -r
+echo ""
+if [[ $REPLY = "y" && $REPLY = "Y" ]]
+then
+	install_dependencies
+	install_fonts
+	install_sounds
+fi
 configure_display_manager
+postprocess
 
 echo "> Replacing existing configs..."
 confirmation
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.config.old
 $dotfiles/scripts/set_background.sh $dotfiles/assets/backgrounds/manjaro-2.jpg
 $dotfiles/scripts/update_dotfiles.sh -sd
