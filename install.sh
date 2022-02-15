@@ -70,6 +70,7 @@ function configure_display_manager {
 	cd $repositories
 	git clone https://github.com/allacee/lightdm-webkit2-theme-minimal.git
 	sudo cp -r lightdm-webkit2-theme-minimal/ /usr/share/lightdm-webkit/themes/minimal
+	sudo cp xsessions/dwm.desktop /usr/share/xsessions/dwm.desktop
 	sudo awk -i inplace -v FS="=" '{if($1 ~/#greeter-session/){"greeter-session = lightdm-webkit2-greeter" } else {print $0}}' /etc/lightdm/lightdm.conf
 	sudo awk -i inplace -v FS="=" '{if($1 ~/webkit_theme/){print $1, "= minimal" } else {print $0}}' /etc/lightdm/lightdm-webkit2-greeter.conf
 	systemctl enable lightdm --force
