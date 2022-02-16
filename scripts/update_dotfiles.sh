@@ -6,13 +6,13 @@ if [[ $DOTFILES == '' ]]; then
 fi
 
 cd $DOTFILES
-EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts\|assets')
+EXISTING_CONFIGS=$(ls -d */ | tr -d / | grep -v 'scripts\|assets\|etc')
 EXISTING_DOTFILES=$(ls -d .* | grep -v '\.$\|\.git')
 EXISTING_SCRIPTS=$(ls -p scripts | grep -v '/')
 
 TO_UPDATE=""
 SAVE_PATH=""
-DOTFILES_PATH=$HOME
+DOTFILES_PATH=$CONFIGS
 CONFIGS_PATH=$CONFIGS
 SCRIPTS_PATH=$HOME/.local/bin
 
