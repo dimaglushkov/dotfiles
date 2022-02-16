@@ -1,21 +1,21 @@
 Section "ServerLayout"
         Identifier "layout"
-        Screen 0 "intel"
-        Inactive "nvidia"
-        Option "AllowNVIDIAGPUScreens"
+        Screen 0 "nvidia"
+       	Option "AllowNVIDIAGPUScreens"
 EndSection
 
 Section "Device"
         Identifier "nvidia"
         Driver "nvidia"
+	BusId "PCI:1:0:0"
 EndSection
 
 Section "Screen"
         Identifier "nvidia"
         Device "nvidia"
-	Option         "MetaModes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-	Option         "AllowIndirectGLXProtocol" "off"
-	Option         "TripleBuffer" "on"
+	Option "MetaModes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+	Option "AllowIndirectGLXProtocol" "off"
+	Option "TripleBuffer" "on"
 EndSection
 
 Section "Device"

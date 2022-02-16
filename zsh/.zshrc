@@ -4,7 +4,12 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 # zsh-autosuggestions.zsh added in the end of the file
 
 ## Alias section
-source $HOME/.aliases
+if [[ -f $HOME/.aliases ]]; then
+  source $HOME/.aliases
+fi
+if [[ -f $CONFIGS/.aliases ]]; then
+  source $CONFIGS/.aliases
+fi
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes

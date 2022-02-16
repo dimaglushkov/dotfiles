@@ -8,6 +8,7 @@
 
 
 " ============================
+set         viminfo+=n~/.config/vim/viminfo
 set         laststatus=2
 set 		autoindent
 set			encoding=UTF-8

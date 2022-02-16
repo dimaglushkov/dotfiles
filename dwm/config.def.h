@@ -11,7 +11,7 @@ static const int systraypinningfailfirst 	= 1;	/* 1: if pinning fails, display s
 static const int showsystray        		= 1;	/* 0 means no systray */
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
-static const char font[]            		= "Noto Mono, Font Awesome 5 Free,  13";
+static const char font[]            		= "Noto Mono, Font Awesome 5 Free, 13";
 static const char dmenufont[]       		= "monospace:size=10";
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
@@ -25,31 +25,32 @@ static const char *colors[][3]      		= {
 };
 
 static const char *const autostart[] = {
+	"nm-applet", NULL,
 	"picom", "-b", NULL,
 	".fehbg", NULL,
-	"set_mouse_sensetivity.sh", NULL,
-	"set_touchpad_natural_scroll.sh", NULL,
-	"nm-applet", NULL,
+	"set_mouse_configuration.sh", NULL,
+	"set_touchpad_configuration.sh", NULL,
 	"xset", "-dpms", "s", "off", NULL,
 	"numlockx", "on", NULL,
 	"gxkb", NULL,
 	"indicator-keylock", NULL,
+	"libinput-gestures", NULL,
 	"dwmblocks", NULL,
-	NULL 
+	NULL
 };
 
 
-static const char *tags[] = { 
-	"1:&#xf269;", 
-	"2:&#xf120;", 
-	"3", 
-	"4", 
-	"5", 
-	"6", 
-	"7", 
-	"8:&#xf392;", 
+static const char *tags[] = {
+	"1:&#xf269;",
+	"2:&#xf120;",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8:&#xf392;",
 	"9:&#xf1bc;",
-	"10:&#xf2c6;" 
+	"10:&#xf2c6;"
 	};
 
 static const Rule rules[] = {
@@ -106,7 +107,7 @@ static const char *rangercmd[] = { terminal, "-e", "ranger", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *telegramcmd[] = { "telegram-desktop", NULL} ;
 
-  
+
 
 static Key keys[] = {
 	/* modifier                     key        				function       		argument */
@@ -181,7 +182,7 @@ static Key keys[] = {
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	// { MODKEY,                       XK_space,  setlayout,      {0} },
-	// 
+	//
 	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	// { MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	// { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },

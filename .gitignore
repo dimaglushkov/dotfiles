@@ -8,3 +8,4 @@ dwm/*.o
 dwm/dwm
 .idea
 __pycache__
+*.pkg.tar.zst
