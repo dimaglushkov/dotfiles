@@ -7,4 +7,4 @@ dwm/*.rej
 dwm/*.o
 dwm/dwm
 .idea
-
+__pycache__
