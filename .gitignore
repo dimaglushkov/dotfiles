@@ -6,4 +6,5 @@ dwm/*.orig
 dwm/*.rej
 dwm/*.o
 dwm/dwm
+.idea
 
