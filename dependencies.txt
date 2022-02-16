@@ -1,60 +1,80 @@
+########################
+# Previous versions used i3 as WM, nowadays I run dwm (check dwm folder)
+#i3-gaps                      - replaced with /dwm
+#i3blocks                     - replaced with /dwmblocks
+#pulseaudio                   - replaced with pipewire
+#xkb-switch                   - replaced with gxkb
+
+########################
+# Xorg related packages
+xorg-bdftopcf
+xorg-font-util 
+xorg-font-utils 
+xorg-fonts-encodings 
+xorg-mkfontscale 
+xorg-server 
+xorg-server-common 
+xorg-setxkbmap 
+xorg-xauth 
+xorg-xbacklight 
+xorg-xinit 
+xorg-xinput 
+xorg-xkbcomp 
+xorg-xmodmap 
+xorg-xprop
+xorg-xrandr
+xorg-xrdb
+xorg-xset 
+
+########################
+# General
 base-devel                   # should be already installed
-i3-gaps                      # i3 window-manager
-i3blocks                     # replacement for i3bar
-i3lock                       # i3 screensaver
-dunst                        # lightweight notification daemon
-rofi                         # run-dialog and dmenu replacement
-xorg-setxkbmap               # keyboard layout toggler
-feh                          # tool to manage backgrounds
-network-manager-applet       # network manager applet
-numlockx                     # tool to manage numlock status
-#pulseaudio                   # pulseaudio server c
-#playerctl                    # media player controller
-#xbacklight                   # screen brightness controller
-picom                        # composer
-xclip                        # tool to work with clipboard
-otf-font-awesome             # pretty icons used for i3blocks
-ttf-ubuntu-font-family       # fonts for telegram
-makefontpkg                  # is used to build font package
-scrot                        # screenshot unility
-#mplayer                      # simple audio player used to play audio notifications
-udisks2                      # udisks daemon and ctl which in my case are used to manage storage devices
-sysstat                      # system stats utility
-lightdm                      # display manager
-lightdm-webkit2-greeter      # greeter for lighdtm
-python3                      # python interpretator
-ranger                       # terminal-based file manager
-ueberzug                     # tool to display images preview in ranger
-#python-six                   # this lib is required by ueberzug
-pango                        # text renderer fot i3 bar customization
-xkb-switch                   # keyboard layout switching listener
-gxkb
-indicator-keylock
-trash-cli
-xinput
-acpi
-redshift                     # simple redshift cli
-gvim                         # vim extension to be able to copy and paste to/from vim
 zsh                          # shell interpretator
 zsh-completions              # zsh extension
 zsh-history-substring-search # zsh extension
 zsh-syntax-highlighting      # zsh extension
 zsh-autosuggestions          # zsh extension
+firefox			             # browser
+alacritty		             # terminal
+#vim                         # editor - skipping this one because gvim is already installed
+arc-icon-theme               # GTK icons themes
+arc-gtk-theme                # GTK themes
+thunar                       # GTK file manager
+file-roller                  # GTK archive manager
+evince                       # GTK pdf reader
+i3lock                       # i3 screensaver
+dunst                        # lightweight notification daemon
+rofi                         # run-dialog and dmenu replacement
+feh                          # tool to manage backgrounds
+network-manager-applet       # network manager applet
+numlockx                     # tool to manage numlock status
+picom                        # composer
+xclip                        # tool to work with clipboard
+scrot                        # screenshot unility
+udisks2                      # udisks daemon and ctl which in my case are used to manage storage devices
+sysstat                      # system stats utility
+lightdm                      # display manager
+lightdm-webkit2-greeter      # greeter for lighdtm
+gxkb                         # systray kb layout indicator
+indicator-keylock            # systray caps indicator
+trash-cli                    # put to trash instead of removing
+acpi                         # tool to get info about the battery status
+redshift                     # simple redshift cli
+gvim                         # vim extension to be able to copy and paste to/from vim
 blueman                      # bluetooth manager
-makefontpkg
-xorg-xrandr
-xorg-xbacklight
-xorg-font-utils
+python3                      # python interpretator
+ranger                       # terminal-based file manager
+ueberzug                     # tool to display images preview in ranger
+pango                        # text renderer for i3bar adn dwmblocks
 
-# for touchpad support
+makefontpkg                  # is used to build font package from /assets/fonts
+otf-font-awesome-5             
+ttf-ubuntu-font-family       
+ttf-ubraille				 
+ttf-apple-emoji               
+ttf-dejavu-emojiless   
+libxft-bgra                  # patch to add colored emojis support to dwm      
+
+# for touchpad gestures support
 libinput-gestures
 xdotool
-
-# next are just my preferences - feel free to change them. Listed packages will be automatically installed (but don't remove comments)
-firefox			             # --browser
-alacritty		             # --terminal
-#vim                         # --editor - skipping this one because gvim is already installed
-discord
-thunar
-file-roller
-

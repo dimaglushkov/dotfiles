@@ -3,7 +3,6 @@ working_directory: None
 winpty_backend: false
 alt_send_esc: true
 draw_bold_text_with_bright_colors: false
-background_opacity: 1.0
 
 env:
   TERM: alacritty
@@ -17,6 +16,7 @@ window:
   startup_mode: Windowed
   title: Alacritty
   dynamic_title: true
+  opacity: 1
   class:
     instance: Alacritty
     general: Alacritty
@@ -116,8 +116,10 @@ hints:
         mods: Control
 
 key_bindings:
-  - { key: Paste,                               action: Paste          }
-  - { key: Copy,                                action: Copy           }
+  - { key: Paste,                               action: Paste          		}
+  - { key: Copy,                                action: Copy           		}
+#  - { key: Plus,		mods: Control,			action: IncreaseFontSize 	}
+#  - { key: Minus,		mods: Control,			action: DecreaseFontSize	}
   # - { key: C,          mods: Control,           action: Copy           }
   # - { key: V,          mods: Control,           action: Paste          }
   # - { key: L,          mods: Control,           action: ClearLogNotice }

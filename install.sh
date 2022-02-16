@@ -58,7 +58,9 @@ function generate_profile {
 	export REPOSITORIES=$repositories\n
 	export BROWSER=$browser\n
 	export EDITOR=$editor\n
-	export TERMINAL=$terminal\n" > $dotfiles/.profile
+	export TERMINAL=$terminal\n
+	export VIMINIT=\"source $configs/vim/.vimrc\"\n" > $dotfiles/.profile
+	
 	echo "> Successfully created $dotfiles/.profile"
 
 	mkdir -p $background
@@ -87,6 +89,7 @@ function install_dependencies {
 	if [[ $yay_installed = "" ]]; then
 		echo ">> Can't find yay installation"
 		echo ">> Installing yay"
+		cd /opt/
 		sudo pacman -S base-devel git
 		sudo git clone https://aur.archlinux.org/yay-git.git
 		cd yay-git/
@@ -97,7 +100,7 @@ function install_dependencies {
 	fi
 
 	echo "> Installing packages listed at dependencies.txt using"
-	yay -S --needed $(awk -v FS="#" '{print $1}' $dotfiles/$dependencies)
+	yay -S --needed $(awk -v FS="#" '{if (length($1) != 0) {print $1}}' $dotfiles/$dependencies)
 	if [ $? -eq 0 ]; then
 		echo "> Successfully installed depenedencies"
 	else
@@ -153,6 +156,5 @@ postprocess
 echo "> Replacing existing configs..."
 confirmation
 mkdir -p $HOME/.local/bin
-mkdir -p $HOME/.config.old
 $dotfiles/scripts/set_background.sh $dotfiles/assets/backgrounds/manjaro-2.jpg
 $dotfiles/scripts/update_dotfiles.sh -sd
