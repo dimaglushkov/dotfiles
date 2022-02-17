@@ -10,7 +10,6 @@ case "$CHOSEN" in
     "${OPT[0]}" )
         $CONFIGS/screen-layouts/hdmi.sh
         # Changing terminal font size due to dpi differences
-        $CONFIGS/alacritty/alacritty.yml
         sed -i '/  size: 9/c\  size: 12' $CONFIGS/alacritty/alacritty.yml
     ;;
 
