@@ -1,8 +1,5 @@
 #!/bin/sh
-WIDTH=50
-LINES=10
-FONT=15
-DISK=$(udisksctl status | rev | awk '{name=$1; $1=$2=$3=""; print $0 " |\t" name " 🖴" }' | rev | tail -n +3 |  rofi -i -dmenu -p "Detected disks: " -theme sidebar -font "Noto Mono 14"  -markup-rows | awk '{print $2}')
+DISK=$(udisksctl status | rev | awk '{name=$1; $1=$2=$3=""; print $0 " |\t" name " ;0a0fx#&" }' | rev | tail -n +3 |  rofi -i -dmenu -p "Detected disks: " -theme sidebar -font "Noto Mono 14"  -markup-rows | awk '{print $2}')
 
 if [[ $DISK != "" ]]; then
 	PART=$(lsblk -rpo "name,type,size,mountpoint" \
