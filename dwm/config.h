@@ -11,7 +11,7 @@ static const int systraypinningfailfirst 	= 1;	/* 1: if pinning fails, display s
 static const int showsystray        		= 1;	/* 0 means no systray */
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
-static const char font[]            		= "Noto Mono, Font Awesome 5 Free, Apple Coloe Emoji, 13";
+static const char font[]            		= "Noto Mono, Font Awesome 5 Free, 12";
 static const char dmenufont[]       		= "monospace:size=10";
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
@@ -164,8 +164,9 @@ static Key keys[] = {
 	{ ControlMask,		        	XK_space,      			spawn,				SHCMD("dunstctl close") },
 	{ MODKEY,						XK_Escape,				spawn,				SHCMD("rofi-exit.sh") },
 	{ MODKEY, 						XK_F1,					spawn,				SHCMD("rofi-app-launcher.sh")},
-	{ MODKEY, 						XK_F2,					spawn,				SHCMD("rofi-disks.sh")},
+	{ MODKEY, 						XK_F2,					spawn,				SHCMD("rofi-vpn.sh")},
 	{ MODKEY, 						XK_F3,					spawn,				SHCMD("rofi-monitors-manager.sh")},
+	{ MODKEY, 						XK_F4,					spawn,				SHCMD("rofi-disks.sh")},
 	{ MODKEY,						XK_l,					spawn,				SHCMD("screen-saver.sh")},
 	{ MODKEY|ShiftMask,				XK_v,					spawn,				SHCMD("toggle_vpn.sh wg0")},
 
