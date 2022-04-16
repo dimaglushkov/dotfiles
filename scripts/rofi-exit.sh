@@ -2,8 +2,8 @@
 CHOSEN=$(echo -e " &#xf137; Logout\n &#xf011; Poweroff\n &#xf0e2; Reboot\n &#xf023; Lock\n &#xf017; Suspend" |  rofi -dmenu -i -p "Exit menu " -theme sidebar -font "Noto Mono 14" -markup-rows)
 case "$CHOSEN" in
 	" &#xf137; Logout" )
-		i3-msg exit
 		killall dwm
+		i3-msg exit
 	;;
 
 	" &#xf011; Poweroff" )
@@ -19,7 +19,7 @@ case "$CHOSEN" in
 	;;
 
 	" &#xf017; Suspend" )
-		/usr/bin/systemctl suspend
+screen-saver.sh ; /usr/bin/systemctl suspend
 	;;
 
 esac

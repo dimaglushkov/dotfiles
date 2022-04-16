@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /home/allacee/Repos/solutions/tools/
+/home/allacee/.config/venv/py310/bin/python readme-generator.py
+cd - > /dev/null
+

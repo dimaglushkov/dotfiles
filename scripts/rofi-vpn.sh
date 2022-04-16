@@ -7,12 +7,15 @@ if [[ $VPN != "" ]]; then
 	CONNECTED_VPN=$(echo "$VPNS" | awk '{if($2 != "--") print $1}')
 	toggler=$(which toggle_vpn.sh)
 	if [[ $toggler == "" ]]; then
-		notify-send "VPN manager" "toggle_vpn.sh script was not found" 
+		notify-send "VPN manager" "toggle_vpn.sh script was not found"
 		exit 1
 	fi
 	echo "$CONNECTED_VPN $VPN"
-	if [[ $CONNECTED_VPN != $VPN && $CONNECTED_VPN != "" ]]; then 
+	if [[ $CONNECTED_VPN != $VPN && $CONNECTED_VPN != "" ]]; then
 		$toggler $CONNECTED_VPN
 	fi
 	$toggler $VPN
 fi
+
+sleep 2
+pkill -RTMIN+20 dwmblocks

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+exit_script="$HOME/.local/bin/rofi-exit.sh"
+lock_cmd="screen-saver.sh ; /usr/bin/systemctl suspend"
+nolock_cmd="/usr/bin/systemctl suspend"
+locking=$(grep "$lock_cmd" $exit_script)
+lock_logo="&#xf023;"
+
+if [[ ! -z "$locking" ]]; then
+	status="&#xf205;"
+else
+	status="&#xf204;"
+fi
+
+case "$BLOCK_BUTTON" in
+    1)
+        if [[ $status == "&#xf205;" ]]; then
+            awk -i inplace -v lock_cmd="$lock_cmd" -v nolock_cmd="$nolock_cmd" '{if ($0 == lock_cmd){print nolock_cmd} else {print $0}}' $exit_script
+            status="&#xf204;"
+        elseq
+            awk -i inplace -v lock_cmd="$lock_cmd" -v nolock_cmd="$nolock_cmd" '{if ($0 == nolock_cmd){print lock_cmd} else {print $0}}' $exit_script
+            status="&#xf205;"
+        fi
+    ;;
+esac
+
+echo "$lock_logo $status"
