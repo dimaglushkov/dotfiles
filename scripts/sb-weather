@@ -1,7 +1,7 @@
 #!/bin/bash
 
 weather=$(curl -s -m 20 "wttr.in/?format=1")
-if [[ $weather == *Unknown* ]]; then
+if [[ -z "$weather" || $weather == *Unknown* ]]; then
     echo "🥶🥶🥶"
 else
     echo $weather

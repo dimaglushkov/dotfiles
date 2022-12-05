@@ -54,7 +54,8 @@ colors:
     focused_match:
      foreground: CellBackground
      background: CellForeground
-    bar:
+  footer:
+  	bar:
      background: '#c5c8c6'
      foreground: '#1d1f21'
   normal:

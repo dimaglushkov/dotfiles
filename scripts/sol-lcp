@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cd /home/allacee/Repos/solutions/tools/
-/home/allacee/.config/venv/py310/bin/python lc-problem-puller.py $@
-cd - > /dev/null
-
