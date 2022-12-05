@@ -165,7 +165,7 @@ struct Monitor {
 	Monitor *next;
 	Window barwin;
 	const Layout *lt[2];
-	int ltcur; 
+	int ltcur;
 	Pertag *pertag;
 };
 
@@ -982,7 +982,8 @@ drawbar(Monitor *m)
 
 	if ((w = m->ww - tw - stw - x) > bh) {
         if (m->sel) {
-            drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+            // drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+			drw_setscheme(drw, scheme[SchemeNorm]);
             drw_text(drw, x, 0, w, bh, lrpad / 2 + (m->sel->icon ? m->sel->icw + ICONSPACING : 0), m->sel->name, 0, False);
 			if (m->sel->icon)
                 drw_pic(drw, x + lrpad / 2, (bh - m->sel->ich) / 2, m->sel->icw, m->sel->ich, m->sel->icon);
@@ -1203,9 +1204,9 @@ geticonprop(Window win, unsigned int *picw, unsigned int *pich)
 	unsigned long n, extra, *p = NULL;
 	Atom real;
 
-	if (XGetWindowProperty(dpy, win, netatom[NetWMIcon], 0L, LONG_MAX, False, AnyPropertyType, 
+	if (XGetWindowProperty(dpy, win, netatom[NetWMIcon], 0L, LONG_MAX, False, AnyPropertyType,
 						   &real, &format, &n, &extra, (unsigned char **)&p) != Success)
-		return None; 
+		return None;
 	if (n == 0 || format != 32) { XFree(p); return None; }
 
 	unsigned long *bstp = NULL;
@@ -1509,7 +1510,7 @@ monocle(Monitor *m)
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
-	if (n > 0) 
+	if (n > 0)
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx, m->wy, m->ww, m->wh, 0, 0);
@@ -2892,14 +2893,14 @@ shiftviewclients(const Arg *arg)
 	Client *c;
 	unsigned int tagmask = 0;
 	unsigned int allowedtagmask = 0;
-	
+
 	for (c = selmon->clients; c; c = c->next){
 		tagmask = tagmask | c->tags;
 	}
 	allowedtagmask = ((1 << LENGTH(tags)) - 1);
-	
+
 	shifted.ui = selmon->tagset[selmon->seltags] & allowedtagmask;
-	if (arg->i > 0) 
+	if (arg->i > 0)
 		do {
 			shifted.ui = (shifted.ui << arg->i);
 		} while (tagmask && !(shifted.ui & tagmask) && (shifted.ui & allowedtagmask));
@@ -2918,7 +2919,7 @@ shiftviewclientscycled(const Arg *arg)
 	Client *c;
 	unsigned int tagmask = 0;
 	unsigned int allowedtagmask = 0;
-	
+
 	for (c = selmon->clients; c; c = c->next){
 		tagmask = tagmask | c->tags;
 	}
