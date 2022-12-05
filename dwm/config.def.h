@@ -12,7 +12,7 @@ static const int showsystray        		= 1;	/* 0 means no systray */
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
 static const char font[]            		= "Noto Mono, Font Awesome 5 Free, 12";
-static const char dmenufont[]       		= "monospace:size=10";
+static const char dmenufont[]       		= "monospace:size=12";
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
 static const char col_gray3[]       		= "#bbbbbb";
@@ -36,21 +36,24 @@ static const char *const autostart[] = {
 	"indicator-keylock", NULL,
 	"libinput-gestures", NULL,
 	"dwmblocks", NULL,
+	"blueman-applet", NULL,
+	"thunderbird", NULL,
+	"telegram-desktop", NULL,
 	NULL
 };
 
 
 static const char *tags[] = {
-	"1:&#xf269;",
-	"2:&#xf120;",
+	"1",
+	"2",
 	"3",
 	"4",
 	"5",
-	"6",
-	"7",
-	"8:&#xf392;",
-	"9:&#xf1bc;",
-	"10:&#xf2c6;"
+	"&#xf095;",
+	"&#xf1bc;",
+	"&#xf198;",
+	"&#xf0e0;",
+	"&#xf2c6;"
 	};
 
 static const Rule rules[] = {
@@ -61,10 +64,14 @@ static const Rule rules[] = {
 	/* class      			instance    title       tags mask   isfloating  monitor */
 	{ "Gimp",     			NULL,       NULL,       0,          1,          -1 },
 	{ "firefox",  			NULL,       NULL,       1 << 0,     0,          -1 },
-	{ "discord",			NULL, 		NULL, 		1 << 7,		0,		  	-1 },
-	{ "Spotify",			NULL,		NULL,		1 << 8, 	0, 			-1 },
+	{ "discord",			NULL, 		NULL, 		1 << 5,		0,		  	-1 },
+	{ "zoom",				NULL,		NULL,		1 << 5, 	0,			-1 },
+	{ "spotify", 			NULL,		NULL,		1 << 6, 	0,			-1 },
+	{ "Slack",				NULL,		NULL,		1 << 7,		0,			-1 },
+	{ "thunderbird",		NULL,		NULL,		1 << 8,		0,			-1 },
 	{ "TelegramDesktop", 	NULL,		NULL,		1 << 9, 	0, 			-1 },
-	{ NULL,					NULL,		"win0",		0,			1,			-1 }
+	{ NULL,					NULL,		"win0",		0,			1,			-1 },
+	{ NULL,					NULL,		"splash",	0,			1,			-1 }
 };
 
 /* layout(s) */
@@ -106,7 +113,6 @@ static const char *scratchpadcmd[] = { terminal, "-t", scratchpadname, "-o", "wi
 static const char *rangercmd[] = { terminal, "-e", "ranger", NULL };
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *telegramcmd[] = { "telegram-desktop", NULL} ;
-
 
 
 static Key keys[] = {

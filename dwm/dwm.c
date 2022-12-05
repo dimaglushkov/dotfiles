@@ -87,7 +87,7 @@ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
-enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkClientWin,
+enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkClientWin, ClkWinTitle,
        ClkRootWin, ClkLast }; /* clicks */
 
 typedef union {
@@ -588,7 +588,7 @@ buttonpress(XEvent *e)
 				}
 			}
 		} else
-			click = ClkStatusText;
+			click = ClkWinTitle;
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
 		restack(selmon);
@@ -922,9 +922,8 @@ void
 drawbar(Monitor *m)
 {
 	int x, w, tw = 0, stw = 0;
-	FILE *f = fopen("/tmp/dwmlog.log", "w");
-	// int boxs = drw->font->h / 9;
-	// int boxw = drw->font->h / 6 + 2;
+	int boxs = drw->font->h / 9;
+	int boxw = drw->font->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
@@ -933,15 +932,13 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 
-	/* draw status first so it can be overdrawn by tags later */
+	/* draw status first, so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		char *text, *s, ch;
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		x = 0;
-		fprintf(f, "stext: %s", stext);
 		for (text = s = stext; *s; s++) {
 			if ((unsigned char)(*s) < ' ') {
-				fprintf(f, "text: %s, s: %s\n", text, s);
 				ch = *s;
 				*s = '\0';
 				tw = TEXTWM(text) - lrpad;
@@ -952,11 +949,9 @@ drawbar(Monitor *m)
 			}
 		}
 		tw = TEXTWM(text) - lrpad ;
-		fprintf(f, "text 2d drw_txt: %s", stext);
 		drw_text(drw, m->ww - statusw - stw + x , 0, tw, bh, 0, text, 0, True);
 		tw = statusw;
 	}
-	fclose(f);
 
 
 	for (c = m->clients; c; c = c->next) {
@@ -980,8 +975,15 @@ drawbar(Monitor *m)
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0, True);
 
 	if ((w = m->ww - tw - stw - x) > bh) {
-		drw_setscheme(drw, scheme[SchemeNorm]);
-		drw_rect(drw, x, 0, w, bh, 1, 1);
+        if (m->sel) {
+            drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+            drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0, False);
+            if (m->sel->isfloating)
+                drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+        } else {
+            drw_setscheme(drw, scheme[SchemeNorm]);
+            drw_rect(drw, x, 0, w, bh, 1, 1);
+        }
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
 }
