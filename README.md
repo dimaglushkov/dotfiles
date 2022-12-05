@@ -1,8 +1,8 @@
 # dotfiles
 My dotfiles, configs, and scripts
-![Screen sample](https://github.com/dimaglushkov/dotfiles/blob/main/assets/screenshots/screen-sample-dwm-arch.png)
+![Screen sample](https://github.com/dimaglushkov/dotfiles/blob/main/assets/screenshots/screen-sample-dwm-arch-latest.jpg)
 
-## Installation 
+## Installation
 You can automatically install this configuration on _probably_ any Arch-based system.
 To install this configuration, just launch ```install.sh``` installation script. It will automatically download _probably_ all necessary tools and programs and move their condfigs to the right directories. After that, it will ask you to restart your session for changes to have an effect
 
