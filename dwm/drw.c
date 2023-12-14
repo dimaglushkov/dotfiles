@@ -100,14 +100,21 @@ xfont_free(Fnt *font)
 }
 
 Fnt*
-drw_font_create(Drw* drw, const char font[])
+drw_font_create(Drw* drw, const char font[], char fontsize)
 {
 	Fnt *fnt = NULL;
 
 	if (!drw || !font)
 		return NULL;
 
-	fnt = xfont_create(drw, font);
+	int l = strlen(font) + 15;
+	char *font_with_size = malloc(l);
+
+	snprintf(font_with_size, l, "%s%s%d", font, ", ", fontsize);
+
+	fnt = xfont_create(drw, font_with_size);
+
+	free(font_with_size);
 
 	return (drw->font = fnt);
 }

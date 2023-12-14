@@ -10,11 +10,11 @@ static const unsigned int systrayspacing 	= 2;	/* systray spacing */
 static const int systraypinningfailfirst 	= 1;	/* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        		= 1;	/* 0 means no systray */
 static const int ICONSIZE                   = 15;   /* icon size */
-static const int ICONSPACING                = 5; /* space between icon and title */
+static const int ICONSPACING                = 5; 	/* space between icon and title */
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
-static const char font[]            		= "Noto Mono, Font Awesome 5 Free, 12";
-static const char dmenufont[]       		= "monospace:size=12";
+static const char font[]            		= "Noto Mono, Font Awesome 5 Free";
+static char fontsize 						= 12;
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
 static const char col_gray3[]       		= "#bbbbbb";
@@ -85,10 +85,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	// { "><>",      NULL },    /* no layout function means floating behavior */
-	// { "[M]",      monocle },
 	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -107,7 +104,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char terminal[] = "alacritty";
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { terminal, "-e", "tmux", NULL };
 static const char scratchpadname[] = "scratchpad";
 
@@ -137,6 +134,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_equal,  				setgaps,        	{.i = GAP_TOGGLE} },
 	{ MODKEY|ShiftMask,             XK_space,  				togglefloating, 	{0} },
 	{ MODKEY|ShiftMask,             XK_f,      				togglefullscr,  	{0} },
+	{ MODKEY|ControlMask,			XK_minus,				changefontsize,		{ .i = -1} },
+	{ MODKEY|ControlMask,			XK_equal,				changefontsize,		{ .i = +1} },
 
 	{ MODKEY,                       XK_Tab,    				shiftviewclientscycled,   { .i = +1 } },
 	{ MODKEY|ShiftMask,             XK_Tab,    				shiftviewclientscycled,   { .i = -1 } },

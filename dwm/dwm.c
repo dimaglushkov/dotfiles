@@ -303,8 +303,8 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void centeredmaster(Monitor *m);
-static void centeredfloatingmaster(Monitor *m);
 static void autostart_exec(void);
+static void changefontsize(const Arg *arg);
 
 /* variables */
 static Systray *systray =  NULL;
@@ -2064,7 +2064,7 @@ setup(void)
 	sh = DisplayHeight(dpy, screen);
 	root = RootWindow(dpy, screen);
 	drw = drw_create(dpy, screen, root, sw, sh);
-	if (!drw_font_create(drw, font))
+	if (!drw_font_create(drw, font, fontsize))
 		die("no fonts could be loaded.");
 	lrpad = drw->font->h;
 	bh = drw->font->h + 2;
@@ -3151,48 +3151,14 @@ centeredmaster(Monitor *m)
 	}
 }
 
-void
-centeredfloatingmaster(Monitor *m)
-{
-	unsigned int i, n, w, mh, mw, mx, mxo, my, myo, tx;
-	Client *c;
+void 
+changefontsize(const Arg *arg) {
+	fontsize += arg->i;
 
-	/* count number of clients in the selected monitor */
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
-	if (n == 0)
-		return;
+	if (!drw_font_create(drw, font, fontsize))
+		die("no fonts could be loaded.");
+	lrpad = drw->font->h;
+	bh = drw->font->h + 2;
 
-	/* initialize nmaster area */
-	if (n > m->nmaster) {
-		/* go mfact box in the center if more than nmaster clients */
-		if (m->ww > m->wh) {
-			mw = m->nmaster ? m->ww * m->mfact : 0;
-			mh = m->nmaster ? m->wh * 0.9 : 0;
-		} else {
-			mh = m->nmaster ? m->wh * m->mfact : 0;
-			mw = m->nmaster ? m->ww * 0.9 : 0;
-		}
-		mx = mxo = (m->ww - mw) / 2;
-		my = myo = (m->wh - mh) / 2;
-	} else {
-		/* go fullscreen if all clients are in the master area */
-		mh = m->wh;
-		mw = m->ww;
-		mx = mxo = 0;
-		my = myo = 0;
-	}
-
-	for(i = tx = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
-	if (i < m->nmaster) {
-		/* nmaster clients are stacked horizontally, in the center
-		 * of the screen */
-		w = (mw + mxo - mx) / (MIN(n, m->nmaster) - i);
-		resize(c, m->wx + mx, m->wy + my, w - (2*c->bw), mh - (2*c->bw), 0, 1);
-		mx += WIDTH(c);
-	} else {
-		/* stack clients are stacked horizontally */
-		w = (m->ww - tx) / (n - i);
-		resize(c, m->wx + tx, m->wy, w - (2*c->bw), m->wh - (2*c->bw), 0, 1);
-		tx += WIDTH(c);
-	}
+	drawbars();
 }
