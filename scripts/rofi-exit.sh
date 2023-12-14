@@ -19,7 +19,8 @@ case "$CHOSEN" in
 	;;
 
 	" &#xf017; Suspend" )
-screen-saver.sh ; /usr/bin/systemctl suspend
+		# screen-saver.sh ; /usr/bin/systemctl suspend
+		/usr/bin/systemctl suspend
 	;;
 
 esac

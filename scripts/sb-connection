@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 active_connections=$( nmcli device status |  awk '{if(($2 == "ethernet" || $2 == "wifi" || $2 == "vpn" || $2 == "wireguard") && $3 == "connected"){type=$2;$1=$2=$3=""; print type":"$0}}')
 
@@ -12,4 +12,4 @@ active_connections="${active_connections//ethernet/&#xf6ff;}"
 active_connections="${active_connections//wifi/&#xf1eb;}"
 active_connections="${active_connections//wireguard/&#xf505;}"
 active_connections="${active_connections//vpn/&#xf505;}"
-echo $active_connections
+echo $active_connections | tr -s ' '

@@ -2,7 +2,7 @@
 
 weather=$(curl -s -m 20 "wttr.in/?format=1")
 if [[ -z "$weather" || $weather == *Unknown* ]]; then
-    echo "🥶🥶🥶"
+    echo "🥶"
 else
     echo $weather
 fi
