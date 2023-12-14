@@ -44,22 +44,22 @@ function generate_profile {
 	confirmation
 
 	echo "> Creating .profile"
-	echo -n "export DOTFILES=$dotfiles\n
-	export CONFIGS=$configs\n
-	export CACHE=$cache\n\n
+	echo -n "export DOTFILES=$dotfiles
+export CONFIGS=$configs
+export CACHE=$cache
 
-	export XDG_CONFIG_HOME=$configs\n
-	export XDG_CACHE_HOME=$cache\n
-	export XDG_DATA_HOME=$HOME/.local/share\n
-	export XDG_STATE_HOME=$HOME/.local/state\n\n
+export XDG_CONFIG_HOME=$configs
+export XDG_CACHE_HOME=$cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
 
-	export BACKGROUND=$background\n
-	export SCREENSHOTS=$screenshots\n
-	export REPOSITORIES=$repositories\n
-	export BROWSER=$browser\n
-	export EDITOR=$editor\n
-	export TERMINAL=$terminal\n
-	export VIMINIT=\"source $configs/vim/.vimrc\"\n" > $dotfiles/.profile
+export BACKGROUND=$background
+export SCREENSHOTS=$screenshots
+export REPOSITORIES=$repositories
+export BROWSER=$browser
+export EDITOR=$editor
+export TERMINAL=$terminal
+export VIMINIT=\"source $configs/vim/.vimrc\""	> $dotfiles/.profile
 	
 	echo "> Successfully created $dotfiles/.profile"
 
@@ -71,6 +71,7 @@ function configure_display_manager {
 	echo "> Configuring display manager"
 	cd $repositories
 	git clone https://github.com/allacee/lightdm-webkit2-theme-minimal.git
+	sudo mkdir -p /usr/share/lightdm-webkit/themes/minimal
 	sudo cp -r lightdm-webkit2-theme-minimal/ /usr/share/lightdm-webkit/themes/minimal
 	sudo cp xsessions/dwm.desktop /usr/share/xsessions/dwm.desktop
 	sudo awk -i inplace -v FS="=" '{if($1 ~/#greeter-session/){"greeter-session = lightdm-webkit2-greeter" } else {print $0}}' /etc/lightdm/lightdm.conf
@@ -144,11 +145,14 @@ generate_profile
 source $dotfiles/.profile
 read -p "> Install dependencies (skip if dependencies are already installed)? [y/n]: " -n 1 -r
 echo ""
-if [[ $REPLY = "y" && $REPLY = "Y" ]]
+if [[ $REPLY = "y" || $REPLY = "Y" ]]
 then
 	install_dependencies
 	install_fonts
 	install_sounds
+else
+	echo ">> Skipping dependencies installation"
+	exit 1
 fi
 configure_display_manager
 postprocess
