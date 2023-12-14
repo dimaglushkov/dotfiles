@@ -219,3 +219,9 @@ static Button buttons[] = {
 	{ ClkTagBar, 			0,				Button4, 		shiftviewclients,	{ .i = -1 } },
 	{ ClkTagBar, 			0,				Button5, 		shiftviewclients,   { .i = +1 } },
 };
+
+static Signal signals[] = {
+	/* signum       function        	argument  */
+	{ 1,            changefontsize,     {.i = -1} },
+	{ 2,            changefontsize,     {.i = +1} },
+};
