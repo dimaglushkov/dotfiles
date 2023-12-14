@@ -14,7 +14,8 @@ static const int ICONSPACING                = 5; 	/* space between icon and titl
 static const int showbar            		= 1;	/* 0 means no bar */
 static const int topbar             		= 1;	/* 0 means bottom bar */
 static const char font[]            		= "Noto Mono, Font Awesome 5 Free";
-static char fontsize 						= 12;
+static const char defaultfontsize 			= 12;
+static char fontsize 						= defaultfontsize;
 static const char col_gray1[]       		= "#222222";
 static const char col_gray2[]       		= "#444444";
 static const char col_gray3[]       		= "#bbbbbb";
@@ -224,4 +225,5 @@ static Signal signals[] = {
 	/* signum       function        	argument  */
 	{ 1,            changefontsize,     {.i = -1} },
 	{ 2,            changefontsize,     {.i = +1} },
+	{ 3, 			changefontsize, 	{.i = 0}},
 };

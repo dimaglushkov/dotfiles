@@ -3162,8 +3162,11 @@ centeredmaster(Monitor *m)
 
 void 
 changefontsize(const Arg *arg) {
-	fontsize += arg->i;
-
+	if (arg->i == 0)  
+		fontsize = defaultfontsize;
+	else 
+		fontsize += arg->i;
+	
 	if (!drw_font_create(drw, font, fontsize))
 		die("no fonts could be loaded.");
 	lrpad = drw->font->h;
