@@ -140,6 +140,7 @@ if [[ $TO_UPDATE == *.profile* ]]; then
 	if [[ $REPLY == "y" || $REPLY == "Y" ]]
 	then
 		i3-msg exit
+		killall dwm
 	fi
 fi
 

@@ -1,20 +1,19 @@
 live_config_reload: true
 working_directory: None
 winpty_backend: false
-alt_send_esc: true
+#alt_send_esc: true
 draw_bold_text_with_bright_colors: false
 
 env:
-  TERM: alacritty
+  TERM: xterm-256color
 
 window:
   padding:
-    x: 3
-    y: 2
-  dynamic_padding: true
-  decorations: full
+    x: 0
+    y: 0
+  dynamic_padding: false
+  decorations: none
   startup_mode: Windowed
-  title: Alacritty
   dynamic_title: true
   opacity: 1
   class:
@@ -55,7 +54,7 @@ colors:
      foreground: CellBackground
      background: CellForeground
   footer:
-  	bar:
+    bar:
      background: '#c5c8c6'
      foreground: '#1d1f21'
   normal:
@@ -91,8 +90,10 @@ selection:
   save_to_clipboard: false
 
 cursor:
-  style: Block
-  vi_mode_style: None
+  style:
+    shape: Block
+    blinking: Always
+ # vi_mode_style: None
   unfocused_hollow: true
   thickness: 0.15
 

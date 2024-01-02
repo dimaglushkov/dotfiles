@@ -11,28 +11,28 @@ HDMI_OUTPUT="HDMI-0"
 case "$CHOSEN" in
     "${OPT[0]}" )
         xrandr --output $BUILTIN_OUTPUT --off --output $HDMI_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 165
-        sed -i '/  size: 9/c\  size: 13' $CONFIGS/alacritty/alacritty.yml
+        sed -i '/size = 9/c\size = 13' $CONFIGS/alacritty/alacritty.toml
     ;;
 
     "${OPT[1]}" )
         xrandr --output $HDMI_OUTPUT --off --output $BUILTIN_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 240
-        sed -i '/  size: 13/c\  size: 9' $CONFIGS/alacritty/alacritty.yml
+        sed -i '/size = 13/c\size = 9' $CONFIGS/alacritty/alacritty.toml
         xsetroot -name "fsignal:3"
     ;;
 
     "${OPT[2]}" )
         xrandr --output $HDMI_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 165 --output $BUILTIN_OUTPUT --primary --mode 1920x1080 --pos 1920x0 --rotate normal -r 240
-        sed -i '/  size: 9/c\  size: 13' $CONFIGS/alacritty/alacritty.yml
+        sed -i '/size = 9/c\size = 13' $CONFIGS/alacritty/alacritty.toml
     ;;
 
     "${OPT[3]}" )
         xrandr --output $BUILTIN_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 240 --output $HDMI_OUTPUT --primary --mode 1920x1080 --pos 1920x0 --rotate normal -r 165
-        sed -i '/  size: 9/c\  size: 13' $CONFIGS/alacritty/alacritty.yml
+        sed -i '/size = 9/c\size = 13' $CONFIGS/alacritty/alacritty.toml
     ;;
 
     "${OPT[4]}" )
         xrandr --output $HDMI_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 165 --output $BUILTIN_OUTPUT --primary --mode 1920x1080 --pos 0x0 --rotate normal -r 240
-        sed -i '/  size: 9/c\  size: 13' $CONFIGS/alacritty/alacritty.yml
+        sed -i '/size = 9/c\size = 13' $CONFIGS/alacritty/alacritty.toml
     ;;
 
 esac
